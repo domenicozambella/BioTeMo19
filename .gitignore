@@ -17,7 +17,7 @@
 *esami/
 *esame/
 *pythontex-*/
-p
+*.ipynb_checkpoints/
 *.directory
 
 ## Intermediate documents:
