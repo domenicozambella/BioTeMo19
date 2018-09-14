@@ -1,0 +1,12 @@
+#!/bin/bash
+CURRENT=`pwd`
+NAME=`basename "$CURRENT"`
+mkdir -p aux
+mv aux/* ./
+
+latexmk -pdf -pdflatex="pdflatex -synctex=1 --shell-escape %S" $NAME.tex
+
+for i in $( ls | grep \\.  | grep -v -F .tex | grep -v -F  .pdf | grep -v -F README.md | grep -v -F  synctex | grep -v -F  .py | grep -v -F elephant_playing_piano.jpg ); do
+    mv -t aux $i
+done
+
