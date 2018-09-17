@@ -59,6 +59,7 @@ if not ESAME :
    n_vittoria = 8
    n_partite = 11
 risultato = 1 - binom.cdf(n_partite-n_vittoria-1, n_partite, p)
+risultato = round(risultato, 4)
 \end{pycode}
 In un gioco a due giocatori, $A$ e $B$, ogni partita vale un punto che è vinto da uno dei due giocatori (non ci sono patte). Vince il gioco chi per primo raggiunge \py{n_vittoria} punti. In ciascuna partita vince $A$ con probabilità $\py{p}$.
 
