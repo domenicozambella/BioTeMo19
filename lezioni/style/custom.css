@@ -10,6 +10,20 @@ h1 {
     font-size: larger !important;
     margin-top: 0ex !important;
 }
+h2 {
+    font-size: 10pt !important;
+    margin-top: 0ex !important;
+    margin-bottom: 0ex !important;
+    padding-bottom: 0ex !important;
+}
+
+h3 {
+    font-size: 10pt !important;
+    margin-top: 0ex !important;
+    margin-bottom: 0ex !important;
+    padding-bottom: 0ex !important;
+}
+
 mark {
     background-color: #ffdd00;
     border-top-right-radius: 5px;
