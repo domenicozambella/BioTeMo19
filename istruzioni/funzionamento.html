@@ -5,32 +5,40 @@
     <link rel="stylesheet" href="../lezioni/style/custom.css" title="external style sheet">
     <style></style>
   </head>
-  <body style="width:80ex">
+  <body style="width:70ex">
 
 Il materiale didattico di questo corso è archiviato in <span style='font-family:courier'>formato grezzo</span> in questa repository 
 
 <pre style='font-family:courier'><a href="https://gitlab.com/domenicozambella/BioTeMo19">gitlab.com/domenicozambella/BioTeMo19</a></pre>
 
-Per utilizzarlo al meglio, bisogna disporre dell'applicazione <a href="http://jupyter.org/">Jupyter</a> che può essere installata su un quialsiasi computer e si utilizza con un qualsiasi browser. 
+Per utilizzarlo al meglio, bisogna disporre dell'applicazione <a href="http://jupyter.org/">Jupyter</a>.  Esiste un server <a href="https://www.jupyter.unito.it/">Jupyter di ateneo</a>, ma questo stesso server può essere (con un paio di click) installato in qualsiasi computer e usato localmente.<br><br>
 
-Per scaricare la repository bisogna aprire un terminale (qualsiasi terminale, ce n'è uno all'interno di Jupyter) e dare il comando 
-
-<pre style='font-family:courier'>git clone https://gitlab.com/domenicozambella/BioTeMo19.git</pre>
-
-Per aggiornare la repository bisogna, di nuovo con un termilale, spostarsi nella directory <span style='font-family:courier'>BioTeMo19</span> e dare il comando
-
-<pre style='font-family:courier'>git fetch origin; git reset --hard origin/master</pre>
-
-
-Può essere più semplice e PREFERIBILE utilizzare il server <a href="https://www.jupyter.unito.it/">Jupyter di ateneo</a>. Agli studenti del primo anno verranno (o sono già state a qualcuno) inviate per email all'indirizzo istituzionale le credenziali per accedere al server. La procedura per scaricare e sincronizzare materiale didattico è la stessa. Qui per vostra comodità abbiamo sintetizzata la procedura nel comando (funziona sia per creare che per sincronizzare) 
+Per utilizzare il <b>server di ateneo</b> bisogna atenticarsi. Le credenziali verranno spedite agli studenti del primo anno per email all'indirizzo istituzionale (a qualcuno sono già state inviate). Per scaricare il materiale didattico bisogna aprire un terminale (dal menu a tendina: <mark>New>Terminal</mark>) e dare il comando 
 
 <pre style='font-family:courier'>syncBioTeMo19</pre>
 
-Il diario delle lezioni si trova nel file (da aprire all'interno di Jupyter)
+Questa procedura crea la cartella <span style='font-family:courier'>BioTeMo19</span> con tutto il materiale didattico. La stessa procedura va usata per aggiornare il materiale (che varierà spesso).<br><br>
+
+Chi installa <a href="http://jupyter.org/">Jupyter</a> sul <b>proprio computer</b> alla prima sincronizzazione deve usare il comando
+
+<pre style='font-family:courier'>git clone https://gitlab.com/domenicozambella/BioTeMo19.git</pre>
+
+In seguito, per aggiornare, deve spostarsi nella directory <span style='font-family:courier'>BioTeMo19</span> e dare il comando
+
+<pre style='font-family:courier'>git fetch origin; git reset --hard origin/master</pre>
+
+<br><br><br>
+<b>Il diario delle lezioni</b> si trova nel file (da aprire all'interno di Jupyter)
 
 <pre style='font-family:courier'>BioTeMo19/lezioni/_DiarioLezioni.ipynb</pre>
 
 Questo stesso file contiene anche la bibiografia e l'agenda delle lezioni future.
 
+<br><br><br>
+<b>Per prima cosa</b> quando si apre un notebook (ovvero un file con estensione <span style='font-family:courier'>.ipynb</span>) bisogna eseguire tutte le celle. Dal menù a tendina: <mark>Cell>Run&nbsp;All</mark>.
+
+
+<br><br><br>
+<b>Se le cose vanno storte</b>, meglio ri-inizializzare il kernel. Dal menù a tendina: <mark>Kernel>Restart</mark>. Poi bisogna eseguire di nuovo tutte le celle.
   </body>
 </html>
