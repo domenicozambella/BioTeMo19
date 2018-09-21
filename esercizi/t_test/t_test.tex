@@ -55,12 +55,12 @@ from scipy import stats
 
 liquid = random.choice(['milk','water','acetone', 'hydrogen peroxide (H$_2$O$_2$)', 'ethyl alcohol'])
 mu0 = random.choice([500,600,750])
-n = random.choice([4,9])
+n = random.choice([4,9, 16])
 xbar = mu0 - random.choice([8,10,12])
 sd = random.choice([14,18,220])
-tstat = abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = (xbar-mu0)*math.sqrt(n)/sd
 tstat = round(tstat, 4)
-pval = stats.t.cdf(-tstat,n-1)
+pval = stats.t.cdf(tstat,n-1)
 pval = round(pval, 4)
 \end{pycode}
 A machine fills $\py{mu0}$ml of \py{liquid} into packages. It is suspected that the machine is not working correctly and that the amount filled is less than the setpoint. A sample of $\py{n}$ packages filled by the machine are collected. The sample mean is $\py{xbar}$ml and the sample standard deviation is $\py{sd}$ml. Can we reject the hypothesis that the machine is working correctly?
@@ -70,11 +70,12 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
 
 \begin{answer}
 
+  {\color{blue}
   H$_0:$\hfill $\mu = \mu_0 = \py{mu0}$\kern19ex
   
   H$_1:$\hfill $\mu<\mu_0 = \py{mu0}$\kern19ex
   
-  We use a one tail t-test (lower tail)\kern19ex
+  We use a one tail t-test (lower tail)\kern19ex}
   
   $n = \py{n}$\hfill sample size\kern19ex
   
@@ -82,11 +83,11 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
   
   $\bar{x} = \py{xbar}$\hfill sample mean\kern19ex
   
-  $t = \displaystyle\frac{|\bar{x}-\mu_0|}{s/\sqrt{n}}\ {\color{blue} = \py{tstat}}$\hfill value of the t-test statistic\kern19ex
+  $t = \displaystyle\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\ {\color{blue} = \py{tstat}}$\hfill{\color{blue} value of the t-test statistic}\kern19ex
   
   $n-1 = \py{n-1}$\hfill degrees of freedom\kern19ex
   
-  $P\big(T_{n-1}<-t\big)\ {\color{blue} = \py{pval}}$\hfill p-value\kern19ex
+  $P\big(T_{n-1}<t\big)\ {\color{blue} = {\tt t.cdf(\py{tstat},\py{n-1} ) }} = \py{pval}$\hfill{\color{blue} p-value}\kern19ex
 
 \end{answer}
 \end{question}
