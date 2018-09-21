@@ -1,0 +1,211 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+%\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{calc} 
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\begin{document}
+
+
+\begin{pycode}
+import random
+random.seed(258488445)
+\end{pycode}
+
+\begin{question}
+Si consideri la funzione $f(x) = \cos \bigg|\cfrac{3x-1}{2x+2} \bigg|$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione.
+\item[2.] Determinare il punto di massimo assoluto per $x \geq 0$
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = \cfrac{e^x}{\lvert x \rvert - 1}$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione.
+\item[2.] Determinare $f^{-1}(-1)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = \lvert x \rvert - \lvert x + 2 \rvert$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione.
+\item[2.] Determinare $f^{-1}(2)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si considerino le funzioni $f(x) = \cfrac{x + 1}{2x + 3}$ e $g(x) = \sqrt{3 - x}$
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+\begin{pycode}
+from sympy import *
+n = random.sample([2,3,4],2)
+n1 = n[0]
+n2 = n[1]
+
+p1 = Rational(1,random.choice([2,3,4]))
+p2 = Rational(1,random.choice([3,4]))
+p3 = 1- p1 - p2
+\end{pycode}
+
+Si consideri la funzione $f(x) = 1 + \log(\py{n1}x+\py{n2})$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione. 
+\item[2.] Per quali valori si annulla la funzione $f(-x)$?
+\end{itemize}
+Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$.
+\begin{answer}
+
+\end{answer}
+
+\end{question}
+
+\begin{question}
+Si considerino le funzioni $f(x) = \cfrac{1}{x}$ e $g(x) = x^2 - 2x$.
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si considerino le funzioni $f(x) = \cfrac{1}{x}$ e $g(x) = \log x$.
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si considerino le funzioni $f(x) = \sqrt{x}$ e $g(x) = \cfrac{x^2 + 1}{x^2 - 1}$.
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = \bigg| \cfrac{1}{x} + 1 \bigg|$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione.
+\item[2.] In quale punto si annulla la funzione $f(x+3)$?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si considerino le funzioni $f(x) = 2 + x^2$ e $g(x) = \cfrac{1}{xx}$.
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione di anidride carbonica nell'atmosfera nell'anno $x$. Si supponga che tale concentrazione abbia una crescita lineare di fattore $m = 0.8$ ppm.
+\begin{itemize}
+\item[1.] In quanti anni la concentrazione di anidride carbonica aumenterà di 5 ppm?
+\item[2.] Sapendo che nel 1960 la concentrazione di anidride carbonica nell'atmosfera era di 316 ppm, scrivere esplicitamente la funzione $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione di anidride carbonica nell'atmosfera nell'anno $x$. Si supponga che tale concentrazione abbia una crescita lineare di fattore $m = 0.8$ ppm.
+\begin{itemize}
+\item[1.] Sapendo che nel 1960 la concentrazione di anidride carbonica nell'atmosfera era di 316 ppm, scrivere esplicitamente la funzione $f(x)$.
+\item[2.] Quale sarà la concentrazione di anidride carbonica nel 2025?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione di anidride carbonica nell'atmosfera nell'anno $x$. Si supponga che tale concentrazione abbia una crescita lineare di fattore $m = 0.8$ ppm.
+\begin{itemize}
+\item[1.] Sapendo che nel 2015 la concentrazione di anidride carbonica nell'atmosfera era di 360 ppm, scrivere esplicitamente la funzione $f(x)$.
+\item[2.] Quale era la concentrazione di anidride carbonica nel 1990?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Le funzioni trigonometriche $\sin$ e $\cos$ sono periodiche di periodo $2 \pi$.
+\begin{itemize}
+\item[1.] Qual è il periodo delle funzioni $\sin \left( x+3 \right)$ e $\cos \bigg( \cfrac{x+1}{3} \bigg)$?
+\item[2.] Qual è il periodo della funzione $\tan \bigg( \cfrac{x}{2} \bigg)$?
+\end{itemize}
+\end{question}
+
+%\begin{question}
+%\def\Pr{{\rm Pr\,}}
+%\def\Ex{{\rm E\,}}
+%\def\Var{{\rm Var\,}}
+%\begin{pycode}
+%from sympy import *
+%x = random.sample([1,2,3],2)
+%x1 = -x[0]
+%x2 = x[1]
+%x3 = x[0]
+%p1 = Rational(1,random.choice([2,3,4]))
+%p2 = Rational(1,random.choice([3,4]))
+%p3 = 1- p1 - p2
+%\end{pycode}
+%La v.a.\@ discreta $X$ ha distribuzione di probabilità 
+%
+%\hfil$\displaystyle\Pr(X=\py{x1}) =\py{latex(p1)}$,\hfil  $\displaystyle\Pr(X=\py{x2}) =\py{latex(p2)}$,\hfil $\displaystyle\Pr(X=\py{x3}) =\py{latex(p3)}$. 
+%
+%\begin{itemize}
+%\item[1.] Calcolare la distribuzione di probabilità di $X^2$
+%\item[2.] Calcolare $\Var(X)$. 
+%\end{itemize}
+%
+%Esprimere i numeri razionali come frazioni.
+%
+%
+%\begin{answer}
+%
+%{\color{blue}$\displaystyle\Pr(X^2=\py{x1**2})\ =\ \py{latex(p1+p3)}$ 
+%\ \ e \ \ 
+%$\displaystyle\Pr(X^2=\py{x2**2})\ =\ \py{latex(p2)}$\hfill Risposta 1} 
+%
+%$\displaystyle\Ex(X) = \py{x1}\cdot\Pr(X=\py{x1})+\py{x2}\cdot\Pr(X=\py{x2})+\py{x3}\cdot\Pr(X=\py{x3})=\py{latex(x1*p1)} + \py{latex(x2*p2)} + \py{latex(x3*p3)}=\py{latex(x1*p1 + x2*p2 + x3*p3)}$
+%
+%$\displaystyle\Ex(X^2) = \py{x1**2}\cdot\Pr(X^2=\py{x1**2})\ +\ \py{x2**2}\cdot\Pr(X^2=\py{x2**2})=\py{latex((x1**2)*(p1+p3))} + \py{latex((x2**2)*p2)} = \py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)}$
+%
+%$\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}$ {\color{blue}$\ =\ \displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2} 
+%\end{answer}
+%\end{question}
+
+
+
+\end{document}
