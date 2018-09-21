@@ -1,6 +1,6 @@
 \documentclass[11pt,twoside,a4paper]{article}
 \usepackage[T1]{fontenc}
-%\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
 \usepackage{calc} 
@@ -64,11 +64,29 @@ Si consideri la funzione $f(x) = \lvert x \rvert - \lvert x + 2 \rvert$.
 \end{question}
 
 \begin{question}
-Si considerino le funzioni $f(x) = \cfrac{x + 1}{2x + 3}$ e $g(x) = \sqrt{3 - x}$
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+#f = Function('x')
+n = random.sample([1,2,3,4,5],4)
+f = (x + n[0])/(n[1]*x+n[2])
+g = sqrt( n[3] -x )
+\end{pycode}
+Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle g(x) =\py{latex(g)}$
 \begin{itemize}
 \item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
-\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio di $f \circ g$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}$\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$\qquad e\qquad $\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$\hfill Risposta 1}
+
+\smallskip
+{\color{blue}$\dom (f \circ g)\ =\ (-\infty,\ \py{n[3]}]$\hfill Risposta 2}
+
+\end{answer}
 \end{question}
 
 \begin{question}
@@ -81,7 +99,6 @@ n0 = Rational(n[0])
 n1 = Rational(n[1])
 n2 = Rational(n[2])
 \end{pycode}
-
 Si consideri la funzione $f(x) = \py{n0} + \log(\py{ latex( n1*x+n2 ) } )$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione. 
@@ -141,7 +158,7 @@ Si considerino le funzioni $f(x) = 2 + x^2$ e $g(x) = \cfrac{1}{x}$.
 \begin{question}
 Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione di anidride carbonica nell'atmosfera nell'anno $x$. Si supponga che tale concentrazione abbia una crescita lineare di fattore $m = 0.8$ ppm.
 \begin{itemize}
-\item[1.] In quanti anni la concentrazione di anidride carbonica aumenter‡ di 5 ppm?
+\item[1.] In quanti anni la concentrazione di anidride carbonica aumenter\`a di 5 ppm?
 \item[2.] Sapendo che nel 1960 la concentrazione di anidride carbonica nell'atmosfera era di 316 ppm, scrivere esplicitamente la funzione $f(x)$.
 \end{itemize}
 \end{question}
@@ -150,7 +167,7 @@ Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione d
 Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione di anidride carbonica nell'atmosfera nell'anno $x$. Si supponga che tale concentrazione abbia una crescita lineare di fattore $m = 0.8$ ppm.
 \begin{itemize}
 \item[1.] Sapendo che nel 1960 la concentrazione di anidride carbonica nell'atmosfera era di 316 ppm, scrivere esplicitamente la funzione $f(x)$.
-\item[2.] Quale sar‡ la concentrazione di anidride carbonica nel 2025?
+\item[2.] Quale sar\`a la concentrazione di anidride carbonica nel 2025?
 \end{itemize}
 \end{question}
 
@@ -165,8 +182,8 @@ Sia $f(x)$ la funzione che misura in parti per milione (ppm) la concentrazione d
 \begin{question}
 Le funzioni trigonometriche $\sin$ e $\cos$ sono periodiche di periodo $2 \pi$.
 \begin{itemize}
-\item[1.] Qual Ë il periodo delle funzioni $\sin \left( x+3 \right)$ e $\cos \bigg( \cfrac{x+1}{3} \bigg)$?
-\item[2.] Qual Ë il periodo della funzione $\tan \bigg( \cfrac{x}{2} \bigg)$?
+\item[1.] Qual \`e il periodo delle funzioni $\sin \left( x+3 \right)$ e $\cos \bigg( \cfrac{x+1}{3} \bigg)$?
+\item[2.] Qual \`e il periodo della funzione $\tan \bigg( \cfrac{x}{2} \bigg)$?
 \end{itemize}
 \end{question}
 
@@ -184,12 +201,12 @@ Le funzioni trigonometriche $\sin$ e $\cos$ sono periodiche di periodo $2 \pi$.
 %p2 = Rational(1,random.choice([3,4]))
 %p3 = 1- p1 - p2
 %\end{pycode}
-%La v.a.\@ discreta $X$ ha distribuzione di probabilit‡ 
+%La v.a.\@ discreta $X$ ha distribuzione di probabilit√† 
 %
 %\hfil$\displaystyle\Pr(X=\py{x1}) =\py{latex(p1)}$,\hfil  $\displaystyle\Pr(X=\py{x2}) =\py{latex(p2)}$,\hfil $\displaystyle\Pr(X=\py{x3}) =\py{latex(p3)}$. 
 %
 %\begin{itemize}
-%\item[1.] Calcolare la distribuzione di probabilit‡ di $X^2$
+%\item[1.] Calcolare la distribuzione di probabilit√† di $X^2$
 %\item[2.] Calcolare $\Var(X)$. 
 %\end{itemize}
 %
