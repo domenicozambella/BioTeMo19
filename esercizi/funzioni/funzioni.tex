@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{calc} 
 \usepackage{pythontex}
+\usepackage{dsfont}
 \newcommand{\mylabel}[1]{#1\hfill}
 \renewenvironment{itemize}
   {\begin{list}{$\triangleright$}{%
@@ -71,12 +72,13 @@ Si considerino le funzioni $f(x) = \cfrac{x + 1}{2x + 3}$ e $g(x) = \sqrt{3 - x}
 \end{question}
 
 \begin{question}
+\def\RR{{\mathds R}}
 \begin{pycode}
 from sympy import *
-n = random.sample([2,3,4],2)
-n1 = n[0]
-n2 = n[1]
-
+e = symbols('e')
+n = random.sample([2,3,4,5],2)
+n1 = Rational(n[0])
+n2 = Rational(n[1])
 p1 = Rational(1,random.choice([2,3,4]))
 p2 = Rational(1,random.choice([3,4]))
 p3 = 1- p1 - p2
@@ -91,6 +93,10 @@ Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$
 \begin{answer}
 
 \end{answer}
+
+{\color{blue} Dominio=$\displaystyle\bigg(\py{latex(-n2/n1)},\ +\infty\bigg)$\qquad Immagine=$\RR$\hfill Risposta 1\kern19ex}
+
+{\color{blue}$\displaystyle x=\py{latex(-n1/(e*n2))}$\hfill Risposta 2\kern19ex}
 
 \end{question}
 
@@ -127,7 +133,7 @@ Si consideri la funzione $f(x) = \bigg| \cfrac{1}{x} + 1 \bigg|$.
 \end{question}
 
 \begin{question}
-Si considerino le funzioni $f(x) = 2 + x^2$ e $g(x) = \cfrac{1}{xx}$.
+Si considerino le funzioni $f(x) = 2 + x^2$ e $g(x) = \cfrac{1}{x}$.
 \begin{itemize}
 \item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
 \item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
