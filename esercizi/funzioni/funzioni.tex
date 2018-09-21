@@ -36,7 +36,7 @@
 
 \begin{pycode}
 import random
-random.seed(258488445)
+random.seed(2548445)
 \end{pycode}
 
 \begin{question}
@@ -75,16 +75,14 @@ Si considerino le funzioni $f(x) = \cfrac{x + 1}{2x + 3}$ e $g(x) = \sqrt{3 - x}
 \def\RR{{\mathds R}}
 \begin{pycode}
 from sympy import *
-e = symbols('e')
-n = random.sample([2,3,4,5],2)
-n1 = Rational(n[0])
-n2 = Rational(n[1])
-p1 = Rational(1,random.choice([2,3,4]))
-p2 = Rational(1,random.choice([3,4]))
-p3 = 1- p1 - p2
+e, x = symbols('e x')
+n = random.sample([1,2,3,4,5],3)
+n0 = Rational(n[0])
+n1 = Rational(n[1])
+n2 = Rational(n[2])
 \end{pycode}
 
-Si consideri la funzione $f(x) = 1 + \log(\py{n1}x+\py{n2})$.
+Si consideri la funzione $f(x) = \py{n0} + \log(\py{ latex( n1*x+n2 ) } )$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione. 
 \item[2.] Per quali valori si annulla la funzione $f(-x)$?
@@ -94,9 +92,9 @@ Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$
 
 \end{answer}
 
-{\color{blue} Dominio=$\displaystyle\bigg(\py{latex(-n2/n1)},\ +\infty\bigg)$\qquad Immagine=$\RR$\hfill Risposta 1\kern19ex}
+{\color{blue} Dominio=$\displaystyle\left(\py{latex(-n2/n1)},\ +\infty\right)$\qquad Immagine=$\RR$\hfill Risposta 1\kern19ex}
 
-{\color{blue}$\displaystyle x=\py{latex(-n1/(e*n2))}$\hfill Risposta 2\kern19ex}
+{\color{blue}$\displaystyle x=\py{latex(-n1/(n2*e**n0))}$\hfill Risposta 2\kern19ex}
 
 \end{question}
 
