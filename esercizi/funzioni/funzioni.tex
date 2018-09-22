@@ -40,15 +40,32 @@ random.seed(2548445)
 \end{pycode}
 
 \begin{question}
-Si consideri la funzione $f(x) = \cos \bigg|\cfrac{3x-1}{2x+2} \bigg|$.
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5],4) ]
+f = cos( abs( ( n[0]*x - n[1] ) / ( n[2]*x + n[3] ) ) )
+\end{pycode}
+Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione.
-\item[2.] Determinare il punto di massimo assoluto per $x \geq 0$
+\item[2.] Determinare il punto di massimo assoluto per $x \geq 0$.
 \end{itemize}
+\begin{answer}
+
+\smallskip
+{\color{blue}$\displaystyle \dom f \ =\ \RR\ \setminus\ \left\{\py{latex(-n[3]/n[2])}\right\} $\quad e\quad $\range f \ =\ \RR$ \hfill Risposta 1}
+
+{\color{blue}Non capisco bene la domanda.\hfill Risposta 2}
+
+\end{answer}
 \end{question}
 
 \begin{question}
-Si consideri la funzione $f(x) = \cfrac{e^x}{\lvert x \rvert - 1}$.
+Si consideri la funzione $\displaystyle f(x) = \cfrac{e^x}{\lvert x \rvert - 1}$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione.
 \item[2.] Determinare $f^{-1}(-1)$.
@@ -56,7 +73,7 @@ Si consideri la funzione $f(x) = \cfrac{e^x}{\lvert x \rvert - 1}$.
 \end{question}
 
 \begin{question}
-Si consideri la funzione $f(x) = \lvert x \rvert - \lvert x + 2 \rvert$.
+Si consideri la funzione $\displaystyle f(x) = \lvert x \rvert - \lvert x + 2 \rvert$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione.
 \item[2.] Determinare $f^{-1}(2)$.
