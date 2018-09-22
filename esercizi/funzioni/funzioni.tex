@@ -57,20 +57,45 @@ Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 \end{itemize}
 \begin{answer}
 
-\smallskip
-{\color{blue}$\displaystyle \dom f \ =\ \RR\ \setminus\ \left\{\py{latex(-n[3]/n[2])}\right\} $\quad e\quad $\range f \ =\ \RR$ \hfill Risposta 1}
+{\color{blue}
+$\displaystyle \dom f \ =\ \RR\ \setminus\ \left\{\py{latex(-n[3]/n[2])}\right\} $
+\quad e\quad 
+$\range f \ =\ \RR$ 
+\hfill Risposta 1\kern19ex}
 
-{\color{blue}$\displaystyle x\ =\ \py{latex(solve(g,x)[0])}$\hfill Risposta 2}
+{\color{blue}
+$\displaystyle x\ =\ \py{latex(solve(g,x)[0])}$
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
 
 \begin{question}
-Si consideri la funzione $\displaystyle f(x) = \cfrac{e^x}{\lvert x \rvert - 1}$.
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5],3) ]
+f = exp( n[0]*x ) / ( n[1]*abs(x)-n[2] )
+\end{pycode}
+Si consideri la funzione $\displaystyle f(x) = \py{latex(f)} $.
 \begin{itemize}
-\item[1.] Determinare dominio e immagine della funzione.
-\item[2.] Determinare $f^{-1}(-1)$.
+\item[1.] Determinare il dominio di $f$.
+\item[2.] Determinare $\displaystyle f^{-1}\left(-\py{latex(1/n[2])}\right)$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle  \dom f \ =\ \RR\ \setminus\ \left\{\pm\py{latex(n[2] / n[1])}\right\} $ 
+\hfill Risposta 1\kern19ex}
+
+{\color{blue}
+$\displaystyle x\ =\ 0$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 
 \begin{question}
@@ -98,22 +123,31 @@ Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle
 \end{itemize}
 \begin{answer}
 
-{\color{blue}$\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$\qquad e\qquad $\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$\hfill Risposta 1}
+{\color{blue}
+$\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$
+\qquad e\qquad 
+$\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$
+\hfill Risposta 1\kern19ex}
 
 \smallskip
-{\color{blue}$\dom (f \circ g)\ =\ (-\infty,\ \py{n[3]}]$\hfill Risposta 2}
+{\color{blue}
+$\dom (f \circ g)\ =\ (-\infty,\ \py{n[3]}]$
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
 
 \begin{question}
 \def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
 \begin{pycode}
 from sympy import *
 e, x = symbols('e x')
 n = [Rational( i ) for i in random.sample([1,2,3,4,5],3) ]
+f = n[0] + log( n[1]*x+n[2] )
 \end{pycode}
-Si consideri la funzione $f(x) = \py{n[0]} + \log(\py{ latex( n[1]*x+n[2] ) } )$.
+Si consideri la funzione $f(x) = \py{ latex(f) } )$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione. 
 \item[2.] Per quali valori si annulla la funzione $f(-x)$?
@@ -121,12 +155,17 @@ Si consideri la funzione $f(x) = \py{n[0]} + \log(\py{ latex( n[1]*x+n[2] ) } )$
 Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$.
 \begin{answer}
 
+{\color{blue}
+$\displaystyle\dom f\ =\ \left(\py{latex(-n[2]/n[1])},\ +\infty\right)$
+\qquad 
+$\range f\ =\ \RR$
+\hfill Risposta 1\kern19ex}
+
+{\color{blue}
+$\displaystyle x\ =\ \py{latex(-n[1]/(n[2]*e**n[0]))}$
+\hfill Risposta 2\kern19ex}
+
 \end{answer}
-
-{\color{blue} Dominio=$\displaystyle\left(\py{latex(-n[2]/n[1])},\ +\infty\right)$\qquad Immagine=$\RR$\hfill Risposta 1\kern19ex}
-
-{\color{blue}$\displaystyle x=\py{latex(-n[1]/(n[2]*e**n[0]))}$\hfill Risposta 2\kern19ex}
-
 \end{question}
 
 \begin{question}
@@ -200,46 +239,6 @@ Le funzioni trigonometriche $\sin$ e $\cos$ sono periodiche di periodo $2 \pi$.
 \item[2.] Qual \`e il periodo della funzione $\tan \bigg( \cfrac{x}{2} \bigg)$?
 \end{itemize}
 \end{question}
-
-%\begin{question}
-%\def\Pr{{\rm Pr\,}}
-%\def\Ex{{\rm E\,}}
-%\def\Var{{\rm Var\,}}
-%\begin{pycode}
-%from sympy import *
-%x = random.sample([1,2,3],2)
-%x1 = -x[0]
-%x2 = x[1]
-%x3 = x[0]
-%p1 = Rational(1,random.choice([2,3,4]))
-%p2 = Rational(1,random.choice([3,4]))
-%p3 = 1- p1 - p2
-%\end{pycode}
-%La v.a.\@ discreta $X$ ha distribuzione di probabilità 
-%
-%\hfil$\displaystyle\Pr(X=\py{x1}) =\py{latex(p1)}$,\hfil  $\displaystyle\Pr(X=\py{x2}) =\py{latex(p2)}$,\hfil $\displaystyle\Pr(X=\py{x3}) =\py{latex(p3)}$. 
-%
-%\begin{itemize}
-%\item[1.] Calcolare la distribuzione di probabilità di $X^2$
-%\item[2.] Calcolare $\Var(X)$. 
-%\end{itemize}
-%
-%Esprimere i numeri razionali come frazioni.
-%
-%
-%\begin{answer}
-%
-%{\color{blue}$\displaystyle\Pr(X^2=\py{x1**2})\ =\ \py{latex(p1+p3)}$ 
-%\ \ e \ \ 
-%$\displaystyle\Pr(X^2=\py{x2**2})\ =\ \py{latex(p2)}$\hfill Risposta 1} 
-%
-%$\displaystyle\Ex(X) = \py{x1}\cdot\Pr(X=\py{x1})+\py{x2}\cdot\Pr(X=\py{x2})+\py{x3}\cdot\Pr(X=\py{x3})=\py{latex(x1*p1)} + \py{latex(x2*p2)} + \py{latex(x3*p3)}=\py{latex(x1*p1 + x2*p2 + x3*p3)}$
-%
-%$\displaystyle\Ex(X^2) = \py{x1**2}\cdot\Pr(X^2=\py{x1**2})\ +\ \py{x2**2}\cdot\Pr(X^2=\py{x2**2})=\py{latex((x1**2)*(p1+p3))} + \py{latex((x2**2)*p2)} = \py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)}$
-%
-%$\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}$ {\color{blue}$\ =\ \displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2} 
-%\end{answer}
-%\end{question}
 
 
 
