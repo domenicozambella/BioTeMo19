@@ -47,7 +47,8 @@ random.seed(2548445)
 from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([1,2,3,4,5],4) ]
-f = cos( abs( ( n[0]*x - n[1] ) / ( n[2]*x + n[3] ) ) )
+g = ( n[0]*x - n[1] ) / ( n[2]*x + n[3] )
+f = cos( abs( g ) )
 \end{pycode}
 Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 \begin{itemize}
@@ -59,7 +60,7 @@ Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 \smallskip
 {\color{blue}$\displaystyle \dom f \ =\ \RR\ \setminus\ \left\{\py{latex(-n[3]/n[2])}\right\} $\quad e\quad $\range f \ =\ \RR$ \hfill Risposta 1}
 
-{\color{blue}Non capisco bene la domanda.\hfill Risposta 2}
+{\color{blue}$\displaystyle x\ =\ \py{latex(solve(g,x)[0])}$\hfill Risposta 2}
 
 \end{answer}
 \end{question}
@@ -86,8 +87,7 @@ Si consideri la funzione $\displaystyle f(x) = \lvert x \rvert - \lvert x + 2 \r
 \begin{pycode}
 from sympy import *
 x = symbols('x')
-#f = Function('x')
-n = random.sample([1,2,3,4,5],4)
+n = [Rational( i ) for i in random.sample([1,2,3,4,5],4) ]
 f = (x + n[0])/(n[1]*x+n[2])
 g = sqrt( n[3] -x )
 \end{pycode}
@@ -111,12 +111,9 @@ Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle
 \begin{pycode}
 from sympy import *
 e, x = symbols('e x')
-n = random.sample([1,2,3,4,5],3)
-n0 = Rational(n[0])
-n1 = Rational(n[1])
-n2 = Rational(n[2])
+n = [Rational( i ) for i in random.sample([1,2,3,4,5],3) ]
 \end{pycode}
-Si consideri la funzione $f(x) = \py{n0} + \log(\py{ latex( n1*x+n2 ) } )$.
+Si consideri la funzione $f(x) = \py{n[0]} + \log(\py{ latex( n[1]*x+n[2] ) } )$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione. 
 \item[2.] Per quali valori si annulla la funzione $f(-x)$?
@@ -126,9 +123,9 @@ Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$
 
 \end{answer}
 
-{\color{blue} Dominio=$\displaystyle\left(\py{latex(-n2/n1)},\ +\infty\right)$\qquad Immagine=$\RR$\hfill Risposta 1\kern19ex}
+{\color{blue} Dominio=$\displaystyle\left(\py{latex(-n[2]/n[1])},\ +\infty\right)$\qquad Immagine=$\RR$\hfill Risposta 1\kern19ex}
 
-{\color{blue}$\displaystyle x=\py{latex(-n1/(n2*e**n0))}$\hfill Risposta 2\kern19ex}
+{\color{blue}$\displaystyle x=\py{latex(-n[1]/(n[2]*e**n[0]))}$\hfill Risposta 2\kern19ex}
 
 \end{question}
 
