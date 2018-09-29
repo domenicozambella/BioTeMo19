@@ -42,6 +42,8 @@ mark {
     background-color: #bbddee;
 }
 
+n-a {background-color: #ffdddd;}
+
 ul, ol {
      padding-left: 2ex !important;
 }
