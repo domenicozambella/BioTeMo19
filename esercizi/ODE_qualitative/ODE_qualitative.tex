@@ -1,22 +1,57 @@
-\documentclass[12pt,twoside,a4paper]{article}
+% \documentclass[12pt,twoside,a4paper]{article}
+% \usepackage[T1]{fontenc}
+% \usepackage[utf8]{inputenc}
+% \usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=35mm, right=35mm]{geometry}
+% \usepackage{amsmath}
+% \usepackage{pythontex}
+% \usepackage{palatino}
+% \usepackage{graphicx}
+% \parindent0ex
+% \parskip2ex
+% \newenvironment{question}{\par\bigskip\textbf{Quesito.\kern0.2ex}}{\vspace{\parskip}}
+% \newenvironment{answer}{\par\bigskip\textbf{Risposta.\kern0.2ex}}{}
+% 
+% 
+% 
+
+\documentclass[11pt,twoside,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=35mm, right=35mm]{geometry}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
+\usepackage{calc} 
 \usepackage{pythontex}
-\usepackage{palatino}
 \usepackage{graphicx}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
 \parindent0ex
 \parskip2ex
-\newenvironment{question}{\par\bigskip\textbf{Quesito.\kern0.2ex}}{\vspace{\parskip}}
-\newenvironment{answer}{\par\bigskip\textbf{Risposta.\kern0.2ex}}{}
-
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+   
 \pagestyle{empty}
 
 \begin{document}
 
 
 
+\begin{question}
 \begin{pycode}
 from numpy import linspace
 from numpy import log
@@ -100,7 +135,6 @@ gca().annotate(r'$a$',
 savefig('logistica1.pdf',bbox_inches='tight')
 \end{pycode}
 
-\begin{question}
 L'equazione differenziale $\displaystyle x'\ =\ - r\,x\,\log\left(x/K\right)$ è una delle equazioni fenomenologiche proposte per descrivere la crescita dei tumori ($x$ rappresenta la massa).
 
 1. Dei punti segnati nel grafico quali sono punti di equilibrio.\\
@@ -120,6 +154,8 @@ $0$ è punto di equilibrio instabile, $K$ è punto di equilibrio stabile. In tut
 
 
 
+\clearpage
+\begin{question}
 \begin{pycode}
 from numpy import linspace
 from matplotlib.pyplot import figure, savefig, ylim, gca, plot, axis
@@ -204,7 +240,6 @@ gca().annotate(r'$0$',
 savefig('harvest.pdf',bbox_inches='tight')
 \end{pycode}
 
-\begin{question}
 Consideriamo la seguente equazione differenziale. 
 
 \hfil$\displaystyle\frac{{\rm d}x}{{\rm d}t}\ =\ r\,x\,\left(1-\frac{x}{K}\right) - H$
@@ -216,7 +251,8 @@ Per i tre diversi valori di $H$ rappresentati in figura $\{H_1, rK/4, H_2\}$ si 
 \end{question}
 
 
-
+\clearpage
+\begin{question}
 \begin{pycode}
 from numpy import linspace
 from matplotlib.pyplot import figure, savefig, ylim, gca, plot, axis
@@ -288,7 +324,6 @@ savefig('Allee.pdf',bbox_inches='tight')
 
 
 
-\begin{question}
 There are populations whose rate of change over time will be negative if the population is too small (aggregation can improve the survival rate of individuals, and that cooperation may be crucial in the overall evolution of social structure). This is known as the Allee effect and can be modeled using the differential equation
 
 \hfil$\displaystyle y^\prime\ =\ r\, y\, \left( \frac{y}{A} - 1 \right) \left( 1 - \frac{y}{K} \right)$
