@@ -1,0 +1,155 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{calc} 
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\begin{document}
+
+\begin{question}
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = e^{-x}$.
+\begin{itemize}
+\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{1}{x}$.
+\begin{itemize}
+\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{x^2 - 1}{x}$.
+\begin{itemize}
+\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{x^2 + 1}{x}$.
+\begin{itemize}
+\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \log (x)$.
+\begin{itemize}
+\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri un corpo lasciato cadere da una torre alta 500 metri. Sia  $f(t) = 4.9 t^2$ la funzione che ne descrive l'altezza da terra ad ogni secondo.
+\begin{itemize}
+\item[1.] Qual è la velocità istantanea del corpo dopo 3 secondi?
+\item[2.] Qual è la velocità istantanea del corpo quando tocca terra?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Sia data la funzione $f(x) = x^2 + 3 x$
+\begin{itemize}
+\item[1.] Scrivere l'equazione della retta tangente nel punto (-5, 10).
+\item[2.] In quali intervalli la funzione è decrescente?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Sia data la funzione $f(x) = x^3 + 1$
+\begin{itemize}
+\item[1.] Scrivere l'equazione della retta tangente nel punto (1, 2).
+\item[2.] In quali intervalli la funzione è crescente?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri una particella che si muove lungo una retta. Sia $f(t) = 4 t^3 + 5 t$ la funzione che ne descrive la distanza in metri dal punto di partenza ogni secondo.
+\begin{itemize}
+\item[1.] Qual è la velocità istantanea del corpo dopo 2 secondi?
+\item[2.] Quando la velocità del corpo è superiore a 101 metri al secondo?
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = x^3 + 2x + 1$.
+\begin{itemize}
+\item[1.] Determinare la derivata prima $f'(x)$.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = x \cos (x)$.
+\begin{itemize}
+\item[1.] Determinare la derivata $f'(x)$.
+\item[2.] Determinare la derivata di $f(2x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = \sin^2 x$.
+\begin{itemize}
+\item[1.] Determinare la derivata $f'(x)$.
+\item[2.] Determinare la derivata di $f(2x)$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = \sqrt{x}$.
+\begin{itemize}
+\item[1.] Scrivere l'approssimazione lineare di $f(x)$ in 4.
+\item[2.] Usare il risultato precedente per approssimare i valori di $\sqrt{4.1}$ e $\sqrt{3.9}$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = 3^x$.
+\begin{itemize}
+\item[1.] Scrivere l'approssimazione lineare di $f(x)$ in 1.
+\item[2.] Usare il risultato precedente per approssimare i valori di $3^{0.9}$ e $3^{1.1}$.
+\end{itemize}
+\end{question}
+
+\begin{question}
+Si consideri la funzione $f(x) = \sqrt[3]{x}$.
+\begin{itemize}
+\item[1.] Scrivere l'approssimazione lineare di $f(x)$ in 1.
+\item[2.] Usare il risultato precedente per approssimare i valori di $\sqrt[3]{1.1}$ e $\sqrt[3]{1.2}$.
+\end{itemize}
+\end{question}
+
+\end{document}

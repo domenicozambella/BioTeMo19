@@ -1,0 +1,44 @@
+#!/usr/bin/python3
+import os
+
+path = os.getcwd()
+name = os.path.basename(path)
+
+command = 'mkdir -p aux; mv aux/* ./'
+os.system(command)
+
+command = 'pdflatex  -synctex=1 ' + name + '.tex'
+os.system(command)
+
+command = 'pythontex --interpreter python:python3 ' + name  + '.tex'
+os.system(command)
+
+with open(name + '.tex', 'r', encoding='utf-8') as f:
+    latex_source = f.read()
+    f.closed
+
+latex_muto = latex_source.replace( r'\textbf{Risposta\quad}', r'\textbf{Risposta\quad}\color{white}' )
+
+with open(name + '.Muto.tex', 'w', encoding='utf-8') as f:
+    f.write(latex_muto)
+    f.closed
+
+command = 'pdflatex ' + name + '.Muto.tex'
+os.system(command)
+
+command = 'pythontex --interpreter python:python3 ' + name  + '.Muto.tex'
+os.system(command)
+
+command = 'mkdir -p aux'
+os.system(command)
+
+command = 'mv *.aux *.log *.pytxcode  *.Muto.tex aux/'
+os.system(command)
+
+#
+#latexmk -pdf -pdflatex="pdflatex -synctex=1 --shell-escape %S" $NAME.tex
+#
+#for i in $( ls | grep \\.  | grep -v -F .tex | grep -v -F  .pdf | grep -v -F README.md | grep -v -F  synctex ); do
+#    mv -t aux $i
+#done
+
