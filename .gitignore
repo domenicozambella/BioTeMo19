@@ -19,6 +19,7 @@
 *pythontex-*/
 *.ipynb_checkpoints/
 *.directory
+*.kate-swp
 
 ## Intermediate documents:
 *.dvi
