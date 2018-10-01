@@ -3,7 +3,7 @@
     font-family: "Times New Roman", Times, serif;    
     background-color: #eee; 
     border-left: 5px solid #00b5b4;
-    font-size: 10pt;
+    font-size: 14pt;
     line-height: 160%;
 }
 
@@ -13,14 +13,14 @@ h1 {
 }
 
 h2 {
-    font-size: 10pt !important;
+    font-size: 14pt !important;
     margin-top: 0ex !important;
     margin-bottom: 0ex !important;
     padding-bottom: 0ex !important;
 }
 
 h3 {
-    font-size: 10pt !important;
+    font-size: 14pt !important;
     margin-top: 0ex !important;
     margin-bottom: 0ex !important;
     padding-bottom: 0ex !important;
@@ -48,6 +48,8 @@ ul, ol {
      padding-left: 2ex !important;
 }
 ul {
+     margin-top: 0ex !important;
+     margin-bottom: 0ex !important;
      list-style-type: square !important;
 }
 
