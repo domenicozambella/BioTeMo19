@@ -38,7 +38,7 @@
 import random
 random.seed(2548445)
 \end{pycode}
-
+%1
 \begin{question}
 \def\RR{{\mathds R}}
 \def\dom{{\rm dom}}
@@ -69,7 +69,7 @@ $\displaystyle x\ =\ \py{latex(solve(g,x)[0])}$
 
 \end{answer}
 \end{question}
-
+%2
 \begin{question}
 \def\RR{{\mathds R}}
 \def\dom{{\rm dom}}
@@ -97,13 +97,35 @@ $\displaystyle x\ =\ 0$
 
 \end{answer}
 \end{question}
-
+%3
 \begin{question}
-Si consideri la funzione $\displaystyle f(x) = \lvert x \rvert - \lvert x + 2 \rvert$.
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+f = abs(x) - abs(x + n[0])
+\end{pycode}
+Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 \begin{itemize}
 \item[1.] Determinare dominio e immagine della funzione.
-\item[2.] Determinare $f^{-1}(2)$.
+\item[2.] Determinare $f^{-1}(\py{latex(n[0])})$.
 \end{itemize}
+
+\begin{answer}
+
+$\displaystyle f(x) = \begin{cases} -\py{latex(n[0])}, \quad x \geq \py{latex(n[0])} \cr - \py{latex(n[0])} x + \py{latex(n[0])}, \quad - \py{latex(n[0])} \leq x < 0 \cr \py{latex(n[0])}, \quad x < -\py{latex(n[0])} \end{cases}$ 
+
+{\color{blue} $\displaystyle \dom f \ =\ \RR$\quad e\quad $\displaystyle \range\ f \ =\ [-\py{latex(n[0])}, \py{latex(n[0])}]$
+\hfill Risposta 1\kern19ex}
+
+{\color{blue}
+$\displaystyle f^{-1}(\py{latex(n[0])}) = -\py{latex(n[0])}$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 
 \begin{question}
@@ -157,7 +179,7 @@ Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$
 
 {\color{blue}
 $\displaystyle\dom f\ =\ \left(\py{latex(-n[2]/n[1])},\ +\infty\right)$
-\qquad 
+\quad e\quad
 $\range f\ =\ \RR$
 \hfill Risposta 1\kern19ex}
 
@@ -172,8 +194,11 @@ $\displaystyle x\ =\ \py{latex(-n[1]/(n[2]*e**n[0]))}$
 Si considerino le funzioni $f(x) = \cfrac{1}{x}$ e $g(x) = x^2 - 2x$.
 \begin{itemize}
 \item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
-\item[2.] Determinare dominio e immagine di $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio di $f \circ g$ e $g \circ f$.
 \end{itemize}
+\begin{answer}
+
+\end{answer}
 \end{question}
 
 \begin{question}
