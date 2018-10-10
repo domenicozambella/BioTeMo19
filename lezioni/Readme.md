@@ -1,4 +1,1 @@
- 
-
-
-[![Binder](http://mybinder.org/badge.svg)](http://beta.mybinder.org/v2/gh/domenicozambella/BioTeMo19/tree/master/lezioni)
+Questi notebook si vedono alla meglio con [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/domenicozambella/BioTeMo19/master?filepath=lezioni)
