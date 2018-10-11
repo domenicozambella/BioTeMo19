@@ -74,6 +74,46 @@ $\displaystyle\Pr(X\ge\py{n_vittoria})\ =\ 1-\Pr( X\le\py{n_vittoria-1} )\ =\ ${
 
 
 
+\begin{question}
+\begin{pycode}
+n = random.choice([8,9,10,11,12])
+d = random.choice([4,5])
+k = random.choice([3,6])
+risposta = round( 1- binom.cdf(k-1,n, 1/d), 4)
+\end{pycode}
+Suppose that you take a $\py{n}$-question multiple-choice quiz by randomly guessing. Each question has $\py{d}$ possible answers and only one is correct. What is the probability that answering at random you correctly guess at least $\py{k}$ answers? 
+
+Leave the answer in impicit form using one of the functions listed below.
+\begin{answer}
+
+$X\sim B(\py{n}, 1/\py{d})$
+
+$\Pr(X\ge\py{k})\ =\ 1-\Pr(X\le \py{k-1})$\quad =\ {\tt{\color{blue}  1 - binom.cdf( \py{k-1}, \py{n}, 1/\py{d} )} = \py{risposta}}{\color{blue}\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+
+\begin{question}
+\begin{pycode}
+n = random.choice([26,27,28,29])
+k = random.choice([12,13,14,15])
+t = random.choice(["t","u"])
+risposta = round( 1- binom.cdf(k-1,n, 1/4), 4)
+\end{pycode}
+Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione. Qual è la probabilità che due sequenze coincidano in $\ge\py{k}$ posizioni?  
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
+\begin{answer}
+
+
+$X\sim B(\py{n}, 1/4)$
+
+$\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$\quad =\ {\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
+\end{answer}
+\end{question}
+
+
 
 \vfill
 \hrulefill
@@ -91,4 +131,26 @@ Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats
 
 
 \end{document}
+
+\begin{question}
+\begin{pycode}
+n = random.choice([26,27,28,29])
+k = random.choice([12,13,14,15])
+t = random.choice(["t","u"])
+risposta = round( 1- binom.cdf(k-1,n, 1/4), 4)
+\end{pycode}
+Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione. Fissata una sequenza $s_0$, qual è la probabilità che un'altra sequenza $s_1$ coincida con $s_0$ in $\ge\py{k}$ posizioni?   
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+
+
+$X\sim B(\py{n}, 1/4)$
+
+$\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$\quad =\ {\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
+
+
+\end{answer}
+\end{question}
 
