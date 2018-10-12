@@ -68,7 +68,7 @@ Qual è la probabilità che $A$ vinca il gioco in $\le\py{n_partite}$ partite~?
 
 Sia $X\sim B(\py{n_partite},\py{p})$. Il giocatore $A$ vince se $X\ge 8$. 
 
-$\displaystyle\Pr(X\ge\py{n_vittoria})\ =\ 1-\Pr( X\le\py{n_vittoria-1} )\ =\ ${\tt\color{blue}1-binom.cdf(\py{n_vittoria-1}, \py{n_partite}, \py{p}) = }{\tt\py{risultato} }
+$\displaystyle\Pr(X\ge\py{n_vittoria})\ =\ 1-\Pr( X\le\py{n_vittoria-1} )\ =\ ${\tt{\color{blue} 1 - binom.cdf( \py{n_vittoria-1}, \py{n_partite}, \py{p} ) }= \py{risultato} }{\color{blue}\hfill Risposta}
 \end{answer}
 \end{question}
 
@@ -88,7 +88,7 @@ Leave the answer in impicit form using one of the functions listed below.
 
 $X\sim B(\py{n}, 1/\py{d})$
 
-$\Pr(X\ge\py{k})\ =\ 1-\Pr(X\le \py{k-1})$\quad =\ {\tt{\color{blue}  1 - binom.cdf( \py{k-1}, \py{n}, 1/\py{d} )} = \py{risposta}}{\color{blue}\hfill Risposta}
+$\Pr(X\ge\py{k})\ =\ 1-\Pr(X\le \py{k-1})\ =\ ${\tt{\color{blue}  1 - binom.cdf( \py{k-1}, \py{n}, 1/\py{d} )} = \py{risposta}}{\color{blue}\hfill Risposta}
 
 \end{answer}
 \end{question}
@@ -109,7 +109,7 @@ Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 
 $X\sim B(\py{n}, 1/4)$
 
-$\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$\quad =\ {\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
+$\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})\ =\ ${\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
 \end{answer}
 \end{question}
 
@@ -144,13 +144,9 @@ Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. As
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 \begin{answer}
 
-
-
 $X\sim B(\py{n}, 1/4)$
 
 $\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$\quad =\ {\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
-
-
 \end{answer}
 \end{question}
 
