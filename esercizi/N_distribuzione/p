@@ -32,7 +32,7 @@ os.system(command)
 command = 'mkdir -p aux'
 os.system(command)
 
-command = 'mv *.aux *.log *.pytxcode  *.Muto.tex aux/'
+command = 'mv *.aux *.log *.pytxcode  *.Muto.tex pythontex-files-* aux/'
 os.system(command)
 
 #

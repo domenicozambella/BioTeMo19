@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{calc} 
 \usepackage{pythontex}
+\usepackage{dsfont}
 \newcommand{\mylabel}[1]{#1\hfill}
 \renewenvironment{itemize}
   {\begin{list}{$\triangleright$}{%
@@ -31,125 +32,329 @@
 \pagestyle{empty} 
 
 \begin{document}
-
+\begin{pycode}
+import random
+random.seed(2548445)
+\end{pycode}
+%1
 \begin{question}
-Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = e^{-x}$.
+\def\RR{{\mathds R}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[ Rational( i ) for i in random.sample([1,2,3,4,5],2) ]
+\end{pycode}
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \py{n[1]}\,  e^{\py{latex(-n[0]*x)}}$.\nobreak
 \begin{itemize}
 \item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
 \item[2.] Trovare massimi e minimi locali di $f(x)$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
+{\color{blue}
+$f(x)$ cresce in $(-\infty, \infty) = \RR$}, infatti $\py{n[1]}\, e^{\py{latex(-n[0]*x)}} > 0$ per ogni $x \in \RR$
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$f(x)$ non ha massimi e minimi locali
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%2
 \begin{question}
-Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{1}{x}$.
+\def\RR{{\mathds R}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([2,3,5,6,7],1) ]
+\end{pycode}
+Si consideri una funzione $f(x)$ definita su tutto $\RR$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{x^2 - \py{latex(n[0])}}{x}$.
 \begin{itemize}
 \item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
 \item[2.] Trovare massimi e minimi locali di $f(x)$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
+{\color{blue}
+$f(x)$ cresce in $(-\sqrt{\py{latex(n[0])}}, 0)$ e $(\sqrt{\py{latex(n[0])}}, +\infty)$; 
+
+$f(x)$ decresce in $(-\infty, -\sqrt{\py{latex(n[0])}})$ e $(0, \sqrt{\py{latex(n[0])}})$}
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$f(x)$ ha massimo locale in $0$, minimi locali in $-\sqrt{\py{latex(n[0])}}$ e $\sqrt{\py{latex(n[0])}}$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%3
 \begin{question}
-Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{x^2 - 1}{x}$.
+\def\RR{{\mathds R}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
+\end{pycode}
+Si consideri una funzione $f(x)$ definita su tutto $\RR$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{x^2 + \py{latex(n[0])}}{x}$.
 \begin{itemize}
 \item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
 \item[2.] Trovare massimi e minimi locali di $f(x)$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
+{\color{blue}
+$f(x)$ cresce in $(0, +\infty)$; $f(x)$ decresce in $(-\infty, 0)$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$f(x)$ ha minimo locale in $0$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%4
 \begin{question}
-Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \cfrac{x^2 + 1}{x}$.
+\def\RR{{\mathds R}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([2,3,4,5,6,7],1) ]
+\end{pycode}
+Si consideri una funzione $f(x)$ definita sull'intervallo $(0, +\infty)$ la cui derivata prima è data dalla funzione $f'(x) = \py{latex(n[0])}\log (x)$.
 \begin{itemize}
 \item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
 \item[2.] Trovare massimi e minimi locali di $f(x)$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
-\begin{question}
-Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \log (x)$.
-\begin{itemize}
-\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
-\item[2.] Trovare massimi e minimi locali di $f(x)$.
-\end{itemize}
-\end{question}
+{\color{blue}
+$f(x)$ cresce in $(1, +\infty)$; $f(x)$ decresce in $(0, 1)$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
 
+{\color{blue}
+$f(x)$ ha minimo locale in $1$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%5
 \begin{question}
-Si consideri un corpo lasciato cadere da una torre alta 500 metri. Sia  $f(t) = 4.9 t^2$ la funzione che ne descrive l'altezza da terra ad ogni secondo.
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
+\end{pycode}
+Si consideri un corpo lasciato cadere da una torre alta 500 metri. Sia  $f(t) = 5 t^2$ la funzione che ne descrive la distanza dalla cima della torre ad ogni secondo (quando $t=0$, $f(t) = 0$ ovvero il corpo si trova in cima alla torre).
 \begin{itemize}
-\item[1.] Qual è la velocità istantanea del corpo dopo 3 secondi?
+\item[1.] Qual è la velocità istantanea del corpo dopo $\py{latex(n[0])}$ secondi?
 \item[2.] Qual è la velocità istantanea del corpo quando tocca terra?
 \end{itemize}
-\end{question}
+\begin{answer}
 
+La funzione $f'(t) = 10 t$ descrive l'andamento della velocità istantanea, quindi
+
+{\color{blue}
+$f'(\py{latex(n[0])}) = \py{latex(10*n[0])}$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+Il corpo tocca terra quando $f(t) = 500$, ovvero quando $5t^2 = 500$, ovvero a $t = 10$, quindi
+
+{\color{blue}
+$f'(10) = 100$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%6
 \begin{question}
 Sia data la funzione $f(x) = x^2 + 3 x$
 \begin{itemize}
 \item[1.] Scrivere l'equazione della retta tangente nel punto (-5, 10).
 \item[2.] In quali intervalli la funzione è decrescente?
 \end{itemize}
-\end{question}
+\begin{answer}
 
+{\color{blue}
+$y = -7x -25$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$f(x)$ decresce in $\big(-\infty, -\dfrac{3}{2}\,\big)$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%7
 \begin{question}
-Sia data la funzione $f(x) = x^3 + 1$
+\def\RR{{\mathds R}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
+\end{pycode}
+Sia data la funzione $f(x) = x^3 + \py{latex(n[0])}$
 \begin{itemize}
-\item[1.] Scrivere l'equazione della retta tangente nel punto (1, 2).
+\item[1.] Scrivere l'equazione della retta tangente nel punto $(1, \py{latex(1+n[0])})$.
 \item[2.] In quali intervalli la funzione è crescente?
 \end{itemize}
-\end{question}
+\begin{answer}
 
+{\color{blue}
+$y = \py{latex(3*x+1+n[0]-3)}$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$f(x)$ cresce in $(-\infty,+\infty) = \RR$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%8
 \begin{question}
-Si consideri una particella che si muove lungo una retta. Sia $f(t) = 4 t^3 + 5 t$ la funzione che ne descrive la distanza in metri dal punto di partenza ogni secondo.
+\begin{pycode}
+from sympy import *
+t = symbols('t')
+n =[Rational( i ) for i in random.sample([2,3,4,5,6,7],1) ]
+m =[Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+u =[Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+s =[Rational( i ) for i in random.sample([100,101,102,103,104,105],1) ]
+\end{pycode}
+Si consideri una particella che si muove lungo una retta. Sia $f(t) = \py{latex(m[0])} t^3 + \py{latex(n[0])} t$ la funzione che ne descrive la distanza in metri dal punto di partenza ogni secondo.
 \begin{itemize}
-\item[1.] Qual è la velocità istantanea del corpo dopo 2 secondi?
-\item[2.] Quando la velocità del corpo è superiore a 101 metri al secondo?
+\item[1.] Qual è la velocità istantanea del corpo dopo $\py{latex(u[0])}$ secondi?
+\item[2.] Quando la velocità del corpo è superiore a $\py{latex(s[0])}$ metri al secondo?
 \end{itemize}
-\end{question}
+\begin{answer}
 
+La velocità istantanea è descritta dalla funzione $f'(t) = \py{latex(3*m[0])} t^2 + \py{latex(n[0])}$ quindi
+{\color{blue}
+$f'(\py{latex(u[0])}) = \py{latex(3*m[0]*u[0]**2+n[0])}$ }
+
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+La velocità supera $\py{latex(s[0])}$ quando $f'(t) = \py{latex(3*m[0])} t^2 + \py{latex(n[0])} > \py{latex(s[0])}$ quindi
+{\color{blue}
+$t > \sqrt{\py{latex((s[0]-n[0])/(3*m[0]))}}$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%9
 \begin{question}
-Si consideri la funzione $f(x) = x^3 + 2x + 1$.
+\begin{pycode}
+from sympy import *
+n =[Rational( i ) for i in random.sample([2,3,4,5,6,7],1) ]
+\end{pycode}
+Si consideri la funzione $f(x) = x^3 + \py{latex(n[0])}x + 1$.
 \begin{itemize}
 \item[1.] Determinare la derivata prima $f'(x)$.
 \item[2.] Trovare massimi e minimi locali di $f(x)$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
+{\color{blue}
+$f'(x) = 3x^2 + \py{latex(n[0])}$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+La derivata è sempre positiva quindi
+{\color{blue}
+$f(x)$ non ha massimi e minimi locali
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%10
 \begin{question}
 Si consideri la funzione $f(x) = x \cos (x)$.
 \begin{itemize}
 \item[1.] Determinare la derivata $f'(x)$.
-\item[2.] Determinare la derivata di $f(2x)$.
+\item[2.] Scrivere l'equazione della retta tangente a $f(x)$ nel punto $(\pi, -1)$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
-\begin{question}
-Si consideri la funzione $f(x) = \sin^2 x$.
-\begin{itemize}
-\item[1.] Determinare la derivata $f'(x)$.
-\item[2.] Determinare la derivata di $f(2x)$.
-\end{itemize}
-\end{question}
+{\color{blue}
+$f'(x) = x \sin x + \cos x$ 
+\hfill Risposta 1\kern0ex}
 
+{\color{blue}
+$y = -x +\pi +1$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%11
 \begin{question}
 Si consideri la funzione $f(x) = \sqrt{x}$.
 \begin{itemize}
 \item[1.] Scrivere l'approssimazione lineare di $f(x)$ in 4.
 \item[2.] Usare il risultato precedente per approssimare i valori di $\sqrt{4.1}$ e $\sqrt{3.9}$.
 \end{itemize}
-\end{question}
+\begin{answer}
 
+L'approssimazione lineare di $f(x)$ in 4 è data da $f'(4)(x-4) + f(4)$, 
+
+essendo $f'(x) = \frac{1}{2\sqrt{x}}$ si ha
+{\color{blue}
+$\frac{1}{4} x + 1$ 
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$\sqrt{4.1} \cong 2.025$ e $\sqrt{3.9} \cong 1.975$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%12
 \begin{question}
-Si consideri la funzione $f(x) = 3^x$.
+Si consideri la funzione $f(x) = e^x$.
 \begin{itemize}
 \item[1.] Scrivere l'approssimazione lineare di $f(x)$ in 1.
-\item[2.] Usare il risultato precedente per approssimare i valori di $3^{0.9}$ e $3^{1.1}$.
+\item[2.] Usare il risultato precedente per approssimare i valori di $e^{0.9}$ e $e^{1.1}$ (si approssimi $e$ con $2.7$).
 \end{itemize}
-\end{question}
+\begin{answer}
 
+L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$, essendo $f'(x) = e^x$ si ha
+
+{\color{blue}
+$f(x)\simeq e \cdot x$ 
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$e^{0.9} \cong 2.43$ e $e^{1.1} \cong 2.97$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+%13
 \begin{question}
 Si consideri la funzione $f(x) = \sqrt[3]{x}$.
 \begin{itemize}
 \item[1.] Scrivere l'approssimazione lineare di $f(x)$ in 1.
 \item[2.] Usare il risultato precedente per approssimare i valori di $\sqrt[3]{1.1}$ e $\sqrt[3]{1.2}$.
 \end{itemize}
+\begin{answer}
+
+L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$, essendo $f'(x) = \dfrac{1}{3\sqrt[3]{x^2}}$ si ha
+
+{\color{blue}
+$f(x)\simeq\dfrac{1}{3}x+\dfrac{2}{3}$ 
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$\sqrt[3]{1.1} \cong 1.03$ e $\sqrt[3]{1.2} \cong 1.1$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
 \end{question}
 
 \end{document}
