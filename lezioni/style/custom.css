@@ -42,6 +42,22 @@ mark {
     background-color: #bbddee;
 }
 
+.errore {background-color:#d88;
+        width:400px;
+        height:100px;
+        display:inline-block;
+        margin:5px;
+        padding:8px;
+}
+
+.corretto {background-color:#2d8;
+        width:400px;
+        height:100px;
+        display:inline-block;
+        margin:5px;
+        padding:8px;
+}
+
 n-a {background-color: #ffdddd;}
 
 ul, ol {
