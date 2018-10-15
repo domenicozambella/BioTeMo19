@@ -1,0 +1,259 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula di martedì 16 ottobre 2018
+\end{minipage}}
+
+\bigskip
+
+
+\begin{pycode}
+import random
+random.seed(258466445)
+\end{pycode}
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\begin{pycode}
+from sympy import *
+x = random.sample([1,2,3],2)
+x1 = -x[0]
+x2 = x[1]
+x3 = x[0]
+p1 = Rational(1,random.choice([2,3,4]))
+p2 = Rational(1,random.choice([3,4]))
+p3 = 1- p1 - p2
+\end{pycode}
+La v.a.\@ discreta $X$ ha distribuzione di probabilità 
+
+\hfil$\displaystyle\Pr(X=\py{x1}) =\py{latex(p1)}$,\hfil  $\displaystyle\Pr(X=\py{x2}) =\py{latex(p2)}$,\hfil $\displaystyle\Pr(X=\py{x3}) =\py{latex(p3)}$. 
+
+\begin{itemize}
+\item[1.] Calcolare la distribuzione di probabilità di $X^2$
+\item[2.] Calcolare $\Var(X)$. 
+\end{itemize}
+
+Esprimere i numeri razionali come frazioni.
+
+
+\begin{answer}
+
+{\color{blue}$\displaystyle\Pr(X^2=\py{x1**2})\ =\ \py{latex(p1+p3)}$ 
+\ \ e \ \ 
+$\displaystyle\Pr(X^2=\py{x2**2})\ =\ \py{latex(p2)}$\hfill Risposta 1\kern19ex} 
+
+$\displaystyle\Ex(X) = \py{x1}\cdot\Pr(X=\py{x1})+\py{x2}\cdot\Pr(X=\py{x2})+\py{x3}\cdot\Pr(X=\py{x3})=\py{latex(x1*p1)} + \py{latex(x2*p2)} + \py{latex(x3*p3)}=\py{latex(x1*p1 + x2*p2 + x3*p3)}$
+
+$\displaystyle\Ex(X^2) = \py{x1**2}\cdot\Pr(X^2=\py{x1**2})\ +\ \py{x2**2}\cdot\Pr(X^2=\py{x2**2})=\py{latex((x1**2)*(p1+p3))} + \py{latex((x2**2)*p2)} = \py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)}$
+
+$\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}$ {\color{blue}$\ =\ \displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2\kern19ex} 
+\end{answer}
+\end{question}
+
+
+\begin{question}
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5],4) ]
+g = ( n[0]*x - n[1] ) / ( n[2]*x + n[3] )
+f = cos( abs( g ) )
+\end{pycode}
+Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione.
+\item[2.] Determinare il punto di massimo assoluto per $x \geq 0$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \dom f \ =\ \RR\ \setminus\ \left\{\py{latex(-n[3]/n[2])}\right\} $
+\quad e\quad 
+$\range f \ =\ [-1, 1]$ 
+\hfill Risposta 1\kern19ex}
+
+{\color{blue}
+$\displaystyle x\ =\ \py{latex(solve(g,x)[0])}$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
+
+
+
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\begin{pycode}
+rain_days = random.choice([5,6,7,8])
+prev = rain_days * 100 / 365
+sens =  random.choice([85, 90,95])
+spec = random.choice([85, 90,95])
+pos =  sens * prev + (100-spec) * (100-prev)
+pos = pos / 100
+ppv =  prev * sens  / pos
+prev = round(prev, 1)
+ppv = round(ppv, 1)
+pos = round(pos, 1)
+\end{pycode}
+Marie is getting married tomorrow at an outdoor ceremony in the desert. In recent years it has rained only $\py{rain_days}$ days each year. But the weatherman has predicted rain for tomorrow. When it actually rains, the weatherman correctly forecasts rain $\py{sens}\%$ of the time. When it doesn’t rain, he incorrectly forecasts rain $\py{100-spec}\%$ of the times. What is the probability that it will rain on the day of Marie’s wedding?
+
+\begin{answer}
+
+$R$\hfill event: it rains on Marie’s wedding\kern22ex
+
+$T_+$\hfill event: the weatherman predicts rain\kern22ex
+
+$\Pr(R) =\py{rain_days}/365 = \py{prev}\%$\hfill it rains $\py{rain_days}$ days out of $365$\kern22ex
+
+$\Pr(T_+|R) = \py{sens}\%$\hfill when it rains, rain is predicted\kern22ex
+
+$\Pr(T_+|\neg R) = \py{100-spec}\%$\hfill when it does not rain,  rain is predicted\kern22ex
+
+$\Pr(T_+) = \Pr(T_+|R)\cdot \Pr(R)+ \Pr(T_+|\neg R)\cdot \Pr(\neg R) = \py{pos}\%$ 
+
+$\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}\ =\kern1ex${\color{blue}$\py{ppv}\%$\hfill Risposta\kern19ex}
+
+\end{answer}
+\end{question}
+
+
+
+
+
+\begin{question}
+\def\<div style="vertical-align: top;">
+<div style="width:600px;height:200px;background-color:coral;display:inline;">
+$T\cap H_0$ falso positivo / errore I tipo
+<br/><br/>
+$\Pr(T|H_0)=\alpha$ significatività
+</div>
+<div style="width:600px;height:300px;background-color:green!20%;display:inline;">
+$T\cap H_A$ corretto positivo
+<br/><br/>
+$\Pr(T_+|H_A)=1-\beta$ sensibilità / potenza
+</div>
+</div>RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+f = 1/(n[0]*x)
+g = log(x)
+\end{pycode}
+Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle g(x) =\py{latex(g)}$.
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio di $f \circ g$ e $g \circ f$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$
+\qquad e\qquad 
+$\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue}
+$\dom (f \circ g)\ =\ (0, +\infty)$
+\qquad e\qquad 
+$\dom (g \circ f)\ =\ (0, 1) \cup (1, +\infty)$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
+
+
+
+
+\begin{question}
+\def\RR{{\mathds R}}
+\def\E{{\rm E}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+If $20\%$ of the bolts produced by a machine are defective.
+\begin{itemize}
+
+\item[1.] Determine the probability that out of 4 bolts chosen at random less than 2, bolts will be defective.
+
+\item[2.] Out of $2000$ bolts how many would you expect to be defective.
+\end{itemize}
+\begin{answer}
+
+$p=0.2\quad n=2000\quad \E(X)=$
+{\color{blue}
+400
+\hfill Risposta\kern19ex}
+\end{answer}
+\end{question}
+
+
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\begin{pycode}
+from sympy import *
+x = random.sample([1,2,3,4,5,6],2)
+y = random.choice([2,3])
+mu = x[0]
+var = x[1]
+\end{pycode}
+La v.a.\@ discreta $X$ ha valore atteso $\Ex(X)=\py{mu}$ e varianza $\Var(X)=\py{var}$. Qual è il valore atteso di $X(X-\py{y})$?  
+\begin{answer}
+
+$\displaystyle{\color{blue}\Ex\big(X(X-\py{y})\big)}=\Ex(X^2)-\py{y}\cdot\Ex(X)=\Var(X)+\Ex(X)^2-\py{y}\cdot\Ex(X)${\color{blue}$\ =\ \displaystyle\py{var+mu**2-y*mu}$\hfill Risposta} 
+\end{answer}
+\end{question}
+
+
+\end{document}
+
