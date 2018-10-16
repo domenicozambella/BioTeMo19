@@ -79,13 +79,13 @@ Esprimere i numeri razionali come frazioni.
 
 {\color{blue}$\displaystyle\Pr(X^2=\py{x1**2})\ =\ \py{latex(p1+p3)}$ 
 \ \ e \ \ 
-$\displaystyle\Pr(X^2=\py{x2**2})\ =\ \py{latex(p2)}$\hfill Risposta 1\kern19ex} 
+$\displaystyle\Pr(X^2=\py{x2**2})\ =\ \py{latex(p2)}$\hfill Risposta 1\kern0ex} 
 
 $\displaystyle\Ex(X) = \py{x1}\cdot\Pr(X=\py{x1})+\py{x2}\cdot\Pr(X=\py{x2})+\py{x3}\cdot\Pr(X=\py{x3})=\py{latex(x1*p1)} + \py{latex(x2*p2)} + \py{latex(x3*p3)}=\py{latex(x1*p1 + x2*p2 + x3*p3)}$
 
 $\displaystyle\Ex(X^2) = \py{x1**2}\cdot\Pr(X^2=\py{x1**2})\ +\ \py{x2**2}\cdot\Pr(X^2=\py{x2**2})=\py{latex((x1**2)*(p1+p3))} + \py{latex((x2**2)*p2)} = \py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)}$
 
-$\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}$ {\color{blue}$\ =\ \displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2\kern19ex} 
+$\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2)} - \py{latex((x1*p1 + x2*p2 + x3*p3)**2)}$ {\color{blue}$\ =\ \displaystyle\py{latex((x1**2)*(p1+p3)+ (x2**2)*p2 - (x1*p1 + x2*p2 + x3*p3)**2)} $\hfill Risposta 2\kern0ex} 
 \end{answer}
 \end{question}
 
@@ -112,11 +112,11 @@ Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 $\displaystyle \dom f \ =\ \RR\ \setminus\ \left\{\py{latex(-n[3]/n[2])}\right\} $
 \quad e\quad 
 $\range f \ =\ [-1, 1]$ 
-\hfill Risposta 1\kern19ex}
+\hfill Risposta 1\kern0ex}
 
 {\color{blue}
 $\displaystyle x\ =\ \py{latex(solve(g,x)[0])}$
-\hfill Risposta 2\kern19ex}
+\hfill Risposta 2\kern0ex}
 
 \end{answer}
 \end{question}
@@ -155,7 +155,7 @@ $\Pr(T_+|\neg R) = \py{100-spec}\%$\hfill when it does not rain,  rain is predic
 
 $\Pr(T_+) = \Pr(T_+|R)\cdot \Pr(R)+ \Pr(T_+|\neg R)\cdot \Pr(\neg R) = \py{pos}\%$ 
 
-$\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}\ =\kern1ex${\color{blue}$\py{ppv}\%$\hfill Risposta\kern19ex}
+$\displaystyle \Pr(R\,| T_+)\ =\ \frac{\Pr(R)\cdot \Pr(T_+|R)}{\Pr(T_+)\vphantom{\Big[}}\ =\kern1ex${\color{blue}$\py{ppv}\%$\hfill Risposta\kern0ex}
 
 \end{answer}
 \end{question}
@@ -197,14 +197,14 @@ Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle
 $\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$
 \qquad e\qquad 
 $\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$
-\hfill Risposta 1\kern19ex}
+\hfill Risposta 1\kern0ex}
 
 \smallskip
 {\color{blue}
 $\dom (f \circ g)\ =\ (0, +\infty)$
 \qquad e\qquad 
 $\dom (g \circ f)\ =\ (0, 1) \cup (1, +\infty)$
-\hfill Risposta 2\kern19ex}
+\hfill Risposta 2\kern0ex}
 
 \end{answer}
 \end{question}
@@ -217,6 +217,10 @@ $\dom (g \circ f)\ =\ (0, 1) \cup (1, +\infty)$
 \def\E{{\rm E}}
 \def\dom{{\rm dom}}
 \def\range{{\rm im}}
+\begin{pycode}
+p = 0.2
+risposta = round((1-p)**4+4*p*(1-p)**3, 4)
+\end{pycode}
 If $20\%$ of the bolts produced by a machine are defective.
 \begin{itemize}
 
@@ -226,10 +230,21 @@ If $20\%$ of the bolts produced by a machine are defective.
 \end{itemize}
 \begin{answer}
 
-$p=0.2\quad n=2000\quad \E(X)=$
+$p=0.2\quad n=2000\quad X\sim B(n,p)$
+
+$\displaystyle\Pr(X<2)
+\ =\ \Pr(X=0)+\Pr(X=1)$
+
+$\displaystyle\phantom{\Pr(X<2)}\ =\ \
+{4\choose 0}p^0(1-p)^4+{4\choose 1}p^1(1-p)^3$
+
+$\displaystyle\phantom{\Pr(X<2)}\ =\ \
+(1-p)^4+4p(1-p)^3\ =\ ${\color{blue}\py{risposta}\hfill Risposta 2\kern0ex}
+
 {\color{blue}
-400
-\hfill Risposta\kern19ex}
+$\E(X)=400$
+\hfill Risposta 2\kern0ex}
+
 \end{answer}
 \end{question}
 
