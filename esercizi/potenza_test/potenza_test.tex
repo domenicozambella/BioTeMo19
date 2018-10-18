@@ -128,7 +128,7 @@ Per calcolare la potenza assumo $H_A$ valga nel caso più sfaforevole $\mu=\py{m
 
 $\displaystyle1-\beta\ =\ 1 - \Pr\big(\py{xalpha1}\le\bar X\le\py{xalpha2}\big)$ dove $\displaystyle\bar X\sim N(\mu,\frac{\sigma^2}{n})$ \ con \ $\mu=\py{mu[0]}$ \ e \ $\displaystyle\frac{\sigma^2}{n}=\pyl{sigma**2/n}$
 
-$\displaystyle\phantom{\alpha}\ =\ 1- \Pr\bigg(\pyl{(xalpha1-mu[0])/(sigma/sqrt(n))}\le Z\le\pyl{(xalpha2-mu[0])/(sigma/sqrt(n))}\bigg)\ =\ $
+$\displaystyle\phantom{1-\beta}\ =\ 1- \Pr\bigg(\pyl{(xalpha1-mu[0])/(sigma/sqrt(n))}\le Z\le\pyl{(xalpha2-mu[0])/(sigma/sqrt(n))}\bigg)\ =\ $
 {\color{blue}\tt norm.cdf( \py{ (xalpha1-mu[0])/(sigma/sqrt(n)) } ) + norm.cdf( -\py{ (xalpha2-mu[0])/(sigma/sqrt(n)) } ) }
 {\tt =\ \pyr{ norm.cdf( float(xalpha1-mu[0])/float(sigma/sqrt(n)) ) + norm.cdf( -float(xalpha2-mu[0])/float(sigma/sqrt(n)) ) } }
 {\color{blue}\hfill Risposta 2}
@@ -151,7 +151,6 @@ $\displaystyle\phantom{\alpha}\ =\ 1- \Pr\bigg(\pyl{(xalpha1-mu[0])/(sigma/sqrt(
 % {\color{blue}$\beta
 % \ \le\ $}
 % {\color{blue}\tt norm.cdf(\py{n * (xalpha2-mu[0] ) / sigma }) - norm.cdf(\py{n * (xalpha1-mu[0] ) / sigma }) }{\tt\ =\ \py{round( norm.cdf(n * (xalpha2-mu[0] ) / sigma ) - norm.cdf(n * (xalpha1-mu[0] ) / sigma ), 4 ) } }{\color{blue}\hfill Risposta}
-
 
 \end{answer}
 \end{question}
