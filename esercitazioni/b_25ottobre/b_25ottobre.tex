@@ -33,11 +33,12 @@
 \pagestyle{empty} 
 
 \excludecomment{answer}
+\includecomment{answer}
 
 \begin{document}
 \colorbox{blue!10}{\begin{minipage}{\textwidth}
 Matematica e BioStatistica con Applicazioni Informatiche\\
-Esercitazione in aula di ???????? ottobre 2018
+Esercitazione in aula del 25 ottobre 2018
 \end{minipage}}
 
 \bigskip
@@ -47,6 +48,43 @@ Esercitazione in aula di ???????? ottobre 2018
 import random
 random.seed(258466445)
 \end{pycode}
+
+
+\begin{question}
+\begin{pycode}
+from scipy.stats import binom
+n = random.choice([26,27,28,29])
+k = random.choice([12,13,14,15])
+t = random.choice(["t","u"])
+risposta = round( 1- binom.cdf(k-1,n, 1/4), 4)
+\end{pycode}
+Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione. Qual è la probabilità che due sequenze coincidano in $\ge\py{k}$ posizioni?  
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
+\begin{answer}
+
+
+$X\sim B(\py{n}, 1/4)$
+
+$\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})\ =\ ${\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
+\end{answer}
+\end{question}
+
+
+\vfill
+\hrulefill
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}
+
+{\tt binom.pmf(k,n,p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$ 
+
+{\tt binom.cdf(k)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ 
+
+{\tt bimom.ppf($\alpha$, n, p)} = ${\tt x_\alpha}$ dove ${\tt x_\alpha}$ è tale che $\Pr\big(X\le{\tt x_\alpha}\big)=\alpha$ per $X\sim B({\tt n},{\tt p})$ 
+
+
+
+
 
 
 
