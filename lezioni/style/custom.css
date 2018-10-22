@@ -43,16 +43,16 @@ mark {
 }
 
 .errore {background-color:#d88;
-        width:400px;
-        height:100px;
+        width:310px;
+        height:17ex;
         display:inline-block;
         margin:5px;
         padding:8px;
 }
 
 .corretto {background-color:#2d8;
-        width:400px;
-        height:100px;
+        width:310px;
+        height:17ex;
         display:inline-block;
         margin:5px;
         padding:8px;
@@ -78,5 +78,15 @@ div.warn {
 }
 .right{
     float:right
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5ex;
+    margin-bottom: 0.5ex;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
 }
 </style>
