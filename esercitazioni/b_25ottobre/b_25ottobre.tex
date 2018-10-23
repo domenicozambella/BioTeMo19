@@ -1,7 +1,7 @@
 \documentclass[11pt,twoside,a4paper]{article}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
 \usepackage{dsfont}
 \usepackage{calc} 
@@ -24,16 +24,15 @@
    \let\makelabel\mylabel}}{%
    \end{list}\vspace*{-1.3mm}}
 \parindent0ex
-\parskip2ex
+\parskip1.5ex
 \newcounter{quesito}
-\newenvironment{question}{\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
 \newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
 \newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
 
 \pagestyle{empty} 
 
 \excludecomment{answer}
-\includecomment{answer}
 
 \begin{document}
 \colorbox{blue!10}{\begin{minipage}{\textwidth}
@@ -48,27 +47,168 @@ Esercitazione in aula del 25 ottobre 2018
 import random
 random.seed(258466445)
 \end{pycode}
+%3
+\begin{question}
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import symbols, Rational, latex, log
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+f = abs(x) - abs(x + n[0])
+\end{pycode}
+Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione.
+\item[2.] Determinare $f^{-1}(\py{latex(n[0])})$.
+\end{itemize}
+
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \dom f \ =\ \RR$.} Si ha $$f(x) = \begin{cases} -\py{latex(n[0])}, \quad x \geq 0 \cr - \py{latex(n[0])} x - \py{latex(n[0])}, \quad - \py{latex(n[0])} \leq x < 0 \cr \py{latex(n[0])}, \quad x < -\py{latex(n[0])} \end{cases}$$ da cui {\color{blue} $\displaystyle \range f \ =\ [-\py{latex(n[0])}, \py{latex(n[0])}]$
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$\displaystyle f^{-1}(\py{latex(n[0])}) = (-\infty, -\py{latex(n[0])}]$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+
+
+%5
+\begin{question}
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import symbols, Rational, latex
+e, x = symbols('e x')
+n = [Rational( i ) for i in random.sample([1,2,3,4,5],3) ]
+f = log( n[1]*x+n[2] )
+\end{pycode}
+Si consideri la funzione $f(x) = \py{ latex(f) } $.
+\begin{itemize}
+\item[1.] Determinare dominio e immagine della funzione. 
+\item[2.] Per quali valori si annulla la funzione $f(-x)$?
+\end{itemize}
+Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$.
+\begin{answer}
+
+{\color{blue}
+$\displaystyle\dom f\ =\ \left(\py{latex(-n[2]/n[1])},\ +\infty\right)$
+\qquad 
+$\range f\ =\ \RR$
+\hfill Risposta 1\kern0ex}
+
+{\color{blue}
+$\displaystyle x\ =\ \py{latex((1-n[2])/(-n[1]))}$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\begin{pycode}
+from sympy import *
+x = random.sample([2,3,4,5],2)
+x1 = x[0]
+x2 = x[1]
+
+p = random.sample([2,3,4,5],2)
+d = random.choice(list(range(1,p[0])))
+px = Rational(d,p[0])
+d = random.choice(list(range(1,p[1])))
+py = Rational(d,p[1])
+
+\end{pycode}
+Le v.a.\@ discrete $X$ e $Y$ sono indipendenti. La loro distribuzione di probabilità è data da 
+
+
+\noindent\rlap{\kern15ex$\displaystyle\Pr(X=\py{x1}) =\py{latex(px)}$}\kern44ex   $\displaystyle\Pr(Y=1) =\py{latex(py)}$ 
+
+
+\noindent\rlap{\kern15ex$\displaystyle\Pr(X=\py{x2}) =\py{latex(1-px)}$}\kern44ex $\displaystyle\Pr(Y=0) =\py{latex(1-py)}$
+
+\begin{itemize}
+\item[1.] Calcolare la distribuzione di probabilità di $X\cdot Y$
+\item[2.] Calcolare $\Ex(X\cdot Y)$. 
+\end{itemize}
+
+Esprimere i numeri razionali come frazioni.
+ 
+\begin{answer}
+
+$\displaystyle\Pr(X\cdot Y=\py{x1})$ {\color{blue}$\displaystyle\ =\ \py{latex(px * py)}$}
+\hfill 
+$\displaystyle\Pr(X\cdot Y=\py{x2})$ {\color{blue}$\displaystyle\ =\ \py{latex((1-px) * py)}$}
+\hfill 
+$\displaystyle\Pr(X\cdot Y=0)$ {\color{blue}$\displaystyle\ =\ \py{latex(1-py)}$\hfill Risposta 1} 
+
+$\displaystyle{\color{blue}\Ex(X\cdot Y)}\ =\ \py{x1}\cdot\Pr(X\cdot Y=\py{x1}) + \py{x2}\cdot\Pr(X\cdot Y=\py{x2})${\color{blue}$\ =\ \displaystyle\py{latex(x1 * px * py + x2 * (1-px) * py)}$\hfill Risposta 2} 
+
+\end{answer}
+
+\end{question}
 
 
 \begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
 \begin{pycode}
 from scipy.stats import binom
-n = random.choice([26,27,28,29])
-k = random.choice([12,13,14,15])
-t = random.choice(["t","u"])
-risposta = round( 1- binom.cdf(k-1,n, 1/4), 4)
+irr = random.sample([4,5,6], 2)
+n = 10 * random.choice([8,9,10])
+p0 = random.choice([40, 50, 60])
+p1 = p0-10
+alpha =  random.choice([2,3,4,5])
+beta =  random.choice([2,3,4,5])
+k = int( n*p0/100 ) - 1
+risultato1 = binom.cdf(k,n,p0/100)
+risultato1 = round(risultato1, 4)
+risultato2 = 1 - binom.cdf(k,n,p1/100)
+risultato2 = round(risultato2, 4)
+risultato3 = binom.ppf(alpha/100,n*10,p0/100)
+risultato3 = int(risultato3)
+risultato4 = binom.ppf(1 - beta/100, n*10, p1/100)
+risultato4 = int(risultato4)
 \end{pycode}
-Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione. Qual è la probabilità che due sequenze coincidano in $\ge\py{k}$ posizioni?  
+Una fabbrica produce confezioni di biglie rosse e blu. Una confezione corretta contiene $\py{irr[0]}\cdot 10^{\py{irr[1]}}$ biglie con circa il $\py{p0}\%$ di biglie rosse. 
 
-Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
+Vogliamo essere ragionevolmente sicuri che la percentuale non scenda mai sotto $\py{p1}\%$.  Stabiliamo quindi due livelli di controllo. 
+Al primo controllo preleviamo $\py{n}$ biglie a caso da ogni confezione e se $\le\py{k}$ biglie sono rosse la confezione viene sottoposta a ulteriori controlli. Altrimenti viena dichiarata soddisfacente.
+
+1. Si calcoli la probabilità che una confezione con $\py{p0}\%$ di biglie rosse venga sottoposta al secondo controllo.
+
+2. Si calcoli la probabilità che una confezione con $\py{p1}\%$ di biglie rosse venga dichiarata soddisfacente.
+
+Il secondo controllo comporta l'estrazione di altre biglie,  $\py{n*10}$ in totale. Se meno di $x\%$ è rosso la confezione viene scartata definitivamente, altrimenti viene dichiarata soddisfacente.
+
+3. A quanto dovremmo fissare $x$ per non scartare al secondo controllo più del $\py{alpha}\%$ di confezioni con $\py{p0}\%$ di biglie rosse?
+
+4. A quanto dovremmo fissare $x$ per non  dichiare soddisfacente al secondo controllo più del $\py{beta}\%$ di confezioni con $\py{p1}\%$ di bigie rosse?
+
+Si trattino tutte le estrazioni come estrazioni con \textit{reimbussolamento}.
+
 \begin{answer}
 
+{\tt {\color{blue} binom.cdf( \py{k}, \py{n}, \py{p0/100} )} = \py{risultato1}}\hfill  {\color{blue}Risposta 1}
 
-$X\sim B(\py{n}, 1/4)$
+{\tt {\color{blue} 1 - binom.cdf( \py{k-1}, \py{n}, \py{p1/100} )} = \py{risultato2}}\hfill  {\color{blue}Risposta 2}
 
-$\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})\ =\ ${\tt{\color{blue}  1 -  binom.cdf( \py{k-1}, \py{n}, 1/4 )} = \py{risposta}}{\color{blue}\hfill Risposta}
+{\tt {\color{blue} binom.ppf( \py{alpha/100}, \py{n*10}, \py{p0/100} )} = \py{risultato3}}\hfill  {\color{blue}Risposta 3}
+
+{\tt {\color{blue} binom.ppf( \py{1- beta/100}, \py{n*10}, \py{p1/100} )} = \py{risultato4}}\hfill {\color{blue}Risposta 4}
+
 \end{answer}
 \end{question}
+
 
 
 \vfill
