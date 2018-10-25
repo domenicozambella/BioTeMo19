@@ -53,6 +53,7 @@ random.seed(258466445)
 \def\dom{{\rm dom}}
 \def\range{{\rm im}}
 \begin{pycode}
+random.seed(258466445)
 from sympy import symbols, Rational, latex, log
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
@@ -67,7 +68,16 @@ Si consideri la funzione $\displaystyle f(x) = \py{latex(f)}$.
 \begin{answer}
 
 {\color{blue}
-$\displaystyle \dom f \ =\ \RR$.} Si ha $$f(x) = \begin{cases} -\py{latex(n[0])}, \quad x \geq 0 \cr - \py{latex(n[0])} x - \py{latex(n[0])}, \quad - \py{latex(n[0])} \leq x < 0 \cr \py{latex(n[0])}, \quad x < -\py{latex(n[0])} \end{cases}$$ da cui {\color{blue} $\displaystyle \range f \ =\ [-\py{latex(n[0])}, \py{latex(n[0])}]$
+$\displaystyle \dom f \ =\ \RR$.} Si ha 
+
+$$f(x) = \begin{cases} 
+-\py{latex(n[0])}, \quad x \geq 0 
+\cr 
+- 2\, x - \py{latex(n[0])}, \quad - \py{latex(n[0])} \leq x < 0 
+\cr 
+\phantom{-}\py{latex(n[0])}, \quad x < -\py{latex(n[0])} \end{cases}$$ 
+
+da cui {\color{blue} $\displaystyle \range f \ =\ [-\py{latex(n[0])}, \py{latex(n[0])}]$
 \hfill Risposta 1\kern0ex}
 
 {\color{blue}
@@ -84,6 +94,7 @@ $\displaystyle f^{-1}(\py{latex(n[0])}) = (-\infty, -\py{latex(n[0])}]$
 \def\dom{{\rm dom}}
 \def\range{{\rm im}}
 \begin{pycode}
+random.seed(258466445)
 from sympy import symbols, Rational, latex
 e, x = symbols('e x')
 n = [Rational( i ) for i in random.sample([1,2,3,4,5],3) ]
@@ -115,6 +126,7 @@ $\displaystyle x\ =\ \py{latex((1-n[2])/(-n[1]))}$
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
+random.seed(258466445)
 from sympy import *
 x = random.sample([2,3,4,5],2)
 x1 = x[0]
@@ -162,6 +174,7 @@ $\displaystyle{\color{blue}\Ex(X\cdot Y)}\ =\ \py{x1}\cdot\Pr(X\cdot Y=\py{x1}) 
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
+random.seed(258466445)
 from scipy.stats import binom
 irr = random.sample([4,5,6], 2)
 n = 10 * random.choice([8,9,10])
@@ -192,7 +205,7 @@ Il secondo controllo comporta l'estrazione di altre biglie,  $\py{n*10}$ in tota
 
 3. A quanto dovremmo fissare $x$ per non scartare al secondo controllo più del $\py{alpha}\%$ di confezioni con $\py{p0}\%$ di biglie rosse?
 
-4. A quanto dovremmo fissare $x$ per non  dichiare soddisfacente al secondo controllo più del $\py{beta}\%$ di confezioni con $\py{p1}\%$ di bigie rosse?
+4. A quanto dovremmo fissare $x$ per non dichiare soddisfacente al secondo controllo più del $\py{beta}\%$ di confezioni con $\py{p1}\%$ di bigie rosse?
 
 Si trattino tutte le estrazioni come estrazioni con \textit{reimbussolamento}.
 
@@ -200,7 +213,7 @@ Si trattino tutte le estrazioni come estrazioni con \textit{reimbussolamento}.
 
 {\tt {\color{blue} binom.cdf( \py{k}, \py{n}, \py{p0/100} )} = \py{risultato1}}\hfill  {\color{blue}Risposta 1}
 
-{\tt {\color{blue} 1 - binom.cdf( \py{k-1}, \py{n}, \py{p1/100} )} = \py{risultato2}}\hfill  {\color{blue}Risposta 2}
+{\tt {\color{blue} 1 - binom.cdf( \py{k}, \py{n}, \py{p1/100} )} = \py{risultato2}}\hfill  {\color{blue}Risposta 2}
 
 {\tt {\color{blue} binom.ppf( \py{alpha/100}, \py{n*10}, \py{p0/100} )} = \py{risultato3}}\hfill  {\color{blue}Risposta 3}
 
