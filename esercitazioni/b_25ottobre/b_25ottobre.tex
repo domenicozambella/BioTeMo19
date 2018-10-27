@@ -107,7 +107,6 @@ Si consideri la funzione $f(x) = \py{ latex(f) } $.
 \end{itemize}
 Esprimere il risultato come frazione di interi, ed eventualmente multipli di $e$.
 \begin{answer}
-
 {\color{blue}
 $\displaystyle\dom f\ =\ \left(\py{latex(-n[2]/n[1])},\ +\infty\right)$
 \qquad 
@@ -194,7 +193,7 @@ risultato4 = int(risultato4)
 \end{pycode}
 Una fabbrica produce confezioni di biglie rosse e blu. Una confezione corretta contiene $\py{irr[0]}\cdot 10^{\py{irr[1]}}$ biglie con circa il $\py{p0}\%$ di biglie rosse. 
 
-Vogliamo essere ragionevolmente sicuri che la percentuale non scenda mai sotto $\py{p1}\%$.  Stabiliamo quindi due livelli di controllo. 
+Non è un problema se le biglie rosse eccedono il $\py{p0}\%$ ma vogliamo essere ragionevolmente sicuri che la percentuale non scenda mai sotto $\py{p1}\%$.  Stabiliamo quindi due livelli di controllo. 
 Al primo controllo preleviamo $\py{n}$ biglie a caso da ogni confezione e se $\le\py{k}$ biglie sono rosse la confezione viene sottoposta a ulteriori controlli. Altrimenti viena dichiarata soddisfacente.
 
 1. Si calcoli la probabilità che una confezione con $\py{p0}\%$ di biglie rosse venga sottoposta al secondo controllo.
@@ -211,13 +210,80 @@ Si trattino tutte le estrazioni come estrazioni con \textit{reimbussolamento}.
 
 \begin{answer}
 
-{\tt {\color{blue} binom.cdf( \py{k}, \py{n}, \py{p0/100} )} = \py{risultato1}}\hfill  {\color{blue}Risposta 1}
 
-{\tt {\color{blue} 1 - binom.cdf( \py{k}, \py{n}, \py{p1/100} )} = \py{risultato2}}\hfill  {\color{blue}Risposta 2}
+Sebbene non sia son sia necessario, aiuta immaginare il seguente test d'ipotesi:
+\begin{itemize}
+\item $H_0:\ $ confezione corretta $\rightarrow$ $\py{p0}\%$ delle palline nella confezione sono rosse;
+\item $H_A:\ $ confezione non corretta $\rightarrow$ $< \py{p0}\%$ delle palline nella confezione sono rosse.
+\end{itemize} 
+Nel primo punto si richiede che data una confezione  il cui $\py{p0} \% $ delle palline sono palline rosse  venga sottoposta al secondo controllo. Quindi sotto l'ipotesi nulla vera, cioè che la confezione sia corretta, questa venga lo stesso considerate inadeguata, la probabilità richiesta da calcolare è un \textbf{errore di primo tipo}
 
-{\tt {\color{blue} binom.ppf( \py{alpha/100}, \py{n*10}, \py{p0/100} )} = \py{risultato3}}\hfill  {\color{blue}Risposta 3}
+$\qquad
+\alpha\ =\ P(\{{\rm confezione\ spedita\ a\ secondo\ controllo}\}\ | {\rm\ confezione\ corretta})
+$
 
-{\tt {\color{blue} binom.ppf( \py{1- beta/100}, \py{n*10}, \py{p1/100} )} = \py{risultato4}}\hfill {\color{blue}Risposta 4}
+Come calcolare $\alpha$? 
+\begin{itemize}
+\item una confezione viene mandata al secondo controllo se su un totale di \py{n} estrazioni con reimbussolamento, vengano conteggiate un numero di palline rosse minore o uguale a $\py{k}$.
+\item è necessaria una variabile aleatoria che sia in grado di conteggiare quanti successi (palline rosse) siano avvenuti in \py{n} estrazioni.
+\item Sia $X\sim Bin(n,p)\ $, con $n=\py{k}$ e $p=0\py{p0/100}$. Quello che vogliamo calcolare è la seguente probabilità:
+
+$\qquad
+P(X\le \py{k})\ =\ P(\{\rm confezione\ spedita\ a\ secondo\ controllo\}).
+$
+
+\item per definizione una variabile aleatoria distribuita seconda una Binomiale è definita su due parametri: $n=\ $il numero di estrazioni massimo che viene fatto e $p=\ $probabilità di successo, nel nostro caso quindi l'estrazione di una pallina rossa dalla confezione intera. 
+\end{itemize}
+Per cui nel nostro caso avremo che $n=\py{n}\ $ e $p=\py{p0/100}\ $ in quanto la confezione è formata dal $\py{p0}\%\ $ di palline rosse. Quindi possiamo affermare che:
+
+$\qquad\displaystyle
+P(X\le \py{k})\ =\  \sum_{i=0}^{\py{k}}\binom{\py{n}}{i} p^i (1-p)^{\py{n}-i} 
+$
+
+Da notare: non è richiesto di sapere la formula ma di sapere quale e in che modo usare la funzione Python necessaria.
+
+
+$\qquad\displaystyle
+\phantom{P(X\le \py{k})}
+\ =\ ${\tt {\color{blue} binom.cdf( \py{k}, \py{n}, \py{p0/100} )} = \py{risultato1}}\hfill  {\color{blue}Risposta 1}
+
+
+
+
+\bigskip
+Il punto 2 è molto simile al punto 1.\\ \emph{Ma in questo caso però è un errore di che tipo? Che effect-size $\delta$ stiamo prendendo in considerazione?}
+
+\smallskip
+$\qquad P(X\le \py{k})\ =\ ${\tt {\color{blue} 1 - binom.cdf( \py{k}, \py{n}, \py{p1/100} )} = \py{risultato2}}\hfill  {\color{blue}Risposta 2} \\
+
+Per il punto 3 dobbiamo calcolare la soglia di palline rosse su \py{n*10} estrazioni, in maniera tale da non scartare più del $5\% \ $ delle confezioni corrette, e quindi con il $\py{p0}\%\ $ di palline rosse.
+
+Il ragionamento è molto simile a sopra solo che ora conosciamo $\alpha$ e dobbiamo calcolare ilvalore di soglia (che prima era \py{k}) necessario per decidere se la confezione può essere accettata. Quindi quello che dobbiamo trovare è:
+
+$\qquad\begin{array}{rclcl}
+P(X > x )&\cong&{\tt 1-\alpha} &\cong&{\tt 1-\py{alpha/100}}\\
+1-P(X \le x )&\cong&{\tt 1-\py{alpha/100}}\\
+P(X \le x )&\cong&{\tt \py{alpha/100}}
+\end{array}$
+
+ma allora 
+
+$\displaystyle\qquad
+x$
+\ =\ {\tt {\color{blue} binom.ppf( \py{alpha/100}, \py{n*10}, \py{p0/100} )} = \py{risultato3}}\hfill  {\color{blue}Risposta 3}
+
+\bigskip
+Il punto 4 è simile al punto 3.
+
+$\displaystyle\qquad
+x$
+\ =\ {\tt {\color{blue} binom.ppf( \py{1- beta/100}, \py{n*10}, \py{p1/100} )} = \py{risultato4}}\hfill {\color{blue}Risposta 4}
+
+
+
+
+
+
 
 \end{answer}
 \end{question}

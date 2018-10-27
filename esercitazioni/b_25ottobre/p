@@ -17,7 +17,7 @@ with open(name + '.tex', 'r', encoding='utf-8') as f:
     latex_source = f.read()
     f.closed
 
-latex_risposte = latex_source.replace( r'\excludecomment{answer}', r'\includecomment{answer}' )
+latex_risposte = latex_source.replace( r'\excludecomment{answer}', '' )
 
 with open(name + '.risposte.tex', 'w', encoding='utf-8') as f:
     f.write(latex_risposte)
