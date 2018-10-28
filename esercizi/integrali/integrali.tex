@@ -1,0 +1,154 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{calc} 
+\usepackage{pythontex}
+\usepackage{dsfont}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip2ex
+\newcounter{quesito}
+\newenvironment{question}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\begin{document}
+\begin{pycode}
+import random
+random.seed(2548445)
+\end{pycode}
+%1
+\begin{question}
+Si consideri la funzione $f(x) = \sqrt[4]{x^5} - \sin x$.
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[0,2]$.
+\end{itemize}
+\end{question}
+%2
+\begin{question}
+Si consideri la funzione $f(x) = \cos(4x)$.
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[-2,3]$.
+\end{itemize}
+\end{question}
+%3
+\begin{question}
+Si consideri la funzione $f(x) = e^{2x}$.
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[-1,2]$.
+\end{itemize}
+\end{question}
+%4
+\begin{question}
+Si consideri la funzione $f(x) = 2x\log (x^2) + x^5$.
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[8,10]$.
+\end{itemize}
+\end{question}
+%5
+\begin{question}
+Si consideri la funzione $f(x) = 2x^2$ nell'intervallo $[0,4]$.
+\begin{itemize}
+\item[1.] Suddividere tale intervallo in $8$ parti e scrivere gli intervalli in cui \`e stato diviso. Calcolare la funzione $f$ nel punto medio di ciascuno di tali intervalli.
+\item[2.] Calcolare la somma di Riemann della funzione $f$ relativa alla suddivisione e ai punti di campionamento trovati al punto precedente.
+\end{itemize}
+\end{question}
+%6
+\begin{question}
+Si consideri la funzione $f(x) = x^2 - 8x$.
+\begin{itemize}
+\item[1.] Determinare l'area (con segno) sottesa da tale funzione nell'intervallo $[0, 10]$.
+\item[2.] Determinare l'area (con segno) sottesa dalla funzione $\lvert f(x) \rvert$ nell'intervallo $[0, 10]$.
+\end{itemize}
+\end{question}
+%7
+\begin{question}
+Si consideri la funzione definita a tratti 
+\[f(x) = \begin{cases} 4 \quad 1 \leq x < 3 \cr -6 \quad 3 \leq x \leq 7 \end{cases}\]
+\begin{itemize}
+\item[1.] Determinare l'area (con segno) sottesa da tale funzione.
+\item[2.] Determinare l'area (con segno) sottesa dalla funzione $f(2x + 3)$.
+\end{itemize}
+\end{question}
+%8
+\begin{question}
+Si consideri la funzione $f(x) = e^x - 2$
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = 0$ e $x = 2$.
+\end{itemize}
+\end{question}
+%9
+\begin{question}
+Si consideri la funzione $f(x) = x^3 + 1$
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = -1$ e $x = 3$.
+\end{itemize}
+\end{question}
+%10
+\begin{question}
+Si consideri la funzione $f(x) = 3\sin(x)$
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = \pi$ e $x = 2 \pi$.
+\end{itemize}
+\end{question}
+%11
+\begin{question}
+Si consideri la funzione $f(x) = 3\sin(x)$
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = \pi$ e $x = 2 \pi$.
+\end{itemize}
+\end{question}
+%12
+\begin{question}
+Si considerino le funzioni $f(x) = x^2$ e $g(x) = -x^3 - x^2$
+\begin{itemize}
+\item[1.] Calcolare gli integrali indefiniti $\displaystyle \int f(x) dx$ e $\displaystyle \int g(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra le due funzioni nell'intervallo $[-2, 0]$.
+\end{itemize}
+\end{question}
+%13
+\begin{question}
+Si consideri la funzione $v(t) = 3 t^2 - t +1$ che descrive la velocit\`a di un corpo ad ogni istante di tempo $t$.
+\begin{itemize}
+\item[1.] Determinare lo spostamento netto di tale corpo nell'intervallo di tempo $[1, 6]$.
+\item[2.] Determinare lo spostamento neto di un corpo la cui velocit\`a \`e descritta dalla funzione $v(t/2)$.
+\end{itemize}
+\end{question}
+%14
+\begin{question}
+Si consideri una funzione $f(x)$ tale che $\displaystyle \int_1^4 f(2x) dx = 6$
+\begin{itemize}
+\item[1.] Determinare l'area sottesa dalla funzione $f(x)$ nell'intervallo $[2,8]$.
+\item[2.] Determinare l'area sottesa dalla funzione $f(3x)$ nell'intervallo $[6,24]$.
+\end{itemize}
+\end{question}
+
+
+\end{document}
