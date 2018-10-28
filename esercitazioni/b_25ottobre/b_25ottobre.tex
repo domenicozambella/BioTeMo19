@@ -216,7 +216,7 @@ Sebbene non sia son sia necessario, aiuta immaginare il seguente test d'ipotesi:
 \item $H_0:\ $ confezione corretta $\rightarrow$ $\py{p0}\%$ delle palline nella confezione sono rosse;
 \item $H_A:\ $ confezione non corretta $\rightarrow$ $< \py{p0}\%$ delle palline nella confezione sono rosse.
 \end{itemize} 
-Nel primo punto si richiede che data una confezione il cui $\py{p0} \% $ delle palline sono palline rosse  venga sottoposta al secondo controllo. Quindi sotto l'ipotesi nulla vera, cioè che la confezione sia corretta, questa venga lo stesso considerate inadeguata, la probabilità richiesta da calcolare è un \textbf{errore di primo tipo}
+Nel primo punto si richiede che data una confezione il cui $\py{p0} \% $ delle palline sono palline rosse  venga sottoposta al secondo controllo. Quindi sotto l'ipotesi nulla vera, cioè che la confezione sia corretta, questa venga lo stesso considerate inadeguata, la probabilità richiesta da calcolare è un \textit{errore di primo tipo}
 
 $\qquad
 \alpha\ =\ P(\{{\rm confezione\ spedita\ a\ secondo\ controllo}\}\ | {\rm\ confezione\ corretta})
@@ -226,7 +226,7 @@ Come calcolare $\alpha$?
 \begin{itemize}
 \item una confezione viene mandata al secondo controllo se su un totale di \py{n} estrazioni con reimbussolamento, vengano conteggiate un numero di palline rosse minore o uguale a $\py{k}$.
 \item è necessaria una variabile aleatoria che sia in grado di conteggiare quanti successi (palline rosse) siano avvenuti in \py{n} estrazioni.
-\item Sia $X\sim Bin(n,p)\ $, con $n=\py{k}$ e $p=0\py{p0/100}$. Quello che vogliamo calcolare è la seguente probabilità:
+\item Sia $X\sim B(n,p)\ $, con $n=\py{k}$ e $p=0\py{p0/100}$. Quello che vogliamo calcolare è la seguente probabilità:
 
 $\qquad
 P(X\le \py{k})\ =\ P(\{\rm confezione\ spedita\ a\ secondo\ controllo\}).
@@ -242,13 +242,9 @@ $
 
 Da notare: non è richiesto di sapere la formula ma di sapere quale e in che modo usare la funzione Python necessaria.
 
-
 $\qquad\displaystyle
 \phantom{P(X\le \py{k})}
 \ =\ ${\tt {\color{blue} binom.cdf( \py{k}, \py{n}, \py{p0/100} )} = \py{risultato1}}\hfill  {\color{blue}Risposta 1}
-
-
-
 
 \bigskip
 Il punto 2 è molto simile al punto 1.\\ \emph{Ma in questo caso però è un errore di che tipo? Che effect-size $\delta$ stiamo prendendo in considerazione?}
