@@ -1,4 +1,10 @@
 <style>
+div.jp-MarkdownOutput {font-family: "Times New Roman", Times, serif;   
+    background-color: #eee; 
+    border-left: 5px solid #00b5b4;
+    font-size: 14pt;
+    line-height: 160%;
+}
 .text_cell_render {
     font-family: "Times New Roman", Times, serif;    
     background-color: #eee; 
