@@ -1,0 +1,159 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 8 novembre 2018
+\end{minipage}}
+
+\bigskip
+
+%10
+\begin{xquestion}
+\def\RR{{\mathds R}}
+\def\dom{{\rm dom}}
+\def\range{{\rm im}}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n = [Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+f = x**2 - n[0]
+g = 1/x
+\end{pycode}
+Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle g(x) =\py{latex(g)}$.
+\begin{itemize}
+\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
+\item[2.] Determinare dominio $f \circ g$ e $g \circ f$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$
+\qquad e\qquad 
+$\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$
+\hfill Risposta 1\kern0ex}
+
+\smallskip
+{\color{blue}
+$\dom (f \circ g)\ =\ \RR - \{0\}$
+\qquad e\qquad 
+$\dom (g \circ f)\ =\ \RR - \{\pm \py{latex(sqrt(n[0]))}\}$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{xquestion}
+
+
+\begin{question}
+La concentrazione di un farmaco nel sangue dopo $12$ ore è il $70\%$ della concentrazione iniziale. Vogliamo che la concentrazione massima a regime sia $4$. Somministriamo il farmaco giornalmente (ogni 24 ore). Di quanto deve aumentare la concentrazione ad ogni somministrazione? Ricordiamo che l'equazione $x_{n+1}=ax_n +b$ ha come soluzione generale $Ca^n+b/(1-a)$.
+\begin{answer}
+
+Conviene ragionare in unità di tempo giornaliere. Ogni giorno la concentrazione si riduce del $(70\%)^2=49\%$. Quindi $a=0.49$. Posto $4=b/(1-a)$ otteniamo $b=2.04$.
+
+\end{answer}
+\end{question}
+
+\begin{question}
+Al momento un paziente prende giornalmente $2$ unità al giorno di una medicina. La concentrazione massima nel sangue con questa dose è di $3.4$. Si rende necessario farla salire a $4.2$. Quanto dovrà essere la nuova dose? Ricordiamo che l'equazione $x_{n+1}=ax_n +b$ ha come soluzione generale $Ca^n+b/(1-a)$.
+\begin{answer}
+
+La concentrazione massima a regime è $b/(1-a)=2/(1-a)=3.4$. Quindi $a=0.41$. La nuova dose $b'$ deve soddisfare $b'/(1-a)=4.2$. Quindi $b'=2.48$
+\end{answer}
+\end{question}
+
+\begin{question} Per i valori $-1<r<1$, la serie geometrica 
+
+\hfil$\displaystyle \sum^\infty_{i=0}r^i$ 
+
+converge a $1/(1-r)$. Per quali valori di $q$ la serie 
+
+\hfil$\displaystyle \sum^\infty_{i=2}(1+q)^{i-1}$
+
+converge? A cosa converge?
+\begin{answer}
+
+$\displaystyle \sum^\infty_{i=2}(1+q)^{i-1}=\sum^\infty_{i=1}(1+q)^{i}=\sum^\infty_{i=0}(1+q)^{i}-1=(1-q)/q -1$ per $2<q<0$
+
+\end{answer}
+\end{question}
+
+
+
+\begin{question}
+Due monetine, una con probabilità di dare testa $0.8$, l'altra $0.9$ vengono laciate simultaneamente. Qual è la probabilità che il primo lancio a cui differiscono sia $\ge 4$? 
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+Chiamiamo successo la divergenza tra le due monete. Questa si ottiene con probabilità $p=0.2\cdot0.9+0.8\cdot0.1$. Sia $Y\sim NB(1,p)$. La risposta è $\Pr(Y\ge 4)=1-\Pr(Y\le 5)$.
+\end{answer}
+\end{question}
+
+\begin{question} Per i valori $-1<r<1$, la serie geometrica 
+
+\hfil$\displaystyle \sum^\infty_{i=0}r^i$ 
+
+converge a $1/(1-r)$. Per quali valori di $q$ la serie 
+
+\hfil$\displaystyle \sum^\infty_{i=2}(1+q)^{i-1}$
+
+converge? A cosa converge?
+\begin{answer}
+
+$\displaystyle \sum^\infty_{i=2}(1+q)^{i-1}=\sum^\infty_{i=1}(1+q)^{i}=\sum^\infty_{i=0}(1+q)^{i}-1=(1-q)/q -1$ per $2<q<0$
+
+\end{answer}
+\end{question}
+
+
+
+\vfill
+\hrulefill
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}
+
+{\tt nbinom.pmf(k, 1, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim NB({\tt 1},{\tt p})$ 
+
+{\tt nbinom.cdf(k, 1, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim NB({\tt 1},{\tt p})$ 
+
+{\tt nbimom.ppf(q, 1, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim NB({\tt 1},{\tt p})$ 
+
+
+
+
+\end{document}
+
