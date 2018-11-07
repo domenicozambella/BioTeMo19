@@ -41,42 +41,66 @@ Matematica e BioStatistica con Applicazioni Informatiche\\
 Esercitazione in aula del 8 novembre 2018
 \end{minipage}}
 
+\begin{pycode}
+import random
+random.seed(258466445)
+\end{pycode}
 \bigskip
-
-%10
-\begin{xquestion}
+\begin{question}
 \def\RR{{\mathds R}}
-\def\dom{{\rm dom}}
-\def\range{{\rm im}}
 \begin{pycode}
 from sympy import *
 x = symbols('x')
-n = [Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
-f = x**2 - n[0]
-g = 1/x
+n =[ Rational( i ) for i in random.sample([1,2,3,4,5],2) ]
 \end{pycode}
-Si considerino le funzioni $\displaystyle f(x) = \py{latex(f)}$ e $\displaystyle g(x) =\py{latex(g)}$.
+Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f'(x) = \py{n[1]}\,  e^{\py{latex(-n[0]*x)}}$.\nobreak
 \begin{itemize}
-\item[1.] Scrivere esplicitamente le funzioni $f \circ g$ e $g \circ f$.
-\item[2.] Determinare dominio $f \circ g$ e $g \circ f$.
+\item[1.] Indicare gli intervalli in cui la funzione $f(x)$ cresce e quelli in cui la funzione decresce.
+\item[2.] Trovare massimi e minimi locali di $f(x)$.
 \end{itemize}
 \begin{answer}
 
 {\color{blue}
-$\displaystyle (f \circ g) (x)\ =\ \py{latex(f.subs(x,g))}$
-\qquad e\qquad 
-$\displaystyle (g \circ f) (x)\ =\ \py{latex(g.subs(x,f))}$
+$f(x)$ cresce in $(-\infty, \infty) = \RR$}, infatti $\py{n[1]}\, e^{\py{latex(-n[0]*x)}} > 0$ per ogni $x \in \RR$
+{\color{blue}
 \hfill Risposta 1\kern0ex}
 
-\smallskip
 {\color{blue}
-$\dom (f \circ g)\ =\ \RR - \{0\}$
-\qquad e\qquad 
-$\dom (g \circ f)\ =\ \RR - \{\pm \py{latex(sqrt(n[0]))}\}$
+$f(x)$ non ha massimi e minimi locali
 \hfill Risposta 2\kern0ex}
 
 \end{answer}
-\end{xquestion}
+\end{question}
+
+%5
+\begin{question}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
+\end{pycode}
+Si consideri un corpo lasciato cadere da una torre alta 500 metri. Sia  $f(t) = 5 t^2$ la funzione che ne descrive la distanza dalla cima della torre ad ogni secondo (quando $t=0$, $f(t) = 0$ ovvero il corpo si trova in cima alla torre).
+\begin{itemize}
+\item[1.] Qual è la velocità istantanea del corpo dopo $\py{latex(n[0])}$ secondi?
+\item[2.] Qual è la velocità istantanea del corpo quando tocca terra?
+\end{itemize}
+\begin{answer}
+
+La funzione $f'(t) = 10 t$ descrive l'andamento della velocità istantanea, quindi
+
+{\color{blue}
+$f'(\py{latex(n[0])}) = \py{latex(10*n[0])}$ }
+{\color{blue}
+\hfill Risposta 1\kern0ex}
+
+Il corpo tocca terra quando $f(t) = 500$, ovvero quando $5t^2 = 500$, ovvero a $t = 10$, quindi
+
+{\color{blue}
+$f'(10) = 100$
+\hfill Risposta 2\kern0ex}
+
+\end{answer}
+\end{question}
 
 
 \begin{question}
@@ -88,13 +112,6 @@ Conviene ragionare in unità di tempo giornaliere. Ogni giorno la concentrazione
 \end{answer}
 \end{question}
 
-\begin{question}
-Al momento un paziente prende giornalmente $2$ unità al giorno di una medicina. La concentrazione massima nel sangue con questa dose è di $3.4$. Si rende necessario farla salire a $4.2$. Quanto dovrà far aumentare la concentrazione la nuova dose giornaliera? Ricordiamo che l'equazione $x_{n+1}=ax_n +b$ ha come soluzione generale $Ca^n+b/(1-a)$.
-\begin{answer}
-
-La concentrazione massima a regime è $b/(1-a)=2/(1-a)=3.4$. Quindi $a=0.41$. La nuova dose $b'$ deve soddisfare $b'/(1-a)=4.2$. Quindi $b'=2.48$
-\end{answer}
-\end{question}
 
 \begin{question}Per quali valori di $q$ la seguente serie converge?
 
