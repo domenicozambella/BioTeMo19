@@ -38,43 +38,130 @@ random.seed(2548445)
 \end{pycode}
 %1
 \begin{question}
-Si consideri la funzione $f(x) = \sqrt[4]{x^5} - \sin x$.
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+m = [Rational( i ) for i in random.sample([3,4],1) ]
+n = [Rational( i ) for i in random.sample([5,7],1) ]
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+\end{pycode}
+Si consideri la funzione $f(x) = \sqrt[\py{latex(m[0])}]{x^{\py{latex(n[0])}}} - \py{latex(k[0])}\sin x$.
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[0,2]$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervallo $[0,1]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \int f(x) dx = \frac{\py{latex(m[0])}}{\py{latex(m[0]+n[0])}}x^{\py{latex(m[0])}/\py{latex(m[0]+n[0])}} + \py{latex(k[0])}\cos x + C$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è
+$\py{latex(k[0])}\cos 1 \py{latex(m[0]/(n[0]+m[0])-k[0])}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %2
 \begin{question}
-Si consideri la funzione $f(x) = \cos(4x)$.
+\begin{pycode}
+from sympy import *
+a = [Rational( i ) for i in random.sample([2,4],2) ]
+k = [Rational( i ) for i in random.sample([4,8],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = \cos(\py{latex(k[0])}x)$.
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[-2,3]$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervallo $[-\frac{\pi}{\py{latex(a[0])}},\frac{\pi}{\py{latex(a[1])}}]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \int f(x) dx = \py{latex(k[0])}\sin(\py{latex(k[0])}x) + C$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è 0.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %3
 \begin{question}
-Si consideri la funzione $f(x) = e^{2x}$.
+\begin{pycode}
+from sympy import *
+a = [Rational( i ) for i in random.sample([2,3,4,5,6,7],2) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = e^{\py{latex(a[0])}x}$.
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[-1,2]$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervallo $[0,\py{latex(a[1])}]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \int f(x) dx = \py{latex(a[0])}e^{\py{latex(a[0])}x} + C$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è} $\py{latex(a[0])}e^{\py{latex(a[0]*a[1])}} - \py{latex(a[0])}=$ {\color{blue}$\py{latex(a[0])}(e^{\py{latex(a[0]*a[1])}}-1)$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %4
 \begin{question}
-Si consideri la funzione $f(x) = 2x\log (x^2) + x^5$.
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+h = [Rational( i ) for i in random.sample([1,2,3,4,5,6],1) ]
+m = [Rational( i ) for i in random.sample([2,3],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = (\py{latex(k[0])}x+\py{latex(h[0])})^{\py{latex(m[0])}}$.
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervall $[8,10]$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervallo $[0,1]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \int f(x) dx = \frac{(\py{latex(k[0])}x+\py{latex(h[0])})^{\py{latex(m[0]+1)}}}{\py{latex(k[0]*(m[0]+1))}} + C$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex((h[0]**(m[0]+1)-(h[0]+k[0])**(m[0]+1))/(k[0]*(m[0]+1)))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %5
 \begin{question}
-Si consideri la funzione $f(x) = 2x^2$ nell'intervallo $[0,4]$.
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = \py{latex(k[0])}x^2$ nell'intervallo $[0,4]$.
 \begin{itemize}
 \item[1.] Suddividere tale intervallo in $8$ parti e scrivere gli intervalli in cui \`e stato diviso. Calcolare la funzione $f$ nel punto medio di ciascuno di tali intervalli.
 \item[2.] Calcolare la somma di Riemann della funzione $f$ relativa alla suddivisione e ai punti di campionamento trovati al punto precedente.
 \end{itemize}
+\begin{answer}
+
+{\color{blue}
+Gli intervalli sono $[0, 0.5], [0.5, 1], [1, 1.5], [1.5, 2], [2, 2.5], [2.5, 3], [3, 3.5], [3.5, 4]$.
+Inoltre, $f(0.25) = \py{latex(k[0]*0.25**2)}$, $f(0.75) = \py{latex(k[0]*0.75**2)}$, $f(1.25) = \py{latex(k[0]*1.25**2)}$, $f(1.75) = \py{latex(k[0]*1.75**2)}$, $f(2.25) = \py{latex(k[0]*2.25**2)}$, $f(2.75) = \py{latex(k[0]*2.75**2)}$, $f(3.25) = \py{latex(k[0]*3.25**2)}$, $f(3.75) = \py{latex(k[0]*3.75**2)}$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue}La somma di Riemann vale $\py{latex(k[0]*(0.25**2+0.75**2+1.25**2+1.75**2+2.25**2+2.75**2+3.25**2+3.75))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %6
 \begin{question}

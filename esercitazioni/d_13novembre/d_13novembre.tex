@@ -38,21 +38,125 @@
 \begin{document}
 \colorbox{blue!10}{\begin{minipage}{\textwidth}
 Matematica e BioStatistica con Applicazioni Informatiche\\
-Esercitazione in aula del 8 novembre 2018
+Esercitazione in aula del 13 novembre 2018
 \end{minipage}}
+
 
 \begin{pycode}
 import random
 random.seed(258466445)
+ESAME = False
 \end{pycode}
+
+
 
 \begin{question}
 Al momento un paziente prende giornalmente $2$ unità al giorno di una medicina. La concentrazione massima nel sangue con questa dose è di $3.4$. Si rende necessario farla salire a $4.2$. Quanto dovrà far aumentare la concentrazione la nuova dose giornaliera? Ricordiamo che l'equazione $x_{n+1}=ax_n +b$ ha come soluzione generale $Ca^n+b/(1-a)$.
 \begin{answer}
-
-La concentrazione massima a regime è $b/(1-a)=2/(1-a)=3.4$. Quindi $a=0.41$. La nuova dose $b'$ deve soddisfare $b'/(1-a)=4.2$. Quindi $b'=2.48$
+La concentrazione massima a regime è $b/(1-a)=2/(1-a)=3.4$. Quindi $a=0.41$. La nuova dose $b'$ deve soddisfare $b'/(1-a)=4.2$. Quindi {\color{blue}$b'=2.48$}
 \end{answer}
 \end{question}
+
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\begin{pycode}
+from scipy.stats import nbinom
+p = random.choice([0.5,0.6])
+n = random.choice([5, 6])
+case = random.choice([10,15])
+if not ESAME :
+   p = 0.5
+   n = 6
+   case = 10
+risultato = nbinom.cdf(case, n, p )
+risultato = round(risultato, 6)
+\end{pycode}
+Pat is required to sell candy bars to raise money for the 6th grade field trip. There are \py{case} houses in the neighborhood, and Pat is not supposed to return home until \py{n} candy bars have been sold. So the child goes door to door, selling candy bars. At each house, there is a $\py{p}$ probability of selling one candy bar and a $\py{1-p}$ probability of selling nothing.
+\begin{itemize}
+\item[1.] What is the probability of selling the last candy bar at the $i$-th house? 
+\item[2.] What is the probability of selling all 5 candies in the neighborhood? 
+\end{itemize}
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
+\begin{answer}
+Sia $Y\sim NB(\py{n},\py{p})$.
+
+The probability of selling the last candy bar at the $i$-th house is 
+
+$\Pr(Y+\py{n}=i)\ =\ ${\tt{\color{blue}\ nbinom.pmf(i-\py{n}, \py{n}, \py{p} ) } } {\color{blue}\hfill Risposta 1}
+
+The probability of selling all \py{n} candies in the neighborhood is 
+
+$\Pr(Y+\py{n}\le\py{case})\ =\ ${\tt{\color{blue}\ nbinom.cdf(\py{case-n}, \py{n}, \py{p} ) }= \py{risultato} } {\color{blue}\hfill Risposta 2}\par
+\end{answer}
+\end{question}
+
+
+
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\begin{pycode}
+from scipy.stats import nbinom
+p  = random.choice([0.15,0.1])
+ps = random.choice([0.99,0.995])
+n = random.choice([8,9])
+max = random.choice([11,12])
+if not ESAME :
+   p = 0.1
+   n = 9
+   max = 11
+   ps = 0.99
+risultato1 = nbinom.cdf(max-n, n, 1-p )
+risultato1 = round(risultato1, 6)
+risultato2 = n + nbinom.ppf(ps, n, 1-p )
+risultato2 = int(risultato2)
+\end{pycode}
+Abbiamo una scatola di viti di cui il $\py{int(100*p)}\%$ è difettoso. I nostri prodotti richiedono $\py{n}$ viti per pezzo. Procediamo nel seguente modo. Prendiamo una vite a caso e, se difettosa, la sostituiamo con un'altra, anche scelta a caso, fino ad avere le $\py{n}$ viti richieste.
+\begin{itemize}
+\item[1.] In media quante viti dovremmo provare per completare un pezzo?
+\item[2.] Qual è la probabilità di riuscire a finire un pezzo scegliendo $\le\py{max}$ viti? 
+\item[3.] Quanti tentativi dovremo preventivare perchè la probabilità di finire un pezzo sia almeno il $\py{int(100*ps)}\%$? 
+\end{itemize}
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
+\begin{answer}
+Consideriamo successo una vite non difettosa. Sia $Y\sim NB(\py{n},\py{1-p})$.
+
+$\Ex(Y+\py{n})\ =\ \dfrac{\py{n}\cdot(1-\py{1-p})}{\py{1-p}}+\py{n}\ =\ ${\tt{\color{blue}\  \py{ n*p/(1-p) + n} } } {\color{blue}\hfill Risposta 1}
+
+$\Pr(Y+\py{n}\le\py{max})\ =\ ${\tt{\color{blue}\ nbinom.cdf(\py{max-n}, \py{n}, \py{1-p} ) }= \py{risultato1} } {\color{blue}\hfill Risposta 2}
+
+\smallskip
+$\Pr(Y+\py{n}\le x)\ =\ \py{ps}\ $ quindi {\tt{\color{blue}\ x $\cong$ \py{n} + nbinom.ppf(\py{ps}, \py{n}, \py{1-p} ) }= \py{risultato2} } {\color{blue}\hfill Risposta 3}\par
+
+\end{answer}
+\end{question}
+
+
+\vfill
+\hrulefill
+
+Formulario: 
+
+se $X\sim NB({\tt n},{\tt p})$ allora $E(X)=n(1-p)/p$; 
+
+se $X\sim B({\tt n},{\tt p})$ allora $E(X)=np$.
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}
+
+{\tt nbinom.pmf(k, 1, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim NB({\tt 1},{\tt p})$ 
+
+{\tt nbinom.cdf(k, 1, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim NB({\tt 1},{\tt p})$ 
+
+{\tt nbimom.ppf(q, 1, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim NB({\tt 1},{\tt p})$ 
 
 \end{document}
 
