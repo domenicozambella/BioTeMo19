@@ -221,6 +221,17 @@ $H_0:\quad p = 0.80$,\qquad $H_1:\quad p \neq 0.80$\hfill  where $p$ is the prop
 \end{itemize}
 \begin{answer}
 
+$\Pr(|X-80|\ge|80-73|)
+\ =\ 
+\Pr(X\ge 87) + \Pr(X\le 73) $
+
+$\phantom{\Pr(|X-80|\ge|80-73|)}
+\ =\ $
+{\color{blue}{\tt 1 - bimom.cdf(86, 100, 0.8) + bimom.cdf(72, 100, 0.8)}\hfill Risposta 1}
+
+$\phantom{\Pr(|X-80|\ge|80-73|)}\llap{(Uguale a riposta 1.)\quad}
+\ =\ $
+{\color{blue}{\tt 1 - bimom.cdf(86, 100, 0.8) + bimom.cdf(72, 100, 0.8)} \hfill Risposta 2}
 
 
 \end{answer}
@@ -238,6 +249,6 @@ Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats
 {\tt nbinom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim NB({\tt n},{\tt p})$ \\
 {\tt nbimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim NB({\tt n},{\tt p})$ 
 
-{\tt binom.pmf(k, n, p)}, {\tt binom.cdf(k, n, p)}, {\tt bimom.ppf(q, n, p)} sono l'analogo per $X\sim B({\tt n},{\tt p})$.
+{\tt binom.pmf(k, n, p)}, {\tt }, {\tt bimom.ppf(q, n, p)} sono l'analogo per $X\sim B({\tt n},{\tt p})$.
 \end{document}
 
