@@ -1,0 +1,243 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 15 novembre 2018
+\end{minipage}}
+
+
+\begin{pycode}
+import random
+random.seed(258466445)
+ESAME = False
+\end{pycode}
+
+\begin{question}
+Sia $a_i$ una successione di cui sappiamo che $a_0=2$, $a_1=1$, $a_2=4$ e \ 
+\smash{$\displaystyle\sum^{\infty}_{i=2}a^2_i
+\ =\ 
+14$}.
+
+Calcolare 
+$\quad\displaystyle\sum^{\infty}_{i=0}a^2_i$.
+
+\begin{answer}
+
+$\quad\displaystyle\sum^{\infty}_{i=0}a^2_i
+\ =\ \sum^{\infty}_{i=2}a^2_i+2^2+1^2
+\ =\ 14+4+1={\color{blue}19}$.
+\end{answer}
+\end{question}
+
+
+\begin{question}
+Sia $a_i$ una successione di cui sappiamo che $a_0=2$, $a_1=1$, $a_2=4$ e \ 
+\smash{$\displaystyle\sum^{\infty}_{i=2} (a_i+a_{i+1})
+\ =\ 
+14$}.
+
+Calcolare
+$\quad\displaystyle\sum^{\infty}_{i=0}a_i$.
+
+\begin{answer}
+
+$\quad\displaystyle\sum^{\infty}_{i=2}(a_i+a_{i+1})
+\ =\ 
+\sum^{\infty}_{i=2}a_i+ \sum^{\infty}_{i=3}a_i
+\ =\ 
+2\left(\sum^{\infty}_{i=0}a_i\right) - 2a_0 -2a_1 -a_2$
+
+Quindi
+
+$\quad\displaystyle\sum^{\infty}_{i=0}a_i
+\ =\ 
+\dfrac{14+4+ 2 + 4}{2}
+\ =\ 
+{\color{blue}12}$.
+\end{answer}
+\end{question}
+
+%4
+\begin{question}
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+h = [Rational( i ) for i in random.sample([1,2,3,4,5,6],1) ]
+m = [Rational( i ) for i in random.sample([2,3],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = (\py{latex(k[0])}x+\py{latex(h[0])})^{\py{latex(m[0])}}$.
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervallo $[0,1]$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \int f(x) dx = \frac{(\py{latex(k[0])}x+\py{latex(h[0])})^{\py{latex(m[0]+1)}}}{\py{latex(k[0]*(m[0]+1))}} + C$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex((h[0]**(m[0]+1)-(h[0]+k[0])**(m[0]+1))/(k[0]*(m[0]+1)))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
+
+
+%9
+\begin{question}
+Si consideri la funzione $f(x) = x^3 + 1$
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = -1$ e $x = 3$.
+\end{itemize}
+\end{question}
+
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\begin{pycode}
+from numpy import arange
+from scipy.stats import binom
+
+p = random.choice([0.6, 0.7])
+
+n_monete = random.choice([30, 35, 40])
+n_sample = n_monete - 5
+
+pH0 = random.choice([0.6, 0.8])
+n_eq = n_monete * pH0
+n_eq = int( n_eq )
+n_di = n_monete - n_eq
+k = n_sample * random.choice([0.6, 0.7])
+k = int( k )
+prev = n_di / n_monete
+
+
+sens = sum( binom.pmf(arange(k,n_sample+1), n_sample, p) )
+spec = sum( binom.pmf(arange(0,k), n_sample, 0.5) )
+
+pos =  sens * prev + (1-spec) * (1-prev)
+ppv =  prev * sens  / pos
+pfn =  (1-spec) * (1-prev) 
+
+sens = round(sens, 3)
+spec = round(spec, 3)
+prev = round(prev, 3)
+ppv = round(ppv, 3)
+pos = round(pos, 3)
+pfn = round(pfn, 3)
+\end{pycode}
+Abbiamo $\py{n_eq+n_di}$ monete di cui $\py{n_eq}$ sono equilibrate, le altre sono difettose e hanno probabilità $\py{p}$ di dare come risultato {\tt Testa}. Scegliamo a caso una di queste $\py{n_eq+n_di}$ monete. Per decidere se è equilibrata o difettosa, la lanciamo $\py{n_sample}$ volte. Se otteniamo $\ge\py{k}$ volte {\tt Testa\/} diremo che è difettosa. Dei seguenti dati si usino quelli pertinenti
+
+\begin{itemize}
+\item[1.] Qual è la probabilità di dichiarare difettosa una moneta che non lo è? 
+
+\item[2.] Qual è la probabilità che una moneta dichiarata difettosa lo sia veramente?
+\end{itemize}
+
+
+$\Pr(X\ge \py{k})\ =\ \py{1-spec}$\kern4ex se $X\sim B(\py{n_sample},0.5)$\kern13ex%
+$=\ \py{round(1-binom.cdf(k-1, n_monete,0.5), 3)}$\hfill se $X\sim B(\py{n_monete},0.5)$\kern10ex
+
+$\phantom{\Pr(X\ge \py{k})}\ =\ \py{sens}$\kern4ex se $X\sim B(\py{n_sample},\py{p})$\kern13ex%
+$=\ \py{round(1-binom.cdf(k-1, n_monete,  p), 3)}$\hfill se $X\sim B(\py{n_monete},\py{p})$\kern10ex
+
+
+
+
+
+
+\begin{answer}
+
+$D$\hfill insieme degli esperimenti fatti con monete sbilanciate\kern22ex
+
+$T_{\ge\py{k}}$\hfill insieme degli esperimenti con risultato $\ge\py{k}$\kern22ex
+
+$\Pr(D)=\py{prev}$\hfill prevalenza del difetto\kern22ex
+
+$\Pr(\neg D)=1-\Pr(D)=\py{1-prev}$
+
+$\Pr(T_{\ge\py{k}}| \neg D)\ =\kern1ex${\color{blue} $\py{1-spec}$\hfill Risposta 1} 
+
+$\Pr(T_{\ge\py{k}}| D)\ =\ \py{sens}$
+
+$\Pr(T_{\ge\py{k}})=\Pr(T_{\ge\py{k}}|D)\ \Pr(D) + \Pr(T_{\ge\py{k}}|\neg D)\ \Pr(\neg D)\ =\ \py{pos}$
+
+$\displaystyle\Pr(D ~|~T_{\ge\py{k}})\ =\ \frac{\Pr(T_{\ge\py{k}}| D)\ \Pr(D)}{\Pr(T_{\ge\py{k}})}\ =\kern1ex${\color{blue}$\py{ppv}$\hfill Risposta 2}
+
+\end{answer}
+\end{question}
+
+
+
+\begin{question}
+The CEO of a large electric utility claims that $80\%$ of his $1\,000\,000$ customers are very satisfied with the service they receive. To test this claim, the local newspaper surveyed $100$ customers, using simple random sampling. Among the sampled customers, $73$ say they are very satisified. 
+
+\begin{itemize}
+\item[1.] Based on these findings, compute the p-value of the following hypothesis test.
+
+$H_0:\quad p = 0.80$,\qquad $H_1:\quad p \neq 0.80$\hfill  where $p$ is the proportion of very satisfied customers
+
+\item[2.] A second survey is planned on $200$ customers. Assuming $H_0$, what is the probability the new p-value will be $\le$ of the p-value obtained before?
+\end{itemize}
+\begin{answer}
+
+
+
+\end{answer}
+\end{question}
+\vfill
+\hrulefill
+
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+\end{tabular}
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt nbinom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim NB({\tt n},{\tt p})$\\
+{\tt nbinom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim NB({\tt n},{\tt p})$ \\
+{\tt nbimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim NB({\tt n},{\tt p})$ 
+
+{\tt binom.pmf(k, n, p)}, {\tt binom.cdf(k, n, p)}, {\tt bimom.ppf(q, n, p)} sono l'analogo per $X\sim B({\tt n},{\tt p})$.
+\end{document}
+
