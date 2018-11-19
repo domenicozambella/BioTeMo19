@@ -78,8 +78,6 @@ Estraiamo casualmente biglie dall'urna fino a trovarne una di diametro compreso 
 \item[2.] Qual'è la probabilità di trovarne una prima della quinta estrazione?
 \end{itemize}
 
-
-Si 
 \begin{answer}
 \end{answer}
 \end{question}
@@ -87,19 +85,19 @@ Si
 
 
 
-\vfill
-\hrulefill
-
+\vfill\hrulefill\par
 \begin{tabular}{@{}lll}
 Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
            & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
 \end{tabular}
 
 Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
-{\tt nbinom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim NB({\tt n},{\tt p})$\\
-{\tt nbinom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim NB({\tt n},{\tt p})$ \\
-{\tt nbimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim NB({\tt n},{\tt p})$ 
+{\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
+{\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$ 
 
-{\tt binom.pmf(k, n, p)}, {\tt }, {\tt bimom.ppf(q, n, p)} sono l'analogo per $X\sim B({\tt n},{\tt p})$.
+{\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
+
+{\tt norm.xxx(k, n, p)}, è l'analogo per $X\sim N(\mu,\sigma)$.
 \end{document}
 
