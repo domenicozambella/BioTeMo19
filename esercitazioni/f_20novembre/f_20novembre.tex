@@ -1,0 +1,105 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 20 novembre 2018
+\end{minipage}}
+
+
+
+
+\begin{question}
+Calcolare un valore $\alpha$ tale che la seguente funzione è una corretta densità di probabilità
+
+$\displaystyle\qquad f(x)\ =\ \left\{
+\begin{array}{ll}
+0& \textrm{se }x<1\\
+\alpha\cdot x& \textrm{se } 1\le x\le 3\\
+0& \textrm{se }x>3\\
+\end{array}\right.$
+\begin{answer}
+
+$\quad\displaystyle\sum^{\infty}_{i=0}a^2_i
+\ =\ \sum^{\infty}_{i=2}a^2_i+2^2+1^2
+\ =\ 14+4+1={\color{blue}19}$.
+\end{answer}
+\end{question}
+
+
+
+\begin{question}
+Un urna contiene biglie il cui diametro è distribuito noralmente con media $30mm$ e deviazione standard $3$mm. Preleviamo $10$ biglie a caso dall'urna. 
+
+\begin{itemize}
+\item[1.] Quante biglie con diametro $\le 33$mm ci aspettiamo di ottenere? 
+\item[2.] Qual'è la probabilità che almeno $7$ abbiano diametro $\le 33$mm?
+\end{itemize}
+
+Estraiamo casualmente biglie dall'urna fino a trovarne una di diametro compreso tra $29$ e $31$mm
+
+\begin{itemize}
+\item[1.] Quante estrazioni ci aspettiamo di dover fare? 
+\item[2.] Qual'è la probabilità di trovarne una prima della quinta estrazione?
+\end{itemize}
+
+
+Si 
+\begin{answer}
+\end{answer}
+\end{question}
+
+
+
+
+\vfill
+\hrulefill
+
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+\end{tabular}
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt nbinom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim NB({\tt n},{\tt p})$\\
+{\tt nbinom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim NB({\tt n},{\tt p})$ \\
+{\tt nbimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim NB({\tt n},{\tt p})$ 
+
+{\tt binom.pmf(k, n, p)}, {\tt }, {\tt bimom.ppf(q, n, p)} sono l'analogo per $X\sim B({\tt n},{\tt p})$.
+\end{document}
+
