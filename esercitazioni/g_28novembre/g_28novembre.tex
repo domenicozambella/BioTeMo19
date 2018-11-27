@@ -1,0 +1,271 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 28 novembre 2018
+\end{minipage}}
+
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+
+
+%4
+\begin{question}
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+h = [Rational( i ) for i in random.sample([1,2,3,4,5,6],1) ]
+m = [Rational( i ) for i in random.sample([2,3],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = (\py{latex(k[0])}x+\py{latex(h[0])})^{\py{latex(m[0])}}$.
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area (con segno) sottesa alla funzione $f$ nell'intervallo $[0,1]$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue}
+$\displaystyle \int f(x) dx = \frac{(\py{latex(k[0])}x+\py{latex(h[0])})^{\py{latex(m[0]+1)}}}{\py{latex(k[0]*(m[0]+1))}} + C$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex((h[0]**(m[0]+1)-(h[0]+k[0])**(m[0]+1))/(k[0]*(m[0]+1)))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
+
+
+
+
+
+
+\begin{question}
+Un campione di pazienti assume un certo farmaco. Ad ognuno di questo viene misurata
+
+1. Glicemia
+
+2. Colesterolo totale
+
+3. Emoglobina
+
+\ldots
+
+\ldots ecc. ecc. (100 parametri fisiologici in totale)
+
+I valori vengono confrontati con quelli di un campione di controllo (o con quelli in letteratura).
+
+Per ognuna di queste misure consideriamo un test di ipotesi:
+
+$H_{0,i}:$ il valore del parametro $i$ è uguale a quello del campione di controllo
+
+$H_{A,i}:$ il valore del parametro $i$ è diverso a quello del campione di controllo
+
+Assumiamo che tutte le ipotesi nulle siano vere e che questi 100 parametri si comportino come v.a. stocasticamente indipendenti. Quant'è la probabilità di rigettare (erroneamente) almeno $1$ ipotesi nulla con una significatività del $5\%$?
+
+Quant'è la probabilità di rigettare almeno $5$ ipotesi nulla con una significatività del $5\%$?
+\end{question}
+
+
+
+
+
+\begin{question} %1
+\begin{pycode}
+from sympy import *
+from scipy.stats import norm
+mu = random.choice([6,7,8,9])
+sigma = random.choice([3,5])
+sqrt_n = random.choice([4,8])
+n = sqrt_n**2
+a = mu - random.choice([4,6])
+b = mu + random.choice([1,2])
+std_a = Rational( a-mu, sigma )
+std_b = Rational( b-mu, sigma )
+
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$ 
+
+1. Calcolare la probabilità dell'evento $X\in [\py{a},\py{b}]$ 
+
+2. Calcolare la probabilità che da un campione di rango $n=\py{n}$ si ottenga una media in $[\py{a},\py{b}]$. 
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+% RISPOSTA 1
+
+$\displaystyle \Pr(\py{a}\le X\le\py{b})
+\ =\ 
+\Pr\bigg(\dfrac{\py{a}-\mu}{\sigma}\le Z\le\dfrac{\py{b}-\mu}{\sigma}\bigg)
+\ =\  
+\Pr\bigg(Z\le\py{latex(std_b)}\bigg) -  \Pr\bigg(Z\le\py{latex(std_a)}\bigg)$ 
+
+$\phantom{\Pr\py{a}\le X\le\py{b})}
+\ =\ 
+${\color{blue}{\tt\ norm.cdf( \py{ std_b} ) -  norm.cdf( \py{ std_a} )} 
+\hfill Risposta 1}
+
+$\phantom{\Pr\py{a}\le X\le\py{b})}
+\ =\ 
+${\tt\ norm.cdf( \py{ float( std_b ) } ) -  norm.cdf( \py{ float( std_a ) } )
+= 
+\py{pr(norm.cdf( (b-mu)/sigma ) -  norm.cdf( (a-mu)/sigma ))}}
+
+% RISPOSTA 2
+$\bar X$ v.a.\@ media campionaria
+
+$\displaystyle \Pr(\py{a}\le\bar X\le\py{b})
+\ =\ 
+\Pr\bigg(\dfrac{\py{a}-\mu}{\sigma/\sqrt{n}}\le Z\le\dfrac{\py{b}-\mu}{\sigma/\sqrt{n}}\bigg)\ =\  \Pr\bigg(Z\le\py{latex(sqrt_n*std_b)}\bigg) -  \Pr\bigg(Z\le\py{latex(sqrt_n*std_a)}\bigg)$
+
+$\phantom{\Pr\py{a}\le\bar X\le\py{b})}
+\ =\ 
+${\color{blue}{\tt\ norm.cdf( \py{sqrt_n*std_a } ) -  norm.cdf( \py{ sqrt_n*std_a } ) }\hfill Risposta 2}
+
+$\phantom{\Pr\py{a}\le\bar X\le\py{b})}
+\ =\ 
+${\tt\ norm.cdf( \py{float( sqrt_n*std_b)} ) -  norm.cdf( \py{float(sqrt_n*std_a) } )
+= 
+\py{pr(norm.cdf( sqrt_n*(b-mu)/sigma ) -  norm.cdf( sqrt_n*(a-mu)/sigma ))}}
+
+\end{answer}
+\end{question}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{question} %5
+\begin{pycode}
+from sympy import *
+import random
+import math
+from scipy.stats import norm
+n = random.choice( [2,3, 4, 5] )
+sigma = random.choice( [35, 45, 57] )
+err = random.choice( [5, 10, 15] )
+xbar = random.choice( [83, 98, 102] )
+
+frazione =  Rational(n * err, sigma)
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+
+\end{pycode}
+Da una popolazione con distribuzione normale con media $\mu$ ignota e deviazione standard $\py{sigma}$ estraiamo un campione di $\py{n**2}$ individui. Qual è la probabilità che la media campionaria risulti $>\mu+ \py{err}$~? 
+    
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+
+\begin{answer}
+  
+  $n = \py{n**2}$\hfill dimensione del campione\kern22ex
+  
+  $\varepsilon = \py{err}$ 
+  
+  $\sigma = \py{sigma}$\hfill deviazione standard della popolazione\kern22ex
+  
+  $\sigma/\sqrt{n}$\hfill errore standard (deviazione standard della media)\kern22ex
+  
+  $\displaystyle P\bigg(Z>\dfrac {\varepsilon}{\sigma/\sqrt{n}}\bigg)\ =\ P\bigg(Z>\py{latex(frazione)}\bigg)\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\py{frazione})}{\tt\ = \py{pr(1 - norm.cdf( n * err/sigma ) ) } }{\color{blue}\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\vfill\hrulefill\par
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+\end{tabular}
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
+{\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$ 
+
+{\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
+
+{\tt norm.xxx(k, n, p)}, è l'analogo per $X\sim N(\mu,\sigma)$.
+\end{document}
+
