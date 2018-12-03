@@ -99,6 +99,7 @@ ${\tt\ norm.cdf( \py{float( sqrt_n*std_b)} ) -  norm.cdf( \py{float(sqrt_n*std_a
 
 \begin{question} %2
 \begin{pycode}
+from scipy.stats import norm
 mu    = random.choice( [6, 7, 8, 9] )
 sigma = random.choice( [2, 3, 4] )
 n     = random.choice( [10, 5, 4, 3] )
@@ -177,8 +178,10 @@ $\varepsilon\ =\ ${\color{blue}\tt  \py{sigma} * norm.ppf( \py{alpha} + norm.cdf
 \clearpage
 \begin{question} %3
 \begin{pycode}
+from scipy.stats import norm
 cosa = 'una data cultura'
 errore = 'scartare'
+mu    = random.choice( [6, 7, 8, 9] )
 sigma = random.choice( [5, 7] )
 n = 2
 a = mu - 3 
@@ -227,9 +230,12 @@ $\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}{\tt\ \py{risultato}(\
 
 \begin{question} %4
 \begin{pycode}
+from scipy.stats import norm
 n_campioni = 5
 errore = 'accetta'
 errore = 'scarta'
+mu    = random.choice( [6, 7, 8, 9] )
+sigma = random.choice( [5, 7] )
 if ESAME:
     cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
     sigma = random.choice( [5, 7] )
