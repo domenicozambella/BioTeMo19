@@ -1,0 +1,139 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 4 dicembre 2018
+\end{minipage}}
+
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+
+
+\bigskip\bigskip
+\begin{question}
+Di una v.a.\@ $X\sim N(\mu,\sigma^2)$ con media ignota e deviazione standard $\sigma=2$ vogliamo stimare un intervallo di confidenza per $\mu$ di raggio $\varepsilon=1$ e livello di confidenza $95\%$. Quant'è la dimensione del campione necessaria?
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+
+\begin{answer}
+$\dfrac{\varepsilon}{\sigma/\sqrt{n}}\ =\ ${\tt norm.ppf( $\alpha$/2 ) }
+
+$\sqrt{n}\ =\ \dfrac{\sigma}{\varepsilon} \cdot\ ${\tt norm.ppf( $\alpha$/2 ) }
+
+$n\ =\ ${\tt {\color{blue} ( 2 * norm.ppf(0.025) )**2} =  16}\hfill{\color{blue} Risposta}
+\end{answer}
+\end{question}
+
+
+
+
+\bigskip\bigskip
+\begin{question} %3
+\begin{pycode}
+from scipy.stats import norm
+cosa = 'una data cultura'
+errore = 'scartare'
+mu    = random.choice( [6, 7, 8, 9] )
+sigma = random.choice( [5, 7] )
+n = 2
+a = mu - 3 
+b = a - 2
+if ESAME:
+    cosa = random.choice( ['suolo', 'acqua marina', 'gas di scarico', 'sangue'] )
+    sigma = random.choice( [5,7] )
+    n_campioni = random.choice( [15,16,17,18,19] )
+    n = random.choice( [3,4] )
+    a = mu - random.choice( [3,4,5,6] )
+    b = a - random.choice( [1,2] )
+    errore =  random.choice( ['accettare', 'scartare'] )
+def pr(x):
+    return "{0:.3f}".format(round(x,3))
+
+if errore=='accettare':
+    dis_eq=r'\le'
+    risultato='norm.cdf'
+    risultato_numerico = round( norm.cdf(n * (b-a)/sigma), 3)
+elif errore=='scartare':
+    dis_eq=r'\ge'
+    risultato='1 - norm.cdf'
+    risultato_numerico = round( 1 -  norm.cdf(n * (b-a)/sigma), 3)
+\end{pycode}
+Abbiamo prelevato vari campioni di \py{cosa}. Ci interessa selezionare quei campioni che hanno una concentrazione $\le\py{a}$ di una data sostanza. La misura produce risultati che differiscono dal valore corretto per un errore distribuito normalmente con media $0$ e deviazione standard $\py{sigma}$. Consideriamo la seguente procedura: se la media di $\py{n**2}$ misure è $\le\py{b}$ concludiamo che il campione è come desiderato altrimenti lo scartiamo.
+
+Calcolare (nel caso più sfavorevole) la probabilità di \py{errore} erroneamente un campione.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+Il caso più sfavorevole occorre quando la concentrazione vera nel campione è $\mu=\py{a}$ 
+
+
+$\bar X\sim N(\mu,\sigma^2)$\hfill media di $\py{n**2}$ misure\kern22ex
+
+$\displaystyle\Pr\big(\bar X\py{dis_eq}\py{b}\big)\ =\ \Pr\bigg(\frac{\bar X-\mu}{\sigma/\sqrt{\py{n**2}}}\py{dis_eq}\frac{\py{b}-\mu}{\sigma/\sqrt{\py{n**2}}}\bigg)\ =\  \Pr\big(Z\py{dis_eq}\py{n * (b-a) } /\py{sigma} \big)$
+
+$\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}{\tt\ \py{risultato}(\py{n * (b-a)}/\py{sigma})}}{\tt\ =\ \py{ risultato_numerico } }\hfill {\color{blue}\hfill Risposta}
+
+\end{answer}
+\end{question}
+
+
+
+\vfill\hrulefill\par
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+\end{tabular}
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
+{\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$ 
+
+{\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
+
+{\tt norm.xxx(z)}, è l'analogo per $Z\sim N(0,1)$.
+\end{document}
+
+
