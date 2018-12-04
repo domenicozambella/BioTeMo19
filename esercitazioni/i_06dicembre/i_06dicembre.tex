@@ -1,0 +1,89 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 6 dicembre 2018
+\end{minipage}}
+
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+
+
+\bigskip\bigskip
+\begin{question}
+Una macchina è calibrata in modo da fare fori in un punto di coordinata $\mu_0=20$ (un unica dimensione). Se calibrata bene, la posizione dei fori è distribuita normalmente con media $\mu_0$ deviazione standard $\sigma=2$. 
+
+Ogni tanto (per effetto delle vibrazioni) la macchina si sposta, va quindi fermata e ricalibrata. Idealmente vorremmo fermare la macchina quando la nuova media $\mu$ è a distanza maggiore di $1$ dal $\mu_0$ previsto.
+
+\begin{itemize}
+\item[1.] Misuriamo quindi la distanza dei fori effettuati. Chiamiamo $\bar x$ la media fatta su un campione di $5$. È quant'è il valore chritico che dobbiamo per non fermare inutilmente ma macchina più del $10\%$ delle volte?
+
+\item[2.] Dato tale valore critico qual'è la probabilità di non ricalibrare una macchina che necessita di essere ricalibrata?
+
+\item[3.] 
+Sappiamo che la probabilità che dopo $1000$ fori $\mu$ si sia spostata di più di $1$ è del $5\%$.  Su un campione di dimensione $5$ misuriamo una distanza media $\bar x=17$. Qual'è la probabilità che la macchina necessiti di essere calibrata? 
+\end{itemize}
+\begin{answer}
+$ =\ ${\tt {\color{blue}   }}\hfill{\color{blue} Risposta} 
+\end{answer}
+\end{question}
+
+
+\vfill\hrulefill\par
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+\end{tabular}
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
+{\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$ 
+
+{\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
+
+{\tt norm.xxx(z)}, è l'analogo per $Z\sim N(0,1)$.
+\end{document}
+
+
