@@ -52,65 +52,101 @@ ESAME = False
 
 \bigskip\bigskip
 \begin{question}
-Una macchina è calibrata in modo da fare un taglio in un punto di altezza $\mu_0=20$. Se calibrata bene, l'altezza del taglio è distribuita normalmente con media $\mu_0$ deviazione standard $\sigma=2$. 
+\begin{pycode}
+from numpy import sqrt
+from scipy.stats import norm
+mu0 = 20
+sigma = 2
+delta = 1.3
+n = 25
+se = round ( sigma/ sqrt(n), 2 )
+alpha = 0.1
+alpha100 = int(alpha*100)
+risultato1 = round( - se * norm.ppf(alpha/2), 2)
+risultato2 = round( norm.cdf( ( risultato1 - delta ) / se )
+- 
+norm.cdf( - ( risultato1 + delta ) / se )
+, 4)
+\end{pycode}
 
-Ogni tanto (per effetto delle vibrazioni) la macchina si sposta, va quindi fermata e ricalibrata. Idealmente vorremmo fermare la macchina quando la nuova media $\mu$ differisce più di $1.3$ da $\mu_0$.
+Una macchina è calibrata in modo da fare un taglio in un punto di altezza $\mu_0=\py{mu0}$. Se calibrata bene, l'altezza del taglio è distribuita normalmente con media $\mu_0$ deviazione standard $\sigma=\py{sigma}$. 
+
+Ogni tanto (per effetto delle vibrazioni) la macchina si sposta, va quindi fermata e ricalibrata. Idealmente vorremmo fermare la macchina quando la nuova media $\mu$ differisce più di $\py{delta}$ da $\mu_0$.
 
 \begin{itemize}
-\item[1.] Misuriamo quindi la posizione del taglio. Chiamiamo $\bar x$ la media fatta su un campione di $n=25$. Calibreremo la macchina se $|\mu_0-\bar x|$ è maggiore di un valore critico $c$. Quale dev'essere questo valore per non fermare inutilmente ma macchina più del $10\%$ delle volte?
+\item[1.] Misuriamo quindi la posizione del taglio. Chiamiamo $\bar x$ la media fatta su un campione di $n=\py{n}$. Calibreremo la macchina se $|\mu_0-\bar x|$ è maggiore di un valore critico $c$. Quale dev'essere questo valore per non fermare inutilmente ma macchina più del $\py{alpha100}\%$ delle volte?
 
 \item[2.] Dato il valore critico al punto 1, qual'è (nel peggiore dei casi) la probabilità di non ricalibrare la macchina quando invece necessita di essere ricalibrata?
 
 %\item[3.] Dopo $500$ tagli la probabilità che $|\mu-\mu_0|>1.3$ è del $5\%$.  Su un campione di dimensione $5$ misuriamo una distanza media $\bar x=15$. Qual'è la probabilità che  $|\mu-\mu_0|$ sia davvero $>1.3$?
 
-\item[4] alcune delle quantita calcolate nelle domande precedenti vengono generalmente denominate $\alpha$, $\beta$, $\delta$, e p-valore. Specificare quali.
+\item[3] alcune delle quantita calcolate nelle domande precedenti vengono generalmente denominate $\alpha$, $\beta$, $\delta$, e p-valore. Specificare quali.
 \end{itemize}
-\begin{answer}
-1. Sia $x_{10\%}$ il valore critico. Dev'essere che 
 
-$\qquad\Pr\big(|\bar X-\mu_0|\ge c_{10\%}\big)\ =\ 0.1\ =\ {\color{blue}\alpha}$\hfill dove $\bar X\sim N(\mu_0, \sigma^2/\sqrt{n})$.\hfill{\color{blue} Risposta 3} 
+\vskip8ex
+\begin{answer}
+1. Sia $x_{\py{alpha100}\%}$ il valore critico. Dev'essere che 
+
+$\qquad\Pr\big(|\bar X-\mu_0|\ge c_{\py{alpha100}\%}\big)\ =\ \py{alpha}\ =\ {\color{blue}\alpha}$\hfill dove $\bar X\sim N(\mu_0, \sigma^2/\sqrt{n})$.\hfill{\color{blue} Risposta 3} 
 
 Standardizzando
 
-$\qquad\Pr\left(|Z|\ge \left|\dfrac{c_{10\%}}{\sigma/\sqrt{n}}\right|\right)
+$\qquad\Pr\left(|Z|\ge \left|\dfrac{c_{\py{alpha100}\%}}{\sigma/\sqrt{n}}\right|\right)
 \ =\ 
-2\cdot\Pr\left(Z\le -\left|\dfrac{c_{10\%}}{\sigma/\sqrt{n}}\right|\right)$.
+2\cdot\Pr\left(Z\le -\left|\dfrac{c_{\py{alpha100}\%}}{\sigma/\sqrt{n}}\right|\right)$.
 
-$\qquad\phantom{\Pr\left(|Z|\ge \left|\dfrac{c_{10\%}}{\sigma/\sqrt{n}}\right|\right)}
+$\qquad\phantom{\Pr\left(|Z|\ge \left|\dfrac{c_{\py{alpha100}\%}}{\sigma/\sqrt{n}}\right|\right)}
 \ =\ 
-2 \cdot \Pr\left(Z\le-c_{10\%}/0.4\right)
+2 \cdot \Pr\left( Z\le-c_{\py{alpha100}\%}/\py{se} \strut\right)
 \ =\ 
-0.1$
+\py{alpha}$
 
 Quindi 
-$c_{10\%}
+$c_{\py{alpha100}\%}
 \ =\ $
-{\tt\color{blue}{- 0.4 * norm.ppf(0.05)} $\cong$ 0.66}\hfill{\color{blue} Risposta 1}
+{\tt\color{blue}{- \py{se} * norm.ppf(\py{alpha/2})} $\cong$ \py{risultato1}}\hfill{\color{blue} Risposta 1}
 
 \bigskip
-2. I casi più sfavorevoli sono quando $\mu=\mu_0\pm\delta$. Dove {\color{blue}$\delta = 1.3$\hfill Risposta 3}
+2. I casi più sfavorevoli sono quando $\mu=\mu_0\pm\delta$. Dove {\color{blue}$\delta = \py{delta}$\hfill Risposta 3}
 
-Per simmetria possiamo considerare solo $\mu=\mu_0+1.3$. Dobbiamo calcolare
+Per simmetria possiamo considerare solo $\mu=\mu_0+\delta$. Dobbiamo calcolare
 
-$\qquad\Pr\big(|\bar X-\mu_0|\le c_{10\%}\big)$\hfil dove $\bar X\sim N(\mu_0+1.3, \sigma^2/\sqrt{n})$.
+$\qquad\Pr\Big(|\bar X-\mu_0|\ \le\  c_{\py{alpha100}\%}\Big)
+\ =\ 
+\Pr\Big({-}c_{\py{alpha100}\%}\ \le\ \bar X-\mu_0\ \le\  c_{\py{alpha100}\%}\Big)$\hfil dove $\bar X\sim N(\mu, \ \sigma^2/\sqrt{n})$.
+
+$\qquad\phantom{\Pr\Big(|\bar X-\mu_0|\ \le\  c_{\py{alpha100}\%}\Big)}
+\ =\ 
+\Pr\Big({-}c_{\py{alpha100}\%}-\delta\ \le\ \bar X-\mu\ \le\  c_{\py{alpha100}\%}-\delta\Big)$
+
+$\qquad\phantom{\Pr\Big(|\bar X-\mu_0|\ \le\  c_{\py{alpha100}\%}\Big)}
+\ =\ 
+\Pr\left(-\dfrac{c_{\py{alpha100}\%}+\delta}{\sigma/\sqrt{n}}\ \le\  Z\ \le\  \dfrac{c_{\py{alpha100}\%}-\delta}{\sigma/\sqrt{n}}\right)$
 
 Standardizzando
 
-$\qquad\Pr\left(|Z|\le \left|\dfrac{c_{10\%}-1.3}{\sigma/\sqrt{n}}\right|\right)
+$\qquad\phantom{\Pr\Big(|\bar X-\mu_0|\ \le\  c_{\py{alpha100}\%}\Big)}
 \ =\ 
-2\cdot\left(1 - \Pr\left(Z\le -\left|\dfrac{c_{10\%}-1.3}{0.4}\right|\right)\right)$.
+\Pr\left(Z\ \le\  \dfrac{c_{\py{alpha100}\%}-\delta}{\sigma/\sqrt{n}}\right)
+-
+\Pr\left(Z\ \le\  -\dfrac{c_{\py{alpha100}\%}+\delta}{\sigma/\sqrt{n}}\right)$.
 
+La coda sinistra è trascurabile
 
-$\qquad\phantom{\Pr\left(|Z|\le \left|\dfrac{c_{10\%}-1.3}{\sigma/\sqrt{n}}\right|\right)}
+$\qquad\phantom{\Pr\Big(|\bar X-\mu_0|\ \le\  c_{\py{alpha100}\%}\Big)}
+\ \cong\ 
+\Pr\left(Z\ \le\  \dfrac{c_{\py{alpha100}\%}-\delta}{\sigma/\sqrt{n}}\right)$.
+
+$\qquad\phantom{\Pr\Big(|\bar X-\mu_0|\ \le\  c_{\py{alpha100}\%}\Big)}
 \ =\ $
-{\tt\color{blue}{2 * (1 - norm.cdf( abs( c$_{10\%}$ - 1.3 ) / 0.4 ) )}}\hfill{\color{blue} Risposta 2}
+{\tt\color{blue}{norm.cdf( ( c$_{\py{alpha100}\%}$ - \py{delta} ) / \py{se} ) )}}\hfill{\color{blue} Risposta 2}
 
 
-$\qquad\phantom{\Pr\left(|Z|\le \left|\dfrac{c_{10\%}-1.3}{\sigma/\sqrt{n}}\right|\right)}
+$\qquad\phantom{\Pr\left(|Z|\le \left|\dfrac{c_{\py{alpha100}\%}-\delta}{\sigma/\sqrt{n}}\right|\right)}
 \ \cong\  
-0.036
-\ =\ 
-\beta$\hfill{\color{blue} Risposta 3}
+\py{risultato2}
+\ \cong\ 
+{\color{blue}\beta}$\hfill{\color{blue} Risposta 3}
 
 \end{answer}
 \end{question}
