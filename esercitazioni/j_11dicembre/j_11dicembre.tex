@@ -1,0 +1,159 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc} 
+\usepackage{comment}
+\usepackage{pythontex}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty} 
+
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 11 dicembre 2018
+\end{minipage}}
+
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+
+%7
+\begin{question}
+\begin{pycode}
+from sympy import *
+a = [Rational( i ) for i in random.sample([2,3,4,5],1) ]
+b = [Rational( i ) for i in random.sample([-8,-7,-6,-5],1) ]
+c = [Rational( i ) for i in random.sample([3,4,5],1) ]
+d = [Rational( i ) for i in random.sample([2,3],1) ]
+e = [Rational( i ) for i in random.sample([1,2,3,4],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione definita a tratti 
+\[f(x) = \begin{cases} \py{latex(a[0])} \quad 1 \leq x < \py{latex(c[0])} \cr \py{latex(b[0])} \quad \py{latex(c[0])} \leq x \leq 7 \end{cases}\]
+\begin{itemize}
+\item[1.] Determinare l'area (con segno) sottesa da tale funzione.
+\item[2.] Determinare l'area (con segno) sottesa dalla funzione $f(\py{latex(d[0])}x + \py{latex(e[0])})$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue} Il valore dell'area è $\py{latex(a[0]*(c[0]-1)+b[0]*(7-c[0]))}$
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex(a[0]*(c[0]-1)/d[0]+b[0]*(7-c[0])/d[0])}$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
+%9
+\begin{question}
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+m = [Rational( i ) for i in random.sample([2,3,4],1) ]
+a = [Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = x^{\py{latex(m[0])}} + \py{latex(k[0])}$
+\begin{itemize}
+\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = -1$ e $x = \py{latex(a[0])}$.
+\end{itemize}
+\begin{answer}
+
+{\color{blue} $\cfrac{x^{\py{latex(m[0]+1)}}}{\py{latex(m[0]+1)}} + \py{latex(k[0])}x + C$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex(a[0]**(m[0]+1)/(m[0]+1)+a[0]*k[0] - ((-1)**(m[0]+1)/(m[0]+1)-k[0]))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
+
+
+
+\begin{question}
+\begin{pycode}
+from scipy.stats import norm
+N = random.choice([64, 81])
+xbar = random.choice([2994])
+conf = random.choice([90, 95, 99])
+mu0 = random.choice([3300, 3350])
+sigma = random.choice([800, 850])
+i = sigma*N**(-1/2)
+epsilon = norm.ppf(1- (100-conf)/200)*i
+\end{pycode}
+In 1996-97 there were $\py{N}$ cases of Sudden Infant Death Syndrome (SIDS) in King Co., WA. The average birthweight in this sample was $\py{xbar}$g. Based on nationwide surveys of millions of deliveries, the mean birthweight in the US is $\py{mu0}$g, with a standard deviation of $\py{sigma}$g. Suppose that this sample of $\py{N}$ babies is a random sample from the total population of SIDS cases. Find a $\py{conf}\%$ confidence interval for the population mean birthweight of SIDS cases in the US.
+\begin{answer}
+$\bar x = \py{xbar}$
+
+$\sigma = \py{sigma}$
+
+$n = \py{N}$ 
+
+$\displaystyle\mu\ =\ \bar x\ \pm\ \varepsilon$
+
+dove
+
+$\varepsilon = 
+{\tt norm.ppf(\py{1- (100-conf)/200})}\cdot\dfrac{\sigma}{\sqrt{n}}\ =\ {\color{blue}\tt qnorm(\py{1- (100-conf)/200})\cdot\py{round(i,2)}}\ =\ \py{round(epsilon,2)}${\color{blue}\hfill Risposta\kern19ex}
+
+
+\end{answer}
+\end{question}
+
+
+
+\vfill\hrulefill\par
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+\end{tabular}
+
+
+
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
+{\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$ 
+
+{\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
+
+{\tt norm.xxx(z)}, è l'analogo per $Z\sim N(0,1)$.
+\end{document}
+
+

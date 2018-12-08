@@ -79,7 +79,7 @@ Si consideri la funzione $f(x) = \cos(\py{latex(k[0])}x)$.
 \begin{answer}
 
 {\color{blue}
-$\displaystyle \int f(x) dx = \py{latex(k[0])}\sin(\py{latex(k[0])}x) + C$.
+$\displaystyle \int f(x) dx = \cfrac{\sin(\py{latex(k[0])}x)}{\py{latex(k[0])}} + C$.
 \hfill Risposta 1\kern19ex}
 
 \smallskip
@@ -103,11 +103,11 @@ Si consideri la funzione $f(x) = e^{\py{latex(a[0])}x}$.
 \begin{answer}
 
 {\color{blue}
-$\displaystyle \int f(x) dx = \py{latex(a[0])}e^{\py{latex(a[0])}x} + C$.
+$\displaystyle \int f(x) dx = \cfrac{e^{\py{latex(a[0])}x}}{\py{latex(a[0])}} + C$.
 \hfill Risposta 1\kern19ex}
 
 \smallskip
-{\color{blue} Il valore dell'area è} $\py{latex(a[0])}e^{\py{latex(a[0]*a[1])}} - \py{latex(a[0])}=$ {\color{blue}$\py{latex(a[0])}(e^{\py{latex(a[0]*a[1])}}-1)$.
+{\color{blue} Il valore dell'area è} $e^{\py{latex(a[0]*a[1])}}/\py{latex(a[0])} - 1/\py{latex(a[0])}=$ {\color{blue}$(e^{\py{latex(a[0]*a[1])}}-1)/\py{latex(a[0])}$.
 \hfill Risposta 2\kern19ex}
 
 \end{answer}
@@ -133,7 +133,7 @@ $\displaystyle \int f(x) dx = \frac{(\py{latex(k[0])}x+\py{latex(h[0])})^{\py{la
 \hfill Risposta 1\kern19ex}
 
 \smallskip
-{\color{blue} Il valore dell'area è $\py{latex((h[0]**(m[0]+1)-(h[0]+k[0])**(m[0]+1))/(k[0]*(m[0]+1)))}$.
+{\color{blue} Il valore dell'area è $\py{latex(-(h[0]**(m[0]+1)-(h[0]+k[0])**(m[0]+1))/(k[0]*(m[0]+1)))}$.
 \hfill Risposta 2\kern19ex}
 
 \end{answer}
@@ -165,52 +165,154 @@ Inoltre, $f(0.25) = \py{latex(k[0]*0.25**2)}$, $f(0.75) = \py{latex(k[0]*0.75**2
 \end{question}
 %6
 \begin{question}
-Si consideri la funzione $f(x) = x^2 - 8x$.
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([3,4,5,6,7,8],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = x^2 - \py{latex(k[0])}x$.
 \begin{itemize}
 \item[1.] Determinare l'area (con segno) sottesa da tale funzione nell'intervallo $[0, 10]$.
 \item[2.] Determinare l'area (con segno) sottesa dalla funzione $\lvert f(x) \rvert$ nell'intervallo $[0, 10]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} L'area è} $\displaystyle  \int_0^{10} x^2 - \py{latex(k[0])}x dx = \left[ \frac{x^3}{3} - \py{latex(k[0]/2)} x^2 \right]_0^{10} =$ $\frac{1000}{3} - \py{latex(100*k[0]/2)} = $ 
+{\color{blue}
+$\py{latex(1000/3 - 100*k[0]/2)}$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} L'area è} $\displaystyle \int_0^{10} |x^2 - \py{latex(k[0])}x| dx = \int_0^{\py{latex(k[0])}} -x^2 + \py{latex(k[0])}x dx + \int_{\py{latex(k[0])}}^{10} x^2 - \py{latex(k[0])}x dx = -\frac{2\py{latex(k[0])}^3}{3} + \py{latex(k[0])}^3 + \frac{1000}{3} -\frac{\py{latex(k[0])}}{2}\cdot 100 = $
+{\color{blue} $\py{latex(-2*(k[0]**3)/3 + k[0]**3 + 1000/3 -k[0]*100/2)}$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %7
 \begin{question}
+\begin{pycode}
+from sympy import *
+a = [Rational( i ) for i in random.sample([2,3,4,5],1) ]
+b = [Rational( i ) for i in random.sample([-8,-7,-6,-5],1) ]
+c = [Rational( i ) for i in random.sample([3,4,5],1) ]
+d = [Rational( i ) for i in random.sample([2,3],1) ]
+e = [Rational( i ) for i in random.sample([1,2,3,4],1) ]
+x = symbols('x')
+\end{pycode}
 Si consideri la funzione definita a tratti 
-\[f(x) = \begin{cases} 4 \quad 1 \leq x < 3 \cr -6 \quad 3 \leq x \leq 7 \end{cases}\]
+\[f(x) = \begin{cases} \py{latex(a[0])} \quad 1 \leq x < \py{latex(c[0])} \cr \py{latex(b[0])} \quad \py{latex(c[0])} \leq x \leq 7 \end{cases}\]
 \begin{itemize}
 \item[1.] Determinare l'area (con segno) sottesa da tale funzione.
-\item[2.] Determinare l'area (con segno) sottesa dalla funzione $f(2x + 3)$.
+\item[2.] Determinare l'area (con segno) sottesa dalla funzione $f(\py{latex(d[0])}x + \py{latex(e[0])})$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} Il valore dell'area è $\py{latex(a[0]*(c[0]-1)+b[0]*(7-c[0]))}$
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex(a[0]*(c[0]-1)/d[0]+b[0]*(7-c[0])/d[0])}$
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %8
 \begin{question}
-Si consideri la funzione $f(x) = e^x - 2$
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+a = [Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = e^x - \py{latex(k[0])}$
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = 0$ e $x = 2$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = 0$ e $x = \py{latex(a[0])}$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} $e^x - \py{latex(k[0])} x + C$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $e^{\py{latex(a[0])}} - \py{latex(k[0]*a[0]-1)}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %9
 \begin{question}
-Si consideri la funzione $f(x) = x^3 + 1$
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+m = [Rational( i ) for i in random.sample([2,3,4],1) ]
+a = [Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = x^{\py{latex(m[0])}} + \py{latex(k[0])}$
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = -1$ e $x = 3$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = -1$ e $x = \py{latex(a[0])}$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} $\cfrac{x^{\py{latex(m[0]+1)}}}{\py{latex(m[0]+1)}} + \py{latex(k[0])}x + C$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex(a[0]**(m[0]+1)/(m[0]+1)+a[0]*k[0] - ((-1)**(m[0]+1)/(m[0]+1)-k[0]))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %10
 \begin{question}
-Si consideri la funzione $f(x) = 3\sin(x)$
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $f(x) = \py{latex(k[0])}\sin(x)$
 \begin{itemize}
 \item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = \pi$ e $x = 2 \pi$.
+\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = \pi/2$ e $x = 2 \pi$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} L'integrale indefinito è $-\py{latex(k[0])} \cos x + C$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex(3*k[0])}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %11
 \begin{question}
-Si consideri la funzione $f(x) = 3\sin(x)$
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5],1) ]
+m = [Rational( i ) for i in random.sample([5,6,7],1) ]
+n = [Rational( i ) for i in random.sample([2,3,4],1) ]
+x = symbols('x')
+\end{pycode}
+Si considerino le funzioni $f(x) = \py{latex(m[0])} x$ e $g(x) = \py{latex(k[0])} x^3 + \py{latex(n[0])} x$
 \begin{itemize}
-\item[1.] Calcolare l'integrale indefinito $\displaystyle \int f(x) dx$.
-\item[2.] Determinare l'area della parte di piano compresa tra la funzione $f$ e le due rette di equazioni $x = \pi$ e $x = 2 \pi$.
+\item[1.] Calcolare gli integrali indefiniti $\displaystyle \int f(x) dx$ e $\displaystyle \int g(x) dx$.
+\item[2.] Determinare l'area della parte di piano compresa tra le funzioni $f$ e $g$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} $\displaystyle \int f(x) dx = \cfrac{\py{latex(m[0])} x^2}{2} + C$, $\displaystyle \int g(x) dx = \cfrac{\py{latex(k[0])}x^4}{4} +\cfrac{\py{latex(n[0])} x^2}{2} + C$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è $\py{latex(((m[0]-n[0])**2)/(2*k[0]))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %12
 \begin{question}
