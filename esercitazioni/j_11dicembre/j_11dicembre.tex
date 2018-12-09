@@ -129,7 +129,7 @@ $\displaystyle\mu\ =\ \bar x\ \pm\ \varepsilon$
 dove
 
 $\varepsilon = 
-{\tt norm.ppf(\py{1- (100-conf)/200})}\cdot\dfrac{\sigma}{\sqrt{n}}\ =\ {\color{blue}\tt qnorm(\py{1- (100-conf)/200})\cdot\py{round(i,2)}}\ =\ \py{round(epsilon,2)}${\color{blue}\hfill Risposta\kern19ex}
+{\tt norm.ppf(\py{1- (100-conf)/200})}\cdot\dfrac{\sigma}{\sqrt{n}}\ =\ {\color{blue}\tt norm.ppf(\py{1- (100-conf)/200})\cdot\py{round(i,2)}}\ =\ \py{round(epsilon,2)}${\color{blue}\hfill Risposta\kern19ex}
 
 
 \end{answer}
@@ -154,6 +154,8 @@ Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats
 {\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
 
 {\tt norm.xxx(z)}, è l'analogo per $Z\sim N(0,1)$.
+
+{\tt t.xxx(t, $\nu$)}, è l'analogo per $T\sim t(\nu)$.
 \end{document}
 
 
