@@ -4,7 +4,7 @@
 \usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
 \usepackage{dsfont}
-\usepackage{calc} 
+\usepackage{calc}
 \usepackage{comment}
 \usepackage{pythontex}
 \newcommand{\mylabel}[1]{#1\hfill}
@@ -30,8 +30,7 @@
 \newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
 \newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
 
-\pagestyle{empty} 
-
+\pagestyle{empty}
 \excludecomment{xquestion}
 \excludecomment{answer}
 
@@ -65,8 +64,7 @@ Si considerino le funzioni $f(x) = \py{latex(m[0])} x$ e $g(x) = \py{latex(k[0])
 \end{itemize}
 \begin{answer}
 
-{\color{blue} $\displaystyle \int f(x) dx = \cfrac{\py{latex(m[0])} x^2}{2} + C$, $\displaystyle \int g(x) dx = \cfrac{\py{latex(k[0])}x^4}{4} +\cfrac{\py{latex(n[0])} x^2}{2} + C$. 
-\hfill Risposta 1\kern19ex}
+{\color{blue} $\displaystyle \int f(x) dx = \cfrac{\py{latex(m[0])} x^2}{2} + C$, $\displaystyle \int g(x) dx = \cfrac{\py{latex(k[0])}x^4}{4} +\cfrac{\py{latex(n[0])} x^2}{2} + C$.,  \hfill Risposta 1\kern19ex}
 
 \smallskip
 {\color{blue} Il valore dell'area è $\py{latex(((m[0]-n[0])**2)/(2*k[0]))}$.
@@ -109,8 +107,7 @@ Si consideri la funzione $f(x) = \sqrt[3]{x}$.
 
 L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$, essendo $f'(x) = \frac{1}{3\sqrt[3]{x^2}}$ si ha
 {\color{blue}
-$\frac{1}{3}x+\frac{2}{3}$ 
-\hfill Risposta 1\kern19ex}
+$\frac{1}{3}x+\frac{2}{3}$,  \hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $\sqrt[3]{1.1} \cong 1.0\overline{3}$ e $\sqrt[3]{1.2} \cong 1.0\overline{6}$
@@ -119,8 +116,25 @@ $\sqrt[3]{1.1} \cong 1.0\overline{3}$ e $\sqrt[3]{1.2} \cong 1.0\overline{6}$
 \end{answer}
 \end{question}
 
+\begin{question}
+In a packing plant, a machine packs cartons with jars. It is supposed that a new machine will pack faster on the average than the machine currently used. To test that hypothesis, the times it takes each machine to pack ten cartons are recorded. The results, in seconds, are shown in the following table.
 
+$\begin{array}{llllllllllll}
+\textrm{New }[x_i:i=1,\dots,10] &=\  [\,42.1,&  41.3,&  42.4,&  43.2,&  41.8,&  41.0,&  41.8,&  42.8,&  42.3,&  42.7\,]
+\\[1ex]
+\textrm{Old }\hfill [y_i:i=1,\dots,10] &=\ [\,42.7,& 43.8,& 42.5,& 43.1,& 44.0,& 43.6,& 43.3,& 43.5,& 41.7,& 44.1\,]
+\end{array}$\smallskip
 
+$\quad\bar x = 42.14$,\quad$s_x= 0.683$
+
+$\quad\bar y = 43.23$,\quad$s_y=  0.750$
+
+We want to kow if the data provide sufficient evidence to conclude that, on the average, the new machine packs faster? 
+Which test is required? What is the p-value associated to the data?
+\begin{answer}
+
+\end{answer}
+\end{question}
 
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
@@ -131,9 +145,7 @@ Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
 Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
 {\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
 {\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
-{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$ 
-
-{\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$, ,  {\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
 
 {\tt norm.xxx(z)}, è l'analogo per $Z\sim N(0,1)$.
 
