@@ -124,17 +124,21 @@ Which test is required? What is the p-value associated to the data?
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
 Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
-           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$\\
 \end{tabular}
+\\[1ex]
+%dati $\bar X\sim N(\mu_x,\sigma/n_x)$, \ 
+%$\bar Y\sim N(\mu_y,\sigma/n_y)$, \ 
+$S^2\ =\ \dfrac{n_x-1}{n_x+n_y-2}\cdot S_x^2 + \dfrac{n_y-1}{n_x+n_y-2}\cdot S_y^2$\\[1ex]
+$T=\dfrac{\bar X-\bar Y}{S\cdot\sqrt{1/n_x+1/n_y}}$ 
+ha distribuzione $t(n_x+n_y-2)$\\
 
 Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
 {\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
 {\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
-{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$, ,  {\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.
-
-{\tt norm.xxx(z)}, è l'analogo per $Z\sim N(0,1)$.
-
-{\tt t.xxx(t, $\nu$)}, è l'analogo per $T\sim t(\nu)$.
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$, ,  {\tt nbinom.xxx(k, n, p)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.\\
+{\tt norm.xxx(\ldots)}, è l'analogo per $Z\sim N(0,1)$.\\
+\hfill{\tt t.xxx(\ldots, $\nu$)}, è l'analogo per $T\sim t(\nu)$.
 \end{document}
 
 
