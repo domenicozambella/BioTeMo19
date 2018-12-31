@@ -14,8 +14,9 @@
 *.synctex.gz
 *aux/
 *elaborati/
-*esami/
-*esame/
+#*esami/
+#*esame/
+**esame_*/
 *pythontex-*/
 *.ipynb_checkpoints/
 *.directory
