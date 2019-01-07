@@ -316,27 +316,77 @@ Si considerino le funzioni $f(x) = \py{latex(m[0])} x$ e $g(x) = \py{latex(k[0])
 \end{question}
 %12
 \begin{question}
-Si considerino le funzioni $f(x) = x^2$ e $g(x) = -x^3 - x^2$
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([0,1,2,3],1) ]
+x = symbols('x')
+\end{pycode}
+Si considerino le funzioni $f(x) = \py{latex((x+k[0])**2)}$ e $g(x) =  \py{latex(-(x+k[0])**3-(x+k[0])**2)}$
 \begin{itemize}
 \item[1.] Calcolare gli integrali indefiniti $\displaystyle \int f(x) dx$ e $\displaystyle \int g(x) dx$.
 \item[2.] Determinare l'area della parte di piano compresa tra le due funzioni nell'intervallo $[-2, 0]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} $\displaystyle \int f(x) dx = \cfrac{\py{latex((x+k[0])**3)}}{3} + C$, $\displaystyle \int g(x) dx = -\cfrac{\py{latex((x+k[0])**4)}}{4} -\cfrac{\py{latex((x+k[0])**3)}}{3} + C$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Il valore dell'area è .
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %13
 \begin{question}
-Si consideri la funzione $v(t) = 3 t^2 - t +1$ che descrive la velocit\`a di un corpo ad ogni istante di tempo $t$.
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
+h = [Rational( i ) for i in random.sample([1,2,3,4,5,6],1) ]
+a = [Rational( i ) for i in random.sample([1,2,3],1) ]
+b = [Rational( i ) for i in random.sample([4,5,6,7],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri la funzione $v(t) = \py{latex(k[0])} t^2 - t +\py{latex(h[0])}$ che descrive la velocit\`a di un corpo ad ogni istante di tempo $t$.
 \begin{itemize}
-\item[1.] Determinare lo spostamento netto di tale corpo nell'intervallo di tempo $[1, 6]$.
+\item[1.] Determinare lo spostamento netto di tale corpo nell'intervallo di tempo $[\py{latex(a[0])}, \py{latex(b[0])}]$.
 \item[2.] Determinare lo spostamento netto di un corpo la cui velocit\`a \`e descritta dalla funzione $v(t/2)$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} Lo spostamento netto è $\py{latex(k[0]*((b[0]**3-a[0]**3)/3)+(a[0]**2-b[0]**2)/2+h[0]*(b[0]-a[0]))}$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} Lo spostamento netto è $\py{latex(k[0]*((b[0]**3-a[0]**3)/12)+(a[0]**2-b[0]**2)/4+h[0]*(b[0]-a[0]))}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 %14
 \begin{question}
-Si consideri una funzione $f(x)$ tale che $\displaystyle \int_1^4 f(2x) dx = 6$
+\begin{pycode}
+from sympy import *
+k = [Rational( i ) for i in random.sample([2,4],1) ]
+h = [Rational( i ) for i in random.sample([6,8,10],1) ]
+a = [Rational( i ) for i in random.sample([1,2,3,4,5,6],1) ]
+x = symbols('x')
+\end{pycode}
+Si consideri una funzione $f(x)$ tale che $\displaystyle \int_{\py{latex(k[0])}}^{\py{latex(h[0])}} f(2x) dx = \py{latex(a[0])}$
 \begin{itemize}
-\item[1.] Determinare l'area sottesa dalla funzione $f(x)$ nell'intervallo $[2,8]$.
-\item[2.] Determinare l'area sottesa dalla funzione $f(3x)$ nell'intervallo $[6,24]$.
+\item[1.] Determinare l'area sottesa dalla funzione $f(x)$ nell'intervallo $[\py{latex(2*k[0])},\py{latex(2*h[0])}]$.
+\item[2.] Determinare l'area sottesa dalla funzione $f(4x)$ nell'intervallo $[\py{latex(k[0]/2)},\py{latex(h[0]/2)}]$.
 \end{itemize}
+\begin{answer}
+
+{\color{blue} L'area vale $\py{latex(2*a[0])}$. 
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue}L'area vale $\py{latex(4*a[0])}$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
 \end{question}
 
 
