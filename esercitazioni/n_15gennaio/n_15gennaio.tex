@@ -50,32 +50,32 @@ random.seed('daxtxsdsxssme')
 ESAME = False
 \end{pycode}
 
+%5
 \begin{question}
 \begin{pycode}
-from scipy.stats import nbinom
-n = random.choice([26,27,28,29])
-k = random.choice([12,13,14,15])
-t = random.choice(["t","u"])
-risposta = round( 1- nbinom.cdf(k-1,n, 1/4), 4)
+from sympy import *
+x = symbols('x')
+h = [Rational( i ) for i in random.sample([2,3,4],1) ]
 \end{pycode}
-Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. 
-Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione.
-Fissata una sequenza $s_0$, qual è la probabilità che un'altra sequenza $s_1$ 
-scelta in modo indipendente coincida con $s_0$ in $\ge\py{k}$ posizioni?   
+Si consideri il seguente problema di Cauchy:
+\[\begin{cases} y' =-xe^{-y} \cr y(0) = \py{latex(h[0])} \end{cases}\]
+\begin{itemize}
+\item[1.] Trovare la soluzione del problema di Cauchy.
+\item[2.] Determinare l'intervallo massimale di esistenza della soluzione.
 
-Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\end{itemize}
 \begin{answer}
-    
-  $X\sim NB(\py{n}, 1/4)$
-  
-  $\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$
-  \quad =\ 
-  {\tt{\color{blue}  1 -  nbinom.cdf( $\py{k-1}$, $\py{n}$, 1/4 )}
-  \ =\ 
-  \py{risposta}}{\color{blue}\hfill Risposta}
+
+{\color{blue}
+La soluzione del problema di Cauchy \`e data dalla funzione $y(x) = ln(-\cfrac{x^2}{2}+ e^{\py{latex(h[0])}})$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} L'intervallo massimale \`e $(-\sqrt{2e^{\py{latex(h[0])}}}, \sqrt{2e^{\py{latex(h[0])}}})$.
+\hfill Risposta 2\kern19ex}
+
 \end{answer}
 \end{question}
-
 
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
