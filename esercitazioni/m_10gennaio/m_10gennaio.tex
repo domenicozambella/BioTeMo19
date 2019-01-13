@@ -50,52 +50,6 @@ random.seed('daxtxsdsxssme')
 ESAME = False
 \end{pycode}
 
-%5
-\begin{question}
-\def\Pr{{\rm Pr\,}}
-\def\Ex{{\rm E\,}}
-\def\Var{{\rm Var\,}}
-\begin{pycode}
-from sympy import *
-x = random.sample([2,3,4,5],4)
-ax = x[0]
-bx = x[1]
-ay = x[2]
-by = x[3]
-
-p = random.sample([2,3,4,5],3)
-d = random.choice(list(range(1,p[0])))
-px = Rational(d,p[0])
-d = random.choice(list(range(1,p[1])))
-pay = Rational(d,p[1])
-d = random.choice(list(range(1,p[1])))
-pby = Rational(d,p[2])
-
-\end{pycode}
-Della v.a.\@ discreta $X$ conosciamo la distribizione di probabilità
-
-\noindent\rlap{\kern15ex$\displaystyle\Pr(X=\py{ax}) =\py{latex(px)}$}\kern64ex   $\displaystyle\Pr(X=\py{bx}) =\py{latex(1-px)}$ 
-
-Della v.a.\@ discreta $Y$ conosciamo la distribuzione condizionata a $X$
-
-\noindent\rlap{\kern15ex$\displaystyle\Pr(Y=\py{ay}\ |\ X=\py{ax}) =\py{latex(pay)}$}\kern64ex     $\displaystyle\Pr(Y=\py{ay}\ |\ X=\py{bx}) =\py{latex(pby)}$ 
-
-\noindent\rlap{\kern15ex$\displaystyle\Pr(Y=\py{by}\ |\ X=\py{ax}) =\py{latex(1-pay)}$}\kern64ex   $\displaystyle\Pr(Y=\py{by}\ |\ X=\py{bx}) =\py{latex(1-pby)}$ 
-
-Calcolare la distribuzione di probablità di $Y$
-
-Esprimere i numeri razionali come frazioni.
-  
-\begin{answer}
-  
-  {\color{blue}$\displaystyle\Pr(Y=\py{ay})$}$\displaystyle\ =\ \Pr(Y=\py{ay}\ |\ X=\py{ax})\cdot\Pr(X=\py{ax}) \ + \ \Pr(Y=\py{ay}\ |\ X=\py{bx})\cdot\Pr(X=\py{bx})${\color{blue}\ =\ \ $\displaystyle\py{latex(pay*px +  pby*(1-px)) }$}\hfill\smash{\raisebox{-\baselineskip}{\color{blue}$\Bigg\}$ \ \ Risposta}}
-  
-  {\color{blue}$\displaystyle\Pr(Y=\py{by})$}$\displaystyle\ =\ 1 - \Pr(Y=\py{ay})${\color{blue}\ =\ \ $\displaystyle\py{latex((1-pay)*px +  (1-pby)*(1-px)) }$}
-  
-  %{\color{blue}$\displaystyle\Pr(Y=\py{by})$}$\displaystyle\ =\ \Pr(Y=\py{by}\ |\ X=\py{ax})\cdot\Pr(X=\py{ax}) \ + \ \Pr(Y=\py{by}\ |\ X=\py{bx})\cdot\Pr(X=\py{bx})\ =\ \ ${\color{blue}$\displaystyle\py{latex((1-pay)*px +  (1-pby)*(1-px)) }$}
-  
-\end{answer}
-\end{question}
     
 \begin{question}
 \def\Pr{{\rm Pr\,}}
@@ -209,35 +163,95 @@ $\pyl{(pab * pbc) / 100} + \pyl{((10-pac-pab) * pac)/100} +  \pyl{(pac * (10-pca
 \end{answer}
 \end{question}
     
-    
-%5
+
+  
 \begin{question}
 \begin{pycode}
-from sympy import *
-x = symbols('x')
-h = [Rational( i ) for i in random.sample([2,3,4],1) ]
+from scipy.stats import binom
+n = random.choice([26,27,28,29])
+k = random.choice([12,13,14,15])
+t = random.choice(["t","u"])
+risposta = round( 1- binom.cdf(k-1,n, 1/4), 4)
 \end{pycode}
-Si consideri il seguente problema di Cauchy:
-\[\begin{cases} y' =-xe^{-y} \cr y(0) = \py{latex(h[0])} \end{cases}\]
-\begin{itemize}
-\item[1.] Trovare la soluzione del problema di Cauchy.
-\item[2.] Determinare l'intervallo massimale di esistenza della soluzione.
+Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. 
+Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione.
+Fissata una sequenza $s_0$, qual è la probabilità che un'altra sequenza $s_1$ 
+scelta in modo indipendente coincida con $s_0$ in $\ge\py{k}$ posizioni?   
 
-\end{itemize}
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+    
+  $X\sim B(\py{n}, 1/4)$
+  
+  $\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$
+  \quad =\ 
+  {\tt{\color{blue}  1 -  binom.cdf( $\py{k-1}$, $\py{n}$, 1/4 )}
+  \ =\ 
+  \py{risposta}}{\color{blue}\hfill Risposta}
+\end{answer}
+  \end{question}
+
+
+
+\begin{question} % 33333333333333
+\begin{pycode}
+# dis = random.choice( [ '>', '<'])
+dis =  '>'
+if ESAME: dis = '<'
+
+if dis == '<':
+   dis_eq  = '\\le'
+   adis    = '>'
+   adis_eq = '\\ge'
+   sign = '+'
+
+if dis == '>':
+   dis_eq  = '\\ge'
+   adis    = '<'
+   adis_eq = '\\le'
+   sign = '-'
+
+\end{pycode}
+Vogliamo testare $H_0:\mu=\mu_0$ contro $H_A:\mu\py{dis}\mu_0$ per una popolazione distribuita normalmente con deviazione standard nota $\sigma$. Fissiamo una significatività $\alpha$ e una potenza $1-\beta$. L'effect-size che ci interessa è $\delta$.  Esprimere, in funzione dei parametri che assumiamo noti, le condizioni cui deve soddisfare il rango $n$ del campione.
+
 \begin{answer}
 
-{\color{blue}
-La soluzione del problema di Cauchy \`e data dalla funzione $y(x) = ln(-\cfrac{x^2}{2}+ e^{\py{latex(h[0])}})$.
-\hfill Risposta 1\kern19ex}
+{\color{blue}Il rango necessario è il minimo $n$ tale che $\displaystyle\Pr\bigg(Z\py{adis}\frac{x_\alpha-\mu_0\py{sign}\delta}{\sigma/\sqrt{n}}\bigg)\le\beta$
 
-\smallskip
-{\color{blue} L'intervallo massimale \`e $(-\sqrt{2e^{\py{latex(h[0])}}}, \sqrt{2e^{\py{latex(h[0])}}})$.
-\hfill Risposta 2\kern19ex}
+dove $x_\alpha$ tale che $\displaystyle\Pr\bigg(Z\py{dis_eq} \frac{x_\alpha-\mu_0}{\sigma/\sqrt{n}}\bigg)=\alpha$\hfill Risposta}
+
 
 \end{answer}
 \end{question}
+
+{\color{red}\bfseries Il seguente quesito NON è stato assegnato in classe. Lo includo perché agli studenti che chiedevano suggerimento per la soluzione dell Quesito~3 ho erroneamente suggerito la soluzione di questo.}
+   
+\begin{question}
+\begin{pycode}
+from scipy.stats import nbinom
+# n = random.choice([26,27,28,29])
+# k = random.choice([12,13,14,15])
+# t = random.choice(["t","u"])
+risposta = round( 1- nbinom.cdf(k-1,n, 1/4), 4)
+\end{pycode}
+Consideriamo sequenze di caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. 
+Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione.
+Leggiamo due sequenze $s_0$ ed $s_1$ da sinistra a destra, qual è la probabilità che la prima differenza occorra non prima di $\py{k}$ caratteri (ovvero occorre al carattere  $\py{k}$ o ai seguenti)?   
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+    
+  $X\sim NB(\py{n}, 1/4)$
   
-  
+  $\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$
+  \quad =\ 
+  {\tt{\color{blue}  1 -  nbinom.cdf( $\py{k-1}$, $\py{n}$, 1/4 )}
+  \ =\ 
+  \py{risposta}}{\color{blue}\hfill Risposta}
+\end{answer}
+  \end{question}
+
+
 
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
@@ -245,14 +259,6 @@ Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
            & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$\\
 \end{tabular}
 \\[1ex]
-%dati $\bar X\sim N(\mu_x,\sigma/n_x)$, \ 
-%$\bar Y\sim N(\mu_y,\sigma/n_y)$, \ 
-$T=\dfrac{\bar X-\bar Y}{S\cdot\sqrt{1/n_x+1/n_y}}$
-\hfill dove
-$S^2\ =\ \dfrac{n_x-1}{n_x+n_y-2}\cdot S_x^2 + \dfrac{n_y-1}{n_x+n_y-2}\cdot S_y^2$
-\hfill
-ha distribuzione $t(n_x+n_y-2)$\\
-
 Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
 {\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
 {\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\

@@ -157,15 +157,16 @@ tstat = round(tstat, 4)
 pval = stats.t.cdf(tstat,n-1)
 pval = round(pval, 4)
 \end{pycode}
-  A manufacturer claims that the mean lifetime of a lightbulb is on average at least $\py{mu0}$ thousand  hours with a standard deviation of $0.3$. In a sample of $\py{n}$ lightbulbs, it was found that they only last $\py{xbar}$ thousand hours on average. The sample standard deviation is $\py{sd}$ thousand hours. Can we reject the manufacturer's claim? Answer the following questions: 
-  \begin{itemize}
+A manufacturer claims that the mean lifetime of a lightbulb is on average at least $\py{mu0}$ thousand  hours with a standard deviation of $0.3$. In a sample of $\py{n}$ lightbulbs, it was found that they only last $\py{xbar}$ thousand hours on average. The sample standard deviation is $\py{sd}$ thousand hours. Can we reject the manufacturer's claim? Answer the following questions: 
+\begin{itemize}
     \item[1.] H$_0$? H$_1$? 
     \item[2.] What test is required? 
     \item[3.] What is the value of the statistic? 
     \item[4.] What is the p-value? 
-  \end{itemize} 
+\end{itemize} 
   
-  \begin{answer}\parskip5pt
+\begin{answer}
+  \parskip5pt
   
     $\mu_0 = \py{mu0}$
   
@@ -186,30 +187,9 @@ pval = round(pval, 4)
     $P\big(T_{n-1}<t\big)\  =\ $
     {\tt{\color{blue}t.cdf(\py{tstat}, \py{n-1})} = \py{pval}}\hfill p-value\kern29ex\llap{\color{blue}Risposta 4}
   
-  \end{answer}
-\end{question}
-
-%2
-\begin{question}
-Si consideri il seguente problema di Cauchy:
-\[\begin{cases} y' = x^3 y^2 \cr y(0) = 4 \end{cases}\]
-\begin{itemize}
-\item[1.] Trovare la soluzione del problema di Cauchy.
-\item[2.] Determinare l'intervallo massimale di esistenza della soluzione.
-
-\end{itemize}
-\begin{answer}
-
-{\color{blue}
-La soluzione del problema di Cauchy \`e data dalla funzione $y(x) = \cfrac{4}{1-x^4}$.
-\hfill Risposta 1}
-
-\smallskip
-{\color{blue} L'intervallo massimale \`e $(-1,1)$.
-\hfill Risposta 2}
-
 \end{answer}
 \end{question}
+
 
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
