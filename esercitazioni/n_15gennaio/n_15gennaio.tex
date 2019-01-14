@@ -50,16 +50,55 @@ random.seed('daxtxsdsxssme')
 ESAME = False
 \end{pycode}
 
+%2
+\begin{question}
+Si consideri il seguente problema di Cauchy:
+\[\begin{cases} y' = x^3 y^2 \cr y(0) = 4 \end{cases}\]
+\begin{itemize}
+\item[1.] Trovare la soluzione del problema di Cauchy.
+\item[2.] Determinare l'intervallo massimale di esistenza della soluzione.
+
+\end{itemize}
+\begin{answer}
+
+{\color{blue}
+La soluzione del problema di Cauchy \`e data dalla funzione $y(x) = \cfrac{4}{1-x^4}$.
+\hfill Risposta 1\kern19ex}
+
+\smallskip
+{\color{blue} L'intervallo massimale \`e $(-1,1)$.
+\hfill Risposta 2\kern19ex}
+
+\end{answer}
+\end{question}
 
 
+%5
+\begin{question}
+\begin{pycode}
+from sympy import *
+x = symbols('x')
+h = [Rational( i ) for i in random.sample([2,3,4],1) ]
+\end{pycode}
+Si consideri il seguente problema di Cauchy:
+\[\begin{cases} y' =-xe^{-y} \cr y(0) = \py{latex(h[0])} \end{cases}\]
+\begin{itemize}
+\item[1.] Trovare la soluzione del problema di Cauchy.
+\item[2.] Determinare l'intervallo massimale di esistenza della soluzione.
 
+\end{itemize}
+\begin{answer}
 
+{\color{blue}
+La soluzione del problema di Cauchy \`e data dalla funzione $y(x) = ln(-\cfrac{x^2}{2}+ e^{\py{latex(h[0])}})$.
+\hfill Risposta 1\kern19ex}
 
+\smallskip
+{\color{blue} L'intervallo massimale \`e $(-\sqrt{2e^{\py{latex(h[0])}}}, \sqrt{2e^{\py{latex(h[0])}}})$.
+\hfill Risposta 2\kern19ex}
 
-
-
-
-
+\end{answer}
+\end{question}
 
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
