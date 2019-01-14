@@ -100,6 +100,60 @@ La soluzione del problema di Cauchy \`e data dalla funzione $y(x) = ln(-\cfrac{x
 \end{answer}
 \end{question}
 
+
+\begin{question} % 222222222222
+\begin{pycode}
+from sympy import Rational, Integer
+from scipy.stats import norm
+mu = random.choice( [ [1,4], [2,7], [2,8] ] )
+n = random.choice( [3, 4, 5 ] ) # = sqrt(n)
+sigma = random.choice( [2, 3] )
+alpha = random.choice( [0.1, 0.05, 0.02, 0.01] )
+zalpha = - norm.ppf(alpha) 
+xalpha1 = round( mu[0] - zalpha*sigma / n, 3 )
+xalpha2 = round( mu[0] + zalpha*sigma / n, 3 )
+delta = random.choice( [0.5, 1, 1.5, 2] )
+muA = mu[0] + delta
+risposta_numerica1 = round( norm.cdf(n * (xalpha2-(mu[0]+delta) ) / sigma ), 4 )
+risposta_numerica2 = 1 - risposta_numerica1
+\end{pycode}
+Preleviamo un campione di rango $n=\py{n**2}$ da una popolazione con distribuzione $N(\mu,\sigma^2)$. Sappiamo che la deviazione standard è $\sigma=\py{sigma}$. La media $\mu$ invece potrebbe avere uno qualsiasi valori dei nell'intervallo $[\py{mu[0]},\ \py{mu[1]}  ]$.
+
+Vogliamo testare $H_0:\mu=\py{mu[0]}$ contro $H_A:\mu\in (\py{mu[0]},\py{mu[1]}]$. Fissiamo come significatività $\alpha=\py{alpha}$ otteniamo che per uno z-test a coda superiore la zona di rifiuto è $[\py{xalpha2}, \ +\infty)$.
+
+\begin{itemize}
+\item[1.] Nel caso $H_A:\mu\in [\py{muA},\ \py{mu[1]}]$ qual'è la massima probabilità $\beta$ di non rigettare $H_0$ (errore II tipo)?
+\item[2.] Calcolare la potenza del test con l'effect-size suggerito nel punto precedente.
+\end{itemize}
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+
+\begin{answer}
+
+Il caso più sfavorevole si ottiene quando $\mu = \py{muA}$. Sia $\bar X\sim N(\py{muA},\ \sigma^2/n)$
+
+$\beta
+\ =\ 
+\Pr\big(\bar X < \py{xalpha2} \big)
+\ =\ 
+\Pr\bigg( \dfrac{\bar X - \py{muA} }{\sigma/\sqrt{n}}\ <\ \dfrac{\py{xalpha2-muA} }{\sigma/\sqrt{n} }\bigg)
+\ =\ 
+\Pr\big( Z<  \py{round( n * (xalpha2-muA ) / sigma, 4) }\big)$
+
+
+{\color{blue}$\beta
+\ =\ $}
+{\color{blue}\tt norm.cdf(\py{ round( n * (xalpha2-muA ) / sigma , 4) }) }{\tt\ =\ \py{risposta_numerica1} }{\color{blue}\hfill Risposta 1}
+
+\medskip
+Con un effect size $\delta=\py{delta}$ la potenza del test è $1-\beta=${\color{blue}\tt\ 1 - norm.cdf(\py{round( n * (xalpha2-muA ) / sigma , 4) }) }{\tt\ =\ \py{risposta_numerica2 } }{\color{blue}\hfill Risposta 2}
+
+\end{answer}
+\end{question}
+
+  
+
+
 \vfill\hrulefill\par
 \begin{tabular}{@{}lll}
 Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
