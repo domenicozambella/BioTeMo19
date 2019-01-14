@@ -50,31 +50,15 @@ random.seed('daxtxsdsxssme')
 ESAME = False
 \end{pycode}
 
-\begin{question}
-\begin{pycode}
-from scipy.stats import nbinom
-n = random.choice([26,27,28,29])
-k = random.choice([12,13,14,15])
-t = random.choice(["t","u"])
-risposta = round( 1- nbinom.cdf(k-1,n, 1/4), 4)
-\end{pycode}
-Consideriamo sequenze di $\py{n}$ caratteri dell'alfabeto $\{a,g,c,\py{t}\}$. 
-Assumiamo che tutti i caratteri occorrano con la stessa probabilità indipendentemente dalla posizione.
-Fissata una sequenza $s_0$, qual è la probabilità che un'altra sequenza $s_1$ 
-scelta in modo indipendente coincida con $s_0$ in $\ge\py{k}$ posizioni?   
 
-Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
-\begin{answer}
-    
-  $X\sim NB(\py{n}, 1/4)$
-  
-  $\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$
-  \quad =\ 
-  {\tt{\color{blue}  1 -  nbinom.cdf( $\py{k-1}$, $\py{n}$, 1/4 )}
-  \ =\ 
-  \py{risposta}}{\color{blue}\hfill Risposta}
-\end{answer}
-\end{question}
+
+
+
+
+
+
+
+
 
 
 \vfill\hrulefill\par
