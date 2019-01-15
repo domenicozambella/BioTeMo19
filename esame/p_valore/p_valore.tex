@@ -49,7 +49,7 @@ random.seed(2584656445)
 ESAME = False
 \end{pycode}
 
-\begin{question} %11111111111
+\begin{xquestion} %11111111111
 \begin{pycode}
 n = 25
 if ESAME: n = random.choice([16,36])
@@ -85,10 +85,10 @@ Si scelga tra le seguenti opzioni la più opportuna.
 \begin{answer}
 {\color{blue}1. La probabilità è $\py{risposta}$.}
 \end{answer}
-\end{question}
+\end{xquestion}
 
 
-\begin{question} %22222222222
+\begin{xquestion} %22222222222
 \begin{pycode}
 dim = 'di dimensione $n = 25$'
 if ESAME: dim  = random.choice(['della stessa dimensione', 'di dimensione crescente', 'di dimesione $n =16$'])
@@ -120,12 +120,12 @@ Si scelga tra le seguenti opzioni la più opportuna.
 \begin{answer}
 {\color{blue}1. La probabilità è $\py{risposta}$.}
 \end{answer}
-\end{question}
+\end{xquestion}
 
 
 
 
-\begin{question} %333333333333
+\begin{xquestion} %333333333333
 \begin{pycode}
 n = 25
 if ESAME: n = random.choice([30,40,50])
@@ -161,13 +161,13 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 \begin{answer}
 {\color{blue}\py{risposta}.}
 \end{answer}
-\end{question}
+\end{xquestion}
 
 
 \clearpage
 
 
-\begin{question} %333333333333
+\begin{xquestion} %333333333333
 \begin{pycode}
 n = 25
 if ESAME: n = random.choice([30,40,50])
@@ -203,31 +203,7 @@ Nel caso non sia possibile determinare il valore esatto ma solo un limite superi
 \begin{answer}
 {\color{blue}\py{risposta}.} Qui l'argomento è meno semplice del caso di un test ad una coda quindi anche la risposta 4 è valutata come buona.
 \end{answer}
-\end{question}
-
-
-
-\begin{question} %555555555555555
-\begin{pycode}
-from sympy import Rational, Integer
-from scipy.stats import binom
-n_fattori = random.choice( [ 2, 3, 4 ] ) 
-rango = random.choice( [20,30,40,50] )
-alpha = random.choice( [1, 2, 5] )
-\end{pycode}
-[da rivedere]
-
-Il disturbo $D$ è causato dalla presenza di almeno uno dei fattori $F_1,\dots,F_{\py{n_fattori}}$. Ovvero possiamo assumere che $D=F_1\cup\dots\cup F_{\py{n_fattori}}$. 
-
-Un gruppo di ricercatori, non sospettando nemmeno l'esistenza dei fattori $F_i$, ipotizza invece ci sia un associazione tra $D$ e un altro fattore $A$. La prevalinza $\Pr(D)$ nella popolazione generale è nota e i ricercatori vogliono fare il seguente test di ipotesi
-
-\hfil $H_0:\quad\Pr(D)=\Pr(D|A)$\hfil$H_A:\quad\Pr(D)<\Pr(D|A)$
-
-Quindi viene isolato un campione casuale dimensione $\py{rango}$ di individui con fattore $A$ e misurano la proporzione $p_0$ di individui affetti dal disturbo $D$.  Viene fatto un test binomiale.
-
-Si assuma che $A$ sia indipendente da $D$. Per semplificare assumiamo che $A, F_1,\dots,F_{\py{n_fattori}}$ siano tra loro mutualmente indipendenti e che $\Pr(F_i)=p$. Si calcoli la probabilità che venga rifiutata l'ipotesi nulla con una significatività $\alpha=\py{alpha}\%$.
-\end{question}
-
+\end{xquestion}
 
 
 
@@ -296,9 +272,6 @@ $\phantom{\Pr\big(\bar X\ge\py{xbar}\big)}\ =\ ${\color{blue}\tt\ 1 - norm.cdf(\
 
 \medskip
 {\color{blue}(d) Non ci sono sufficienti informazioni per rispondere.\hfill Risposta 3}
-
-
-
 
 \end{answer}
 \end{question}

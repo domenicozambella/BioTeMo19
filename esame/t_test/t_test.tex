@@ -87,7 +87,7 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
   
   $n-1 = \py{n-1}$\hfill degrees of freedom\kern19ex
   
-  $P\big(T_{n-1}<t\big)\ {\color{blue} = {\tt t.cdf(\py{tstat},\py{n-1} ) }} = \py{pval}$\hfill{\color{blue} p-value}\kern19ex
+  $\Pr\big(T_{n-1}<t\big)\ {\color{blue} = {\tt t.cdf(\py{tstat},\py{n-1} ) }} = \py{pval}$\hfill{\color{blue} p-value}\kern19ex
 
 \end{answer}
 \end{question}
@@ -103,7 +103,7 @@ mu0 = random.choice([500,600,750])
 n = random.choice([4,9])
 xbar = mu0 + random.choice([8,10,12])
 sd = random.choice([14,18,220])
-tstat = abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = (xbar-mu0)*math.sqrt(n)/sd
 tstat = round(tstat, 4)
 pval = 1-stats.t.cdf(tstat,n-1)
 pval = round(pval, 4)
@@ -115,11 +115,11 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
 
 \begin{answer}
 
-  H$_0:$\hfill $\mu = \mu_0 = \py{mu0}$\kern19ex
+  {\color{blue}H$_0:$\hfill $\mu = \mu_0 = \py{mu0}$}\kern19ex
   
-  H$_1:$\hfill $\mu>\mu_0 = \py{mu0}$\kern19ex
+  {\color{blue}H$_1:$\hfill $\mu>\mu_0 = \py{mu0}$}\kern19ex
   
-  We use a one tail t-test (upper tail)\kern19ex
+  {\color{blue}We use a one tail t-test (upper tail)}\kern19ex
   
   $n = \py{n}$\hfill sample size\kern19ex
   
@@ -127,11 +127,11 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
   
   $\bar{x} = \py{xbar}$\hfill sample mean\kern19ex
   
-  $t = \displaystyle\frac{|\bar{x}-\mu_0|}{s/\sqrt{n}}\ {\color{blue} = \py{tstat}}$\hfill value of the t-test statistic\kern19ex
+  $t = \displaystyle\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\ {\color{blue} = \py{tstat}}$\hfill{\color{blue} value of the t-test statistic}\kern19ex
   
   $n-1 = \py{n-1}$\hfill degrees of freedom\kern19ex
   
-  $P\big(T_{n-1}>t\big) = 1- P\big(T_{n-1}<t\big)\ {\color{blue} = \py{pval}}$\hfill p-value\kern19ex
+  $\Pr\big(T_{n-1}>t\big) = 1- \Pr\big(T_{n-1}<t\big)\ {\color{blue}\tt 1 - t.cdf(\py{tstat}, \py{n-1})}= \py{pval}$\hfill{\color{blue} p-value}\kern19ex
 
 \end{answer}
 \end{question}
@@ -143,11 +143,11 @@ from scipy import stats
 mu0 = random.choice( [4.0, 4.1, 4.2, 4.3] )
 mu0 = round(mu0,1)
 n = random.choice( [20, 22, 24, 26, 28] )
-xbar = mu0 - random.choice( [0.5, 0.6, 0.7] )
+xbar = mu0 + random.choice( [0.5, 0.6, 0.7] )
 xbar = round(xbar,1)
 sd = 1.1 + random.choice( [0.2, 0.3, 0.4] )
 sd = round(sd, 1)
-tstat = abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = (xbar-mu0)*math.sqrt(n)/sd
 tstat = round(tstat, 4)
 pval = 1-stats.t.cdf(tstat,n-1)
 pval = round(pval, 4)
@@ -160,11 +160,11 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
 
   $\mu_0 = \py{mu0}$\kern19ex
 
-  H$_0:$\hfill $\mu = \mu_0$\kern19ex
+  {\color{blue}H$_0:$\hfill $\mu = \mu_0$}\kern19ex
   
-  H$_1:$\hfill $\mu>\mu_0$\kern19ex
+  {\color{blue}H$_1:$\hfill $\mu>\mu_0$}\kern19ex
   
-  We use a one tail t-test (upper tail)\kern19ex
+  {\color{blue}We use a one tail t-test (upper tail)}\kern19ex
   
   $n = \py{n}$\hfill sample size\kern19ex
   
@@ -172,11 +172,11 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
   
   $\bar{x} = \py{xbar}$\hfill sample mean\kern19ex
   
-  $t = \displaystyle\frac{|\bar{x}-\mu_0|}{s/\sqrt{n}}\ {\color{blue}= \py{tstat}}$\hfill value of the t-test statistic\kern19ex
+  $t = \displaystyle\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\ {\color{blue}= \py{tstat}}$\hfill value of the t-test statistic\kern19ex
   
   $n-1 = \py{n-1}$\hfill degrees of freedom\kern19ex
   
-  $P\big(T_{n-1}>t\big) = 1- P\big(T_{n-1}<t\big)\ {\color{blue} = \py{pval}}$\hfill p-value\kern19ex
+  $\Pr\big(T_{n-1}>t\big) = 1- \Pr\big(T_{n-1}<t\big)\ =\ {\color{blue}\tt t.cdf(\py{tstat}, \py{n-1})}= \py{pval}$\hfill p-value\kern19ex
 
 \end{answer}
 \end{question}
@@ -205,9 +205,9 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
 
   $\mu_0 = \py{mu0}$\kern19ex
 
-  H$_0:$\hfill $\mu = \mu_0$\kern19ex
+  {\color{blue}H$_0:$\hfill $\mu = \mu_0$}\kern19ex
   
-  H$_1:$\hfill $\mu<\mu_0$\kern19ex
+  {\color{blue}H$_1:$\hfill $\mu<\mu_0$}\kern19ex
   
   We use a one tail t-test (lower tail)\kern19ex
   
@@ -217,11 +217,11 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
   
   $\bar{x} = \py{xbar}$\hfill sample mean\kern19ex
   
-  $t = \displaystyle\frac{|\bar{x}-\mu_0|}{s/\sqrt{n}}\  {\color{blue}= \py{tstat}}$\hfill value of the t-test statistic\kern19ex
+  $t = \displaystyle\frac{\bar{x}-\mu_0}{s/\sqrt{n}}\  {\color{blue}\ = \py{tstat}}$\hfill{\color{blue} value of the t-test statistic}\kern19ex
   
   $n-1 = \py{n-1}$\hfill degrees of freedom\kern19ex
   
-  $P\big(T_{n-1}<-t\big)\  {\color{blue}= \py{pval}}$\hfill p-value\kern19ex
+  $\Pr\big(T_{n-1}<-t\big)\  =\ ${\color{blue}\tt t.cdf(\py{tstat},\ \py{n-1})} = \py{pval}\hfill{\color{blue} p-value}\kern19ex
 
 \end{answer}
 \end{question}
