@@ -70,30 +70,25 @@ risultato4 = int(risultato4)
 \end{pycode}
 Una fabbrica produce confezioni di biglie rosse e blu. Una confezione corretta contiene $\py{irr[0]}\cdot 10^{\py{irr[1]}}$ biglie con circa il $\py{p0}\%$ di biglie rosse. 
 
-Vogliamo essere ragionevolmente sicuri che la percentuale non scenda mai sotto $\py{p1}\%$.  Stabiliamo quindi due livelli di controllo. 
-Al primo controllo preleviamo $\py{n}$ biglie a caso da ogni confezione e se $\le\py{k}$ biglie sono rosse la confezione viene sottoposta a ulteriori controlli. Altrimenti viena dichiarata soddisfacente.
+Vogliamo essere ragionevolmente sicuri che la percentuale non scenda mai sotto $\py{p1}\%$.
+Eseguiamo il seguente test. 
+Preleviamo $\py{n}$ biglie a caso da ogni confezione e se $\le\py{k}$ biglie sono rosse 
+la confezione viene sottoposta a ulteriori controlli. 
+Altrimenti viena dichiarata soddisfacente.
 
 1. Si calcoli la probabilità che una confezione con $\py{p0}\%$ di biglie rosse venga sottoposta al secondo controllo.
 
 2. Si calcoli la probabilità che una confezione con $\py{p1}\%$ di biglie rosse venga dichiarata soddisfacente.
 
-Il secondo controllo comporta l'estrazione di altre biglie,  $\py{n*10}$ in totale. Se meno di $x\%$ è rosso la confezione viene scartata definitivamente, altrimenti viene dichiarata soddisfacente.
-
-3. A quanto dovremmo fissare $x$ per non scartare al secondo controllo più del $\py{alpha}\%$ di confezioni con $\py{p0}\%$ di biglie rosse?
-
-4. A quanto dovremmo fissare $x$ per non  dichiare soddisfacente al secondo controllo più del $\py{beta}\%$ di confezioni con $\py{p1}\%$ di bigie rosse?
-
 Si trattino tutte le estrazioni come estrazioni con \textit{reimbussolamento}.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
 
 \begin{answer}
 
 {\tt {\color{blue} binom.cdf( \py{k}, \py{n}, \py{p0/100} )} = \py{risultato1}}\hfill  {\color{blue}Risposta 1}
 
 {\tt {\color{blue} 1 - binom.cdf( \py{k-1}, \py{n}, \py{p1/100} )} = \py{risultato2}}\hfill  {\color{blue}Risposta 2}
-
-{\tt {\color{blue} binom.ppf( \py{alpha/100}, \py{n*10}, \py{p0/100} )} = \py{risultato3}}\hfill  {\color{blue}Risposta 3}
-
-{\tt {\color{blue} binom.ppf( \py{1- beta/100}, \py{n*10}, \py{p1/100} )} = \py{risultato4}}\hfill {\color{blue}Risposta 4}
 
 \end{answer}
 \end{question}
