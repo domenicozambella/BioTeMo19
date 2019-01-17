@@ -1,0 +1,224 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{calc}
+\usepackage{comment}
+\usepackage{pythontex}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
+\newcommand{\mylabel}[1]{#1\hfill}
+\renewenvironment{itemize}
+  {\begin{list}{$\triangleright$}{%
+   \setlength{\parskip}{0mm}
+   \setlength{\topsep}{.4\baselineskip}
+   \setlength{\rightmargin}{0mm}
+   \setlength{\listparindent}{0mm}
+   \setlength{\itemindent}{0mm}
+   \setlength{\labelwidth}{2ex}
+   \setlength{\itemsep}{.4\baselineskip}
+   \setlength{\parsep}{0mm}
+   \setlength{\partopsep}{0mm}
+   \setlength{\labelsep}{1ex}
+   \setlength{\leftmargin}{\labelwidth+\labelsep}
+   \let\makelabel\mylabel}}{%
+   \end{list}\vspace*{-1.3mm}}
+\parindent0ex
+\parskip1.5ex
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{0.5\parskip}}
+\newenvironment{xquestion}{\bigskip\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+
+\pagestyle{empty}
+\excludecomment{xquestion}
+\excludecomment{answer}
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Matematica e BioStatistica con Applicazioni Informatiche\\
+Esercitazione in aula del 17 gennaio 2018
+\end{minipage}}
+
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+%1
+\begin{question}
+\begin{pycode}
+from scipy.stats import norm
+mu = random.choice([6,7,8,9])
+sigma = random.choice([3,5])
+sqrt_n = random.choice([4,8])
+n = sqrt_n**2
+xbar =  random.choice([4,5,6,7,8])
+conf = random.choice([90, 95, 99])
+alpha = round(1-conf/100, 3)
+risultato = round(- norm.ppf(alpha/2, n-1) * (sigma/sqrt_n), 4)
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con deviazione standard $\sigma=\py{sigma}$ e media $\mu$ ignota.
+
+Da un campione di rango $n=\py{n}$ otteniamo una media $\bar x=\py{xbar}$. Si stimi un intervallo di confienza al $\py{conf}\%$ per $\mu$.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+% RISPOSTA 1
+
+L'intervallo è $(\bar x-\varepsilon,\ \bar x+\varepsilon)$ dove
+
+$\varepsilon\ =\ z_{\alpha/2}\cdot\dfrac{\sigma}{\sqrt{n}}$ 
+
+$\alpha = \py{alpha}$
+
+$z_{\alpha/2}$ \ è tale che \ $\alpha/2\ =\ \Pr(Z<-z_{\alpha/2})$
+
+$z_{\alpha/2}\ =\ $\ {\tt - norm.ppf(\py{alpha/2})}
+
+$\varepsilon\ =\ z_{\alpha/2}\cdot\dfrac{\sigma}{\sqrt{n}}\ =\ ${\color{blue}\tt - norm.ppf(\py{alpha/2}) $\cdot$ \py{sigma/sqrt_n}}
+
+$\phantom{\varepsilon}$\ =\ {\tt \py{risultato}}
+\end{answer}
+\end{question}
+
+
+%2
+\begin{question} 
+\begin{pycode}
+from scipy.stats import t
+mu = random.choice([6,7,8,9])
+sd = random.choice([3,5])
+sqrt_n = random.choice([4,8])
+n = sqrt_n**2
+xbar =  random.choice([4,5,6,7,8])
+conf = random.choice([90, 95, 99])
+alpha = round(1-conf/100, 2)
+risultato = round(- t.ppf(alpha/2, n-1) * (sd/sqrt_n), 4)
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con deviazione standard $\sigma$ e media $\mu$ ignote.
+
+Da un campione di rango $\py{n}$ otteniamo una media $\bar x=\py{xbar}$ e un deviazione standard $s=\py{sd}$. Si stimi un intervallo di confienza al $\py{conf}\%$ per $\mu$.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+% RISPOSTA 1
+
+L'intervallo è $(\bar x-\varepsilon,\ \bar x+\varepsilon)$ dove
+
+$\varepsilon\ =\ t_{\alpha/2}\cdot\dfrac{s}{\sqrt{n}}$ 
+
+$\alpha = \py{alpha}$
+
+$t_{\alpha/2}$ \ è tale che \ $\alpha/2\ =\ \Pr(T<-t_{\alpha/2})$ \ dove \ $T\sim t(n-1)$
+
+$t_{\alpha/2}\ =\ $\ {\tt - t.ppf(\py{alpha/2}, \py{n-1})}
+
+$\varepsilon\ =\ t_{\alpha/2}\cdot\dfrac{s}{\sqrt{n}}\ =\ ${\color{blue}\tt - t.ppf(\py{alpha/2}, \py{n-1}) $\cdot$ \py{sd/sqrt_n}}
+
+$\phantom{\varepsilon}$\ =\ {\tt \py{risultato}}
+\end{answer}
+\end{question}
+
+
+
+
+\begin{question}
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\begin{pycode}
+from scipy.stats import binom
+p = random.choice([0.6,0.7,0.8])
+n_vittoria = random.choice([8, 10])
+n_partite = n_vittoria + random.choice([1, 2, 3, 4])
+if not ESAME :
+   p = 0.6
+   n_vittoria = 8
+   n_partite = 11
+risultato = 1 - binom.cdf(n_vittoria-1, n_partite, p)
+risultato = round(risultato, 4)
+\end{pycode}
+In un gioco a due giocatori, $A$ e $B$, ogni partita vale un punto che è vinto da uno dei due giocatori (non ci sono patte). Vince il gioco chi per primo raggiunge \py{n_vittoria} punti. In ciascuna partita vince $A$ con probabilità $\py{p}$.
+
+Qual è la probabilità che $A$ vinca il gioco in $\le\py{n_partite}$ partite~?
+\begin{answer}
+
+Sia $X\sim B(\py{n_partite},\py{p})$. Il giocatore $A$ vince se $X\ge 8$. 
+
+$\displaystyle\Pr(X\ge\py{n_vittoria})\ =\ 1-\Pr( X\le\py{n_vittoria-1} )\ =\ ${\tt{\color{blue} 1 - binom.cdf( \py{n_vittoria-1}, \py{n_partite}, \py{p} ) }= \py{risultato} }{\color{blue}\hfill Risposta}
+\end{answer}
+\end{question}
+
+
+
+
+\begin{question}
+\begin{pycode}
+import math
+from scipy import stats
+mu0 = random.choice([500,750,1000])
+n = random.choice([9,16])
+xbar = mu0 - random.choice([20,30,40])
+sd = random.choice([14,18,220])
+tstat = - abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = round(tstat, 4)
+pval = 2 * stats.t.cdf(tstat,n-1)
+\end{pycode}
+Si sospetta che un certo medicinale abbassi la pressione diastolica. A ciascuno di $n$ individui somministriamo in momenti diversi sia il placebo che il medicinale. La pressione media calcolata tra chi assume il placebo è $\bar x$ e con deviazione standard $s_x$. Per chi assume il medicinale i valori sono  $\bar y$ e $s_y$. Per ogni individuo misuriamo anche la differenza di pressione durante l'assunzione di placebo e di medicinale. Il valore medo di queste differenze è $\bar z$ con deviazione standard $s_z$.
+
+Vogliamo valutare se il medicinale abbassa la pressione diastolica più del placebo. Specificare: H$_0$, H$_1$, che test bisogna usare, ed esprimere in funzione dei parametri dati il valore della statistica.
+
+\begin{answer}
+
+  $\mu$  media di popolazione delle differenze (medicinale-placebo)
+  
+  {\color{blue}H$_0$:\quad $\mu = 0$}
+  
+  {\color{blue}H$_1$:\quad $\mu<0$}
+  
+  {\color{blue}Usiamo un t-test a una coda (inferiore)}
+  
+  {\color{blue}$\displaystyle\frac{\bar{z}}{s_z/\sqrt{n}}$\hfill valore della statistica}\kern19ex
+
+\end{answer}
+\end{question}
+
+
+
+
+
+
+
+
+\vfill\hrulefill\par
+\begin{tabular}{@{}lll}
+Formulario:& se $X\sim B({\tt n},{\tt p})$ & allora $E(X)=np$\\
+           & se $X\sim NB({\tt n},{\tt p})$& allora $E(X)=n(1-p)/p$\\
+\end{tabular}
+\\[1ex]
+%dati $\bar X\sim N(\mu_x,\sigma/n_x)$, \ 
+%$\bar Y\sim N(\mu_y,\sigma/n_y)$, \ 
+$T=\dfrac{\bar X-\bar Y}{S\cdot\sqrt{1/n_x+1/n_y}}$
+\hfill dove
+$S^2\ =\ \dfrac{n_x-1}{n_x+n_y-2}\cdot S_x^2 + \dfrac{n_y-1}{n_x+n_y-2}\cdot S_y^2$
+\hfill
+ha distribuzione $t(n_x+n_y-2)$\\
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/} di  {\tt Python\/}\\
+{\tt binom.pmf(k, n, p)} = $\Pr\big(X={\tt k}\big)$ dove $X\sim B({\tt n},{\tt p})$\\
+{\tt binom.cdf(k, n, p)} = $\Pr\big(X\le{\tt k}\big)$ dove  $X\sim B({\tt n},{\tt p})$ \\
+{\tt bimom.ppf(q, n, p)} = ${\tt k}$ dove ${\tt k}$ è tale che 
+                           $\Pr\big(X\le{\tt k}\big)\cong{\tt q}$ per $X\sim B({\tt n},{\tt p})$\\
+{\tt nbinom.xxx(\ldots)}, è l'analogo per $X\sim NB({\tt n},{\tt p})$.\\
+{\tt norm.xxx(\ldots)}, è l'analogo per $Z\sim N(0,1)$.\\
+\hfill{\tt t.xxx(\ldots, $\nu$)}, è l'analogo per $T\sim t(\nu)$.
+\end{document}
+
+

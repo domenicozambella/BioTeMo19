@@ -226,4 +226,40 @@ Answer the following questions: H$_0$? H$_1$? What test is required? What is the
 \end{answer}
 \end{question}
 
+
+
+\begin{question}
+\begin{pycode}
+import math
+from scipy import stats
+mu0 = random.choice([500,750,1000])
+n = random.choice([9,16])
+xbar = mu0 - random.choice([20,30,40])
+sd = random.choice([14,18,220])
+tstat = - abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = round(tstat, 4)
+pval = 2 * stats.t.cdf(tstat,n-1)
+\end{pycode}
+Si sospetta che un certo medicinale abbassi la pressione diastolica. A ciascuno di $n$ individui somministriamo in momenti diversi sia il placebo che il medicinale. La pressione media calcolata tra chi assume il placebo è $\bar x$ e con deviazione standard $s_x$. Per chi assume il medicinale i valori sono  $\bar y$ e $s_y$. Per ogni individuo misuriamo anche la differenza di pressione durante l'assunzione di placebo e di medicinale. Il valore medo di queste differenze è $\bar z$ con deviazione standard $s_z$.
+
+Vogliamo valutare se il medicinale abbassa la pressione diastolica più del placebo. Specificare: H$_0$, H$_1$, che test bisogna usare, ed esprimere in funzione dei parametri dati il valore della statistica.
+
+\begin{answer}
+
+  $\mu$  media di popolazione delle differenze (medicinale-placebo)
+  
+  {\color{blue}H$_0$:\quad $\mu = 0$}
+  
+  {\color{blue}H$_1$:\quad $\mu<0$}
+  
+  {\color{blue}Usiamo un t-test a una coda (inferiore)}
+  
+  {\color{blue}$\displaystyle\frac{\bar{z}}{s_z/\sqrt{n}}$\hfill valore della statistica}\kern19ex
+
+\end{answer}
+\end{question}
+
+
+
+
 \end{document} 

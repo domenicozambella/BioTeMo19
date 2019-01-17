@@ -35,7 +35,7 @@ def create_individual_exam(template,student):
     individual = template.replace( r'\student', student )
     for i in x:
         qname = random.choice( i.split('\n') ).strip()
-        with open(qname + '.tex', 'r', encoding='utf-8') as f:
+        with open("../" + qname + "/" + qname + '.tex', 'r', encoding='utf-8') as f:
             qdata = f.read()
         j = random.choice( read_environment(qdata, 'question', include=False) ) 
         individual = individual.replace( i, j, 1 )
@@ -64,7 +64,7 @@ with open(name + '.tex', 'w', encoding='utf-8') as f:
     f.write(data)
     f.closed
 os.system('pdflatex '  + name + '.tex')
-os.system('pythontex ' + name + '.tex')
+os.system('pythontex --interpreter python:python3 ' + name + '.tex')
 os.system('pdflatex '  + name + '.tex')
 
 name = name.replace('domande', 'risposte')
@@ -73,6 +73,6 @@ with open(name + '.tex', 'w', encoding='utf-8') as f:
     f.write(data)
     f.closed
 os.system('pdflatex '  + name + '.tex')
-os.system('pythontex ' + name + '.tex')
+os.system('pythontex --interpreter python:python3 ' + name + '.tex')
 os.system('pdflatex '  + name + '.tex')
    

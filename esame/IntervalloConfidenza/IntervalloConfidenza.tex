@@ -1,0 +1,128 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{pythontex}
+\parindent0ex
+\parskip2ex
+\def\Pr{{\rm Pr\,}}
+\def\Ex{{\rm E\,}}
+\def\Var{{\rm Var\,}}
+\newcounter{quesito}
+\newenvironment{question}{\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{xquestion}{\addtocounter{quesito}{1}\bigskip\bigskip\par\textbf{Quesito \thequesito.\kern1ex}}{\vspace{\parskip}}
+\newenvironment{answer}{\par\textbf{Risposta\quad}}{\vspace{\parskip}}
+\pagestyle{empty} 
+
+\begin{document}
+\colorbox{blue!10}{\begin{minipage}{\textwidth}
+Domande per verificare la comprensione del significato di distribuzione continua (solo caso distribuzione normale). Richiede anche le nozioni di standardizzazione e di media campionaria.\medskip
+
+N.B. Alcune domande potrebbero contenere informazioni irrilevanti.
+\end{minipage}}
+\bigskip\bigskip
+
+
+\begin{pycode}
+import random
+random.seed('daxtxsdsxssme')
+ESAME = False
+\end{pycode}
+%1
+\begin{question}
+\begin{pycode}
+from scipy.stats import norm
+mu = random.choice([6,7,8,9])
+sigma = random.choice([3,5])
+sqrt_n = random.choice([4,8])
+n = sqrt_n**2
+xbar =  random.choice([4,5,6,7,8])
+conf = random.choice([90, 95, 99])
+alpha = round(1-conf/100, 3)
+risultato = round(- norm.ppf(alpha/2, n-1) * (sigma/sqrt_n), 4)
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con deviazione standard $\sigma=\py{sigma}$ e media $\mu$ ignota.
+
+Da un campione di rango $n=\py{n}$ otteniamo una media $\bar x=\py{xbar}$. Si stimi un intervallo di confienza al $\py{conf}\%$ per $\mu$.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+% RISPOSTA 1
+
+L'intervallo è $(\bar x-\varepsilon,\ \bar x+\varepsilon)$ dove
+
+$\varepsilon\ =\ z_{\alpha/2}\cdot\dfrac{\sigma}{\sqrt{n}}$ 
+
+$\alpha = \py{alpha}$
+
+$z_{\alpha/2}$ \ è tale che \ $\alpha/2\ =\ \Pr(Z<-z_{\alpha/2})$
+
+$z_{\alpha/2}\ =\ $\ {\tt - norm.ppf(\py{alpha/2})}
+
+$\varepsilon\ =\ z_{\alpha/2}\cdot\dfrac{\sigma}{\sqrt{n}}\ =\ ${\color{blue}\tt - norm.ppf(\py{alpha/2}) $\cdot$ \py{sigma/sqrt_n}}
+
+$\phantom{\varepsilon}$\ =\ {\tt \py{risultato}}
+\end{answer}
+\end{question}
+
+
+%2
+\begin{question} 
+\begin{pycode}
+from scipy.stats import t
+mu = random.choice([6,7,8,9])
+sd = random.choice([3,5])
+sqrt_n = random.choice([4,8])
+n = sqrt_n**2
+xbar =  random.choice([4,5,6,7,8])
+conf = random.choice([90, 95, 99])
+alpha = round(1-conf/100, 2)
+risultato = round(- t.ppf(alpha/2, n-1) * (sd/sqrt_n), 4)
+\end{pycode}
+La variabile aleatoria $X$ ha distribuzione normale con deviazione standard $\sigma$ e media $\mu$ ignote.
+
+Da un campione di rango $\py{n}$ otteniamo una media $\bar x=\py{xbar}$ e un deviazione standard $s=\py{sd}$. Si stimi un intervallo di confienza al $\py{conf}\%$ per $\mu$.
+
+Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
+\begin{answer}
+
+% RISPOSTA 1
+
+L'intervallo è $(\bar x-\varepsilon,\ \bar x+\varepsilon)$ dove
+
+$\varepsilon\ =\ t_{\alpha/2}\cdot\dfrac{s}{\sqrt{n}}$ 
+
+$\alpha = \py{alpha}$
+
+$t_{\alpha/2}$ \ è tale che \ $\alpha/2\ =\ \Pr(T<-t_{\alpha/2})$ \ dove \ $T\sim t(n-1)$
+
+$t_{\alpha/2}\ =\ $\ {\tt - t.ppf(\py{alpha/2}, \py{n-1})}
+
+$\varepsilon\ =\ t_{\alpha/2}\cdot\dfrac{s}{\sqrt{n}}\ =\ ${\color{blue}\tt - t.ppf(\py{alpha/2}, \py{n-1}) $\cdot$ \py{sd/sqrt_n}}
+
+$\phantom{\varepsilon}$\ =\ {\tt \py{risultato}}
+\end{answer}
+\end{question}
+
+
+
+
+
+
+
+
+\vfill
+\hrulefill
+
+Si assuma noto il valore delle seguenti funzioni della libreria {\tt scipy.stats\/}
+
+{\tt norm.cdf(z)} = $\Pr\big(Z<{\tt z}\big)$ per $Z\sim N(0,1)$ 
+
+{\tt norm.ppf($\alpha$)} = $z_\alpha$ dove $z_\alpha$ è tale che $\Pr\big(Z<z_\alpha\big)=\alpha$ per $Z\sim N(0,1)$ 
+
+
+\end{document}
+

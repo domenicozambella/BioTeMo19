@@ -33,7 +33,7 @@ ESAME = False
 
 \begin{question} %1
 \begin{pycode}
-from sympy import *
+from sympy import Rational
 from scipy.stats import norm
 mu = random.choice([6,7,8,9])
 sigma = random.choice([3,5])
@@ -71,7 +71,7 @@ ${\color{blue}{\tt\ norm.cdf( \py{ std_b} ) -  norm.cdf( \py{ std_a} )}
 
 $\phantom{\Pr\py{a}\le X\le\py{b})}
 \ =\ 
-${\tt\ norm.cdf( \py{ float( std_b ) } ) -  norm.cdf( \py{ float( std_a ) } )
+${\tt\ norm.cdf( \py{ pr( float( std_b ) ) } ) -  norm.cdf( \py{ pr( float( std_a ) ) } )
 = 
 \py{pr(norm.cdf( (b-mu)/sigma ) -  norm.cdf( (a-mu)/sigma ))}}
 
@@ -88,7 +88,7 @@ ${\color{blue}{\tt\ norm.cdf( \py{sqrt_n*std_a } ) -  norm.cdf( \py{ sqrt_n*std_
 
 $\phantom{\Pr\py{a}\le\bar X\le\py{b})}
 \ =\ 
-${\tt\ norm.cdf( \py{float( sqrt_n*std_b)} ) -  norm.cdf( \py{float(sqrt_n*std_a) } )
+${\tt\ norm.cdf( \py{ pr( float( sqrt_n*std_b) ) } ) -  norm.cdf( \py{ pr( float(sqrt_n*std_a) ) } )
 = 
 \py{pr(norm.cdf( sqrt_n*(b-mu)/sigma ) -  norm.cdf( sqrt_n*(a-mu)/sigma ))}}
 
@@ -244,7 +244,7 @@ if ESAME:
     n = random.choice( [2, 3] )
     a = mu - random.choice( [3, 4, 5, 6] )
     b = a - random.choice( [1, 2] )
-    errore =  random.choice( ['accettare', 'scartare'] )
+    errore =  random.choice( ['accetta', 'scarta'] )
 
 def pr(x):
     return "{0:.3f}".format(round(x,3))
