@@ -31,7 +31,8 @@ random.seed('daxtxsdsxssme')
 ESAME = False
 \end{pycode}
 
-\begin{question} %1
+%1
+\begin{question} 
 \begin{pycode}
 from sympy import Rational
 from scipy.stats import norm
@@ -47,7 +48,7 @@ std_b = Rational( b-mu, sigma )
 def pr(x):
     return "{0:.3f}".format(round(x,3))
 \end{pycode}
-La variabile aleatoria $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$ 
+La v.a.\@ $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$ 
 
 1. Calcolare la probabilità dell'evento $X\in [\py{a},\py{b}]$ 
 
@@ -96,8 +97,8 @@ ${\tt\ norm.cdf( \py{ pr( float( sqrt_n*std_b) ) } ) -  norm.cdf( \py{ pr( float
 \end{question}
 
 
-
-\begin{question} %2
+%2
+\begin{question} 
 \begin{pycode}
 from scipy.stats import norm
 mu    = random.choice( [6, 7, 8, 9] )
@@ -111,7 +112,7 @@ z = 0
 def pr(x):
     return "{0:.3f}".format(round(x,3))
 \end{pycode}
-La variabile aleatoria $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$. 
+La v.a.\@ $X$ ha distribuzione normale con media $\mu=\py{mu}$ e deviazione standard $\sigma=\py{sigma}$. 
 Per quale $\varepsilon$ abbiamo $\Pr\big(\py{a}\le X\le\py{a}+\varepsilon\big)=\py{alpha}$.
 
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce. 
@@ -136,7 +137,7 @@ $\varepsilon\ =\ ${\color{blue}\tt  \py{sigma} * norm.ppf( \py{alpha} + norm.cdf
 
 
 %\clearpage
-% \begin{question} %3
+% \begin{xquestion} %3
 % \begin{pycode}
 % cosa = 'una data cultura'
 % if ESAME:
@@ -169,7 +170,7 @@ $\varepsilon\ =\ ${\color{blue}\tt  \py{sigma} * norm.ppf( \py{alpha} + norm.cdf
 % 
 % $\phantom{\Pr\big(\bar X\ge\py{b}\big)}\ =\ ${\tt\ 1 - norm.cdf(\py{round( n * (b-a)/sigma, 2)})\ =\ \py{ round( 1 -  norm.cdf(n * (b-a)/sigma), 3) } }
 % \end{answer}
-% \end{question}
+% \end{xquestion}
 
 
 
@@ -177,7 +178,8 @@ $\varepsilon\ =\ ${\color{blue}\tt  \py{sigma} * norm.ppf( \py{alpha} + norm.cdf
 
 
 \clearpage
-\begin{question} %3
+%3
+\begin{question} 
 \begin{pycode}
 from scipy.stats import norm
 cosa = 'una data cultura'
@@ -228,8 +230,8 @@ $\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}{\tt\ \py{risultato}(\
 \end{question}
 
 
-
-\begin{question} %4
+%4
+\begin{question} 
 \begin{pycode}
 from scipy.stats import norm
 n_campioni = 5
@@ -283,7 +285,8 @@ $\phantom{\Pr\big(\bar X\le\py{b}\big)}\ =\ ${\color{blue}\tt\ \py{risultato1}(\
 
 
 \clearpage
-\begin{question} %5
+%5
+\begin{question} 
 \begin{pycode}
 from sympy import *
 import random
