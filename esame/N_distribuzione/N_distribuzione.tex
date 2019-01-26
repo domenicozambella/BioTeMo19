@@ -34,7 +34,7 @@ ESAME = False
 %1
 \begin{question} 
 \begin{pycode}
-from sympy import Rational
+from sympy import Rational, latex
 from scipy.stats import norm
 mu = random.choice([6,7,8,9])
 sigma = random.choice([3,5])
@@ -85,7 +85,7 @@ $\displaystyle \Pr(\py{a}\le\bar X\le\py{b})
 
 $\phantom{\Pr\py{a}\le\bar X\le\py{b})}
 \ =\ 
-${\color{blue}{\tt\ norm.cdf( \py{sqrt_n*std_a } ) -  norm.cdf( \py{ sqrt_n*std_a } ) }\hfill Risposta 2}
+${\color{blue}{\tt\ norm.cdf( \py{sqrt_n*std_b } ) -  norm.cdf( \py{ sqrt_n*std_a } ) }\hfill Risposta 2}
 
 $\phantom{\Pr\py{a}\le\bar X\le\py{b})}
 \ =\ 

@@ -192,9 +192,9 @@ xbar = mu0 - random.choice([0.5,0.6,0.7])
 xbar = round(xbar, 1)
 sd = 0.3 + random.choice([0.1, 0.2, 0.3])
 sd = round(sd, 1)
-tstat = abs(xbar-mu0)*math.sqrt(n)/sd
+tstat = (xbar-mu0)*math.sqrt(n)/sd
 tstat = round(tstat, 4)
-pval = stats.t.cdf(-tstat,n-1)
+pval = stats.t.cdf(tstat,n-1)
 pval = round(pval, 4)
 \end{pycode}
 A manufacturer claims that the mean lifetime of a lightbulb is on average at least $\py{mu0}$ thousand  hours with a standard deviation of $0.3$. In a sample of $\py{n}$ lightbulbs, it was found that they only last $\py{xbar}$ thousand hours on average. The sample standard deviation is $\py{sd}$ thousand hours. Can we reject the manufacturer's claim? 
