@@ -40,7 +40,7 @@ random.seed(2548445)
 \begin{question}
 \def\RR{{\mathds R}}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([1,2,3,4,5],1) ]
 \end{pycode}
@@ -53,12 +53,13 @@ Si consideri una funzione $f(x)$ la cui derivata prima è data dalla funzione $f
 
 {\color{blue}
 $f(x)$ cresce in $(-\infty, \infty) = \RR$}, infatti $e^{\py{latex(-n[0]*x)}} > 0$ per ogni $x \in \RR$
+
 {\color{blue}
-\hfill Risposta 1\kern0ex}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $f(x)$ non ha massimi e minimi locali
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -66,7 +67,7 @@ $f(x)$ non ha massimi e minimi locali
 \begin{question}
 \def\RR{{\mathds R}}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([2,3,5,6,7],1) ]
 \end{pycode}
@@ -78,12 +79,14 @@ Si consideri una funzione $f(x)$ definita su tutto $\RR$ la cui derivata prima �
 \begin{answer}
 
 {\color{blue}
-$f(x)$ cresce in $(-\sqrt{\py{latex(n[0])}}, 0)$ e $(\sqrt{\py{latex(n[0])}}, +\infty)$; $f(x)$ decresce in $(-\infty, -\sqrt{\py{latex(n[0])}})$ e $(0, \sqrt{\py{latex(n[0])}})$
-\hfill Risposta 1\kern0ex}
+$f(x)$ cresce in $(-\sqrt{\py{latex(n[0])}}, 0)$ e $(\sqrt{\py{latex(n[0])}}, +\infty)$; $f(x)$ decresce in $(-\infty, -\sqrt{\py{latex(n[0])}})$ e $(0, \sqrt{\py{latex(n[0])}})$}
+
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $f(x)$ ha minimi locali in $-\sqrt{\py{latex(n[0])}}$ e $\sqrt{\py{latex(n[0])}}$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -91,7 +94,7 @@ $f(x)$ ha minimi locali in $-\sqrt{\py{latex(n[0])}}$ e $\sqrt{\py{latex(n[0])}}
 \begin{question}
 \def\RR{{\mathds R}}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
 \end{pycode}
@@ -103,12 +106,14 @@ Si consideri una funzione $f(x)$ definita su tutto $\RR$ la cui derivata prima �
 \begin{answer}
 
 {\color{blue}
-$f(x)$ cresce in $(0, +\infty)$; $f(x)$ decresce in $(-\infty, 0)$ 
-\hfill Risposta 1\kern0ex}
+$f(x)$ cresce in $(0, +\infty)$; $f(x)$ decresce in $(-\infty, 0)$ }
+
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $f(x)$ non ha minimi e massimi locali.
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -116,7 +121,7 @@ $f(x)$ non ha minimi e massimi locali.
 \begin{question}
 \def\RR{{\mathds R}}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([2,3,4,5,6,7],1) ]
 \end{pycode}
@@ -128,19 +133,21 @@ Si consideri una funzione $f(x)$ definita sull'intervallo $(0, +\infty)$ la cui 
 \begin{answer}
 
 {\color{blue}
-$f(x)$ cresce in $(1, +\infty)$; $f(x)$ decresce in $(0, 1)$
-\hfill Risposta 1\kern0ex}
+$f(x)$ cresce in $(1, +\infty)$; $f(x)$ decresce in $(0, 1)$ }
+
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $f(x)$ ha minimo locale in $1$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
 %5
 \begin{question}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
 \end{pycode}
@@ -153,15 +160,15 @@ Si consideri un corpo lasciato cadere da una torre alta 500 metri. Sia  $f(t) = 
 
 La funzione $f'(t) = 10 t$ descrive l'andamento della velocità istantanea, quindi
 {\color{blue}
-$f'(\py{latex(n[0])}) = \py{latex(10*n[0])}$
-\hfill Risposta 1\kern0ex}
+$f'(\py{latex(n[0])}) = \py{latex(10*n[0])}$ }
 
-Il corpo tocca terra quando $f(t) = 500$, ovvero quando $5t^2 = 500$, ovvero a $t = 10$.
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
-Quindi
+Il corpo tocca terra quando $f(t) = 500$, ovvero quando $5t^2 = 500$, ovvero a $t = 10$, quindi
 {\color{blue}
 $f'(10) = 100$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -175,12 +182,14 @@ Sia data la funzione $f(x) = x^2 + 3 x$
 \begin{answer}
 
 {\color{blue}
-$y = -7x -25$
-\hfill Risposta 1\kern0ex}
+$y = -7x -25$ }
 
 {\color{blue}
-$f(x)$ decresce in $\bigg(-\infty, -\dfrac{3}{2}\bigg)$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 1\kern19ex}
+
+{\color{blue}
+$f(x)$ decresce in $(-\infty, -\frac{3}{2})$
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -188,7 +197,7 @@ $f(x)$ decresce in $\bigg(-\infty, -\dfrac{3}{2}\bigg)$
 \begin{question}
 \def\RR{{\mathds R}}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 x = symbols('x')
 n =[Rational( i ) for i in random.sample([1,2,3,4,5,6,7],1) ]
 \end{pycode}
@@ -200,19 +209,21 @@ Sia data la funzione $f(x) = x^3 + \py{latex(n[0])}$
 \begin{answer}
 
 {\color{blue}
-$y = \py{latex(3*x+1+n[0]-3)}$
-\hfill Risposta 1\kern0ex}
+$y = \py{latex(3*x+1+n[0]-3)}$ }
+
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $f(x)$ cresce in $(-\infty,+\infty) = \RR$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
 %8
-\begin{xquestion}
+\begin{question}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 t = symbols('t')
 n =[Rational( i ) for i in random.sample([2,3,4,5,6,7],1) ]
 m =[Rational( i ) for i in random.sample([2,3,4,5,6],1) ]
@@ -228,20 +239,22 @@ Si consideri una particella che si muove lungo una retta. Sia $f(t) = \py{latex(
 
 La velocità istantanea è descritta dalla funzione $f'(t) = \py{latex(3*m[0])} t^2 + \py{latex(n[0])}$ quindi
 {\color{blue}
-$f'(\py{latex(u[0])}) = \py{latex(3*m[0]*u[0]**2+n[0])}$
-\hfill Risposta 1\kern0ex}
+$f'(\py{latex(u[0])}) = \py{latex(3*m[0]*u[0]**2+n[0])}$ }
+
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
 La velocità supera $\py{latex(s[0])}$ quando $f'(t) = \py{latex(3*m[0])} t^2 + \py{latex(n[0])} > \py{latex(s[0])}$ quindi
 {\color{blue}
-$t > \sqrt{\displaystyle\py{latex((s[0]-n[0])/(3*m[0]))}}$
-\hfill Risposta 2\kern0ex}
+$t > \sqrt{\py{latex((s[0]-n[0])/(3*m[0]))}}$
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
-\end{xquestion}
+\end{question}
 %9
 \begin{question}
 \begin{pycode}
-from sympy import symbols, Rational, latex
+from sympy import *
 n =[Rational( i ) for i in random.sample([2,3,4,5,6,7],1) ]
 \end{pycode}
 Si consideri la funzione $f(x) = x^3 + \py{latex(n[0])}x + 1$.
@@ -252,13 +265,15 @@ Si consideri la funzione $f(x) = x^3 + \py{latex(n[0])}x + 1$.
 \begin{answer}
 
 {\color{blue}
-$f'(x) = 3x^2 + \py{latex(n[0])}$
-\hfill Risposta 1\kern0ex}
+$f'(x) = 3x^2 + \py{latex(n[0])}$ }
+
+{\color{blue}
+\hfill Risposta 1\kern19ex}
 
 La derivata è sempre positiva quindi
 {\color{blue}
 $f(x)$ non ha massimi e minimi locali
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -267,17 +282,17 @@ $f(x)$ non ha massimi e minimi locali
 Si consideri la funzione $f(x) = x \cos (x)$.
 \begin{itemize}
 \item[1.] Determinare la derivata $f'(x)$.
-\item[2.] Scrivere l'equazione della retta tangente a $f(x)$ nel punto $(\pi, -\pi)$.
+\item[2.] Scrivere l'equazione della retta tangente a $f(x)$ nel punto $(\pi, \pi)$.
 \end{itemize}
 \begin{answer}
 
 {\color{blue}
 $f'(x) = x \sin x + \cos x$ 
-\hfill Risposta 1\kern0ex}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
-$y = -x - 2 \pi$
-\hfill Risposta 2\kern0ex}
+$y = -x + 2 \pi$
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -290,15 +305,14 @@ Si consideri la funzione $f(x) = \sqrt{x}$.
 \end{itemize}
 \begin{answer}
 
-L'approssimazione lineare di $f(x)$ in 4 è data da $f'(4)(x-4) + f(4)$,\\[1ex]
-essendo $f'(x) = \dfrac{1}{2\sqrt{x}}$ si ha
+L'approssimazione lineare di $f(x)$ in 4 è data da $f'(4)(x-4) + f(4)$, essendo $f'(x) = \frac{1}{2\sqrt{x}}$ si ha
 {\color{blue}
-$\dfrac{1}{4} x + 1$ 
-\hfill Risposta 1\kern0ex}
+$\frac{1}{4} x + 1$ 
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $\sqrt{4.1} \cong 2.025$ e $\sqrt{3.9} \cong 1.975$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -311,15 +325,14 @@ Si consideri la funzione $f(x) = e^x$.
 \end{itemize}
 \begin{answer}
 
-L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$,\\
-essendo $f'(x) = e^x$ si ha
+L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$, essendo $f'(x) = e^x$ si ha
 {\color{blue}
 $e \cdot x$ 
-\hfill Risposta 1\kern0ex}
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
 $e^{0.9} \cong 2.43$ e $e^{1.1} \cong 2.97$
-\hfill Risposta 2\kern0ex}
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
@@ -332,15 +345,14 @@ Si consideri la funzione $f(x) = \sqrt[3]{x}$.
 \end{itemize}
 \begin{answer}
 
-L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$,\\[1ex]
-essendo $f'(x) = \dfrac{1}{3\sqrt[3]{x^2}}$ si ha
+L'approssimazione lineare di $f(x)$ in 1 è data da $f'(1)(x-1) + f(1)$, essendo $f'(x) = \frac{1}{3\sqrt[3]{x^2}}$ si ha
 {\color{blue}
-$\dfrac{1}{3}x+\dfrac{2}{3}$ 
-\hfill Risposta 1\kern0ex}
+$\frac{1}{3}x+\frac{2}{3}$ 
+\hfill Risposta 1\kern19ex}
 
 {\color{blue}
-$\sqrt[3]{1.1} \cong 1.03$ e $\sqrt[3]{1.2} \cong 1.06$
-\hfill Risposta 2\kern0ex}
+$\sqrt[3]{1.1} \cong 1.0\overline{3}$ e $\sqrt[3]{1.2} \cong 1.0\overline{6}$
+\hfill Risposta 2\kern19ex}
 
 \end{answer}
 \end{question}
