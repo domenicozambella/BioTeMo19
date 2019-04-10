@@ -48,7 +48,7 @@ ESAME = False
 
 
 
-
+%1
 \begin{question}
 \def\Pr{{\rm Pr\,}}
 \def\Ex{{\rm E\,}}
@@ -130,7 +130,8 @@ $\Pr(Y+\py{n}\le x)\ =\ \py{ps}\ $ quindi {\tt{\color{blue}\ x $\cong$ \py{n} + 
 
 \end{answer}
 \end{question}
-  
+
+%2
 \begin{question}
 \begin{pycode}
 from scipy.stats import nbinom
@@ -146,11 +147,11 @@ Leggiamo due sequenze $s_0$ ed $s_1$ da sinistra a destra, qual è la probabilit
 Esprimere il risutato numerico tramite (solo) le funzioni elencate in calce.
 \begin{answer}
     
-  $X\sim NB(\py{n}, 1/4)$
+  $X\sim NB(1, 1/4)$
   
   $\Pr(X\ge \py{k})\ =\ 1-\Pr(X\le \py{k-1})$
   \quad =\ 
-  {\tt{\color{blue}  1 -  nbinom.cdf( $\py{k-1}$, $\py{n}$, 1/4 )}
+  {\tt{\color{blue}  1 -  nbinom.cdf( $\py{k-1}$, 1, 1/4 )}
   \ =\ 
   \py{risposta}}{\color{blue}\hfill Risposta}
 \end{answer}
