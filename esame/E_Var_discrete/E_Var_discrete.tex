@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[top=20mm, head=6mm, headsep=6mm, foot=6mm, bottom= 15mm, left=15mm, right=15mm]{geometry}
 \usepackage{amsmath}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning}
 \usepackage{calc} 
 \usepackage{pythontex}
 \newcommand{\mylabel}[1]{#1\hfill}
@@ -49,7 +51,7 @@ random.seed(258466445)
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
-from sympy import *
+from sympy import Rational, latex
 x = random.sample([1,2,3],2)
 x1 = -x[0]
 x2 = x[1]
@@ -91,7 +93,7 @@ $\displaystyle{\color{blue}\Var(X)}=\Ex(X^2)-\Ex(X)^2=\py{latex((x1**2)*(p1+p3)+
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
-from sympy import *
+from sympy import  Rational, latex
 x = random.sample([1,2,3,4,5,6],2)
 y = random.choice([2,3])
 mu = x[0]
@@ -112,7 +114,7 @@ $\displaystyle{\color{blue}\Ex\big(X(X-\py{y})\big)}=\Ex(X^2)-\py{y}\cdot\Ex(X)=
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
-from sympy import *
+from sympy import  Rational, latex
 x = random.sample([2,3,4,5],2)
 x1 = x[0]
 x2 = x[1]
@@ -160,13 +162,14 @@ $\displaystyle{\color{blue}\Ex(X\cdot Y)}\ =\ \py{x1}\cdot\Pr(X\cdot Y=\py{x1}) 
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
-from sympy import *
+from sympy import Rational, latex
 a = random.choice( [1, 2, 3, 4] )
 
-p = random.choice( [2,3,4,5] )
-d = random.choice(list(range(1,p) ) )
-px = Rational(d,p)
-
+p = random.sample([2,3,4,5],2)
+d = random.choice(list(range(1,p[0])))
+px = Rational(d,p[0])
+d = random.choice(list(range(1,p[1])))
+py = Rational(d,p[1])
 \end{pycode}
 Le v.a.\@ discrete $X$ e $Y$ sono indipendenti. La loro distribuzione di probabilità è data da 
 
@@ -205,7 +208,7 @@ $\displaystyle{\color{blue}\Ex(X + Y)}\ =\ \py{2*a}\cdot\Pr(X\cdot Y=\py{2*a}) \
 \def\Ex{{\rm E\,}}
 \def\Var{{\rm Var\,}}
 \begin{pycode}
-from sympy import *
+from sympy import  Rational, latex
 x = random.sample([2,3,4,5],4)
 ax = x[0]
 bx = x[1]
@@ -250,15 +253,15 @@ Esprimere i numeri razionali come frazioni.
 
 
 %6
-\begin{question}
+\begin{xquestion}
 \def\Pr{{\rm Pr\,}}
 \def\pyl#1{\py{latex(#1) } }
 \everymath{\displaystyle}
 \def\nicefrac#1#2{#1/#2}
 \renewcommand{\arraystretch}{1.3}
 \begin{pycode}
-from sympy import *
-random.seed(9409934)
+from sympy import  Integer, Rational, Matrix, eye, symbols, solve_linear_system, latex
+# random.seed(9409934)
 while True :
     tp  =  random.sample( [1,2,3,4,5,6], 6 ) 
     pab, pac, pba, pbc, pca, pcb = [Integer(i) for i in tp] 
@@ -343,7 +346,7 @@ $\pyl{(pab * pbc) / 100} + \pyl{((10-pac-pab) * pac)/100} +  \pyl{(pac * (10-pca
 {\color{blue}$\pyl{ (pab * pbc) / 100 + ((10-pac-pab) * pac)/100 +  (pac * (10-pca-pcb))/100}$\hfill Risposta 2}
 
 \end{answer}
-\end{question}
+\end{xquestion}
   
   
 

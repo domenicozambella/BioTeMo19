@@ -76,6 +76,7 @@ $\displaystyle\Pr(X\ge\py{n_vittoria})\ =\ 1-\Pr( X\le\py{n_vittoria-1} )\ =\ ${
 
 \begin{question}
 \begin{pycode}
+from scipy.stats import binom
 n = random.choice([8,9,10,11,12])
 d = random.choice([4,5])
 k = random.choice([3,6])
@@ -96,6 +97,7 @@ $\Pr(X\ge\py{k})\ =\ 1-\Pr(X\le \py{k-1})\ =\ ${\tt{\color{blue}  1 - binom.cdf(
 
 \begin{question}
 \begin{pycode}
+from scipy.stats import binom
 n = random.choice([26,27,28,29])
 k = random.choice([12,13,14,15])
 t = random.choice(["t","u"])
